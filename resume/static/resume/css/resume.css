@@ -1,0 +1,225 @@
+a {
+    color: black;
+    text-decoration: none;
+}
+
+.plaquetext {
+        background: url("../images/resume/ResumePlaque.png");
+        background-size: cover;
+        background-repeat: repeat
+    }
+
+.opening {
+    height: 300px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 4fr 6fr;
+    grid-template-rows: 1fr;
+}
+
+#headshot {
+    width: 250px;
+    height: 300px;
+    margin: auto;
+    border: solid 5px black;
+    box-sizing: border-box;
+    box-shadow: 10px 10px 8px #888888;
+
+}
+
+.current {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+    width: 85%;
+    height: 120px;
+    margin-top: 90px;
+}
+
+.current-info {
+    width: 100%;
+    padding-left: 20%;
+    margin: auto 0;
+}
+
+.current-banner {
+    width: 160px;
+    margin: 0 auto;
+}
+
+.indented {
+    font-family: 'Garamond';
+    font-size: 120%;
+    text-indent: 2.5%;
+}
+
+.education {
+    width: 90%;
+    height: auto;
+    margin: auto;
+    padding: 1% 0;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: black;
+}
+
+.row {
+    width: 100%;
+    margin: 2.5% auto;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.row-role {
+    margin: auto 0;
+    margin-left: 2%;
+}
+
+.experience, .project {
+    height: 100%;
+    width: 95%;
+    margin: auto;
+    display: grid !important;
+    grid-template-columns: 1fr;
+}
+
+.experience {
+    grid-template-rows: 100px 100px auto;
+}
+
+.project {
+    grid-template-rows: 100px 80px auto;
+}
+
+.education-info {
+    padding-left: 10%;
+}
+
+.description {
+    font-family: 'Garamond';
+    font-size: 100%;
+    padding: 0 2%;
+    margin-bottom: 2%;
+    text-indent: 2%;
+}
+
+.individual-project-banner {
+    margin: auto;
+}
+
+.language-logos {
+    height: 90px;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.individual-project-info {
+    margin: auto 10px;
+}
+
+.service {
+    width: 90%;
+    margin: auto;
+    min-height: 150px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+}
+
+.service .image-horizontal {
+    margin-left: 5%;
+}
+
+.service div {
+    text-align: right;
+    margin-right: 5%;
+}
+
+
+.skills {
+    width: 90%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto;
+    margin: 0 auto;
+}
+
+.skill {
+    width: 90%;
+    height: 90px;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 4fr;
+    font-family: "Garamond";
+    font-size: 120%;
+    align-items: center;
+    margin: 2.5% auto;
+    color: black;
+    text-decoration: none;
+}
+
+.skill:hover {
+    font-size: 150%;
+}
+
+.skill-logo {
+    width: 90px;
+    height: 80px;
+    padding-left: 5px;
+}
+
+.skill-name {
+    text-align: center;
+    font-size: 120%;
+}
+
+.skill-type {
+    text-align: center;
+    font-family: 'Garamond';
+    font-size: 110%;
+}
+
+.blank {
+    height: 50px;
+    width: 100%;
+    font-family: "Garamond";
+    font-size: 180%;
+    text-align: center;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: underline;
+    padding-top: 5%;
+    padding-bottom: 2%;
+    margin: auto;
+}
+
+.horizontal-line {
+    font-family: 'Garamond';
+    font-size: 120%;
+}
+
+.vertical-line {
+    font-family: 'Garamond';
+    font-size: 100%;
+}
+
+.image-horizontal {
+    max-height: 100px;
+    margin: auto;
+}
+
+.image-vertical {
+    width: 90%;
+    min-height: 80px;
+    max-height: 200px;
+    margin: auto;
+}
+
+

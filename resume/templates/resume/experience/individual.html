@@ -1,0 +1,31 @@
+{% extends "resume/header.html" %}
+{% load staticfiles %}
+
+{% block extrahead %}
+<link type="text/css" rel="stylesheet" href="{% static 'resume/css/experience.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="background">
+    <div class="plaque"><h1 class="plaquetext">Experience</h1></div>
+    <div class="individual-experience">
+        <div class="individual-info">
+            <p class="individual-name">{{ position.name }}</p>
+            <p>{{ position.role }}</p>
+            {% if position.role_continued %}
+                <p>{{ position.role_continued }}</p>
+            {% endif %}
+            {% if position.duration %}
+                <p>{{ position.duration }}</p>
+            {% endif %}
+        </div>
+        
+        <img class="individual-banner" src="{{ position.banner.url }}">
+        <div class="individual-article">
+            <img class="individual-tile" src="{{ position.tile.url }}">
+            <div class="individual-description">{{ position.long_description | linebreaks }}</div>
+        </div>
+    </div>
+    <div class="space"></div>
+</section>
+{% endblock %}

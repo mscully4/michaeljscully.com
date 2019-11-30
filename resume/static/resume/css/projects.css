@@ -1,0 +1,106 @@
+.plaquetext {
+    background: url("../images/projects/ProjectsPlaque.jpg");
+    color: #000;
+    background-size: cover;
+}
+
+.projects {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 2fr 1fr;
+    width: 90%;
+    height: 200px;
+    margin: 2.5% auto;
+    text-decoration: none;
+}
+
+.logos {
+    width: 15%;
+    margin: auto;
+}
+
+.info p {
+    text-decoration: none !important;
+    color: #000;
+    font-size: 120%;
+}
+
+.info {
+    margin: auto;
+    font-family: "Garamond";
+}
+
+.banner {
+    margin: auto;
+    margin-left: 5%;
+}
+
+/*Individual Pages*/
+.individual-project {
+    width: 1000px;
+    height: auto;
+    /*display: grid;
+    grid-template-columns: 450px 550px;
+    grid-template-rows: auto auto;*/
+    display: inline;
+}
+
+.individual-project-info {
+    width: 450px;
+    height: auto;
+    font-family: "Garamond";
+    margin-left: 20px;
+    margin-bottom: 20px;
+    float: left;
+}
+
+.project-banner {
+    height: 100px;
+    width: 90%;
+}
+
+.project-language-logos {
+    box-shadow: 10px 10px 8px #888888;
+    border: solid 3px black;
+    height: 100%;
+    padding: 1%;
+    box-sizing: border-box;
+}
+
+.project-info-name, .project-info-languages, .project-info-link {
+    font-family: "Garamond";
+    margin-left: 20px;
+}
+
+.project-info-name {
+    font-size: 160%;
+    margin-top: 10px;
+}
+
+.project-info-languages, .project-info-link {
+    font-size: 120%;
+}
+
+.project-description {
+    display: block;
+    margin: 0 50px;
+    font-family: "Garamond";
+    font-size: 100%;
+    text-indent: 20px;
+}
+
+.project-sample {
+    display: block;
+    margin: auto;
+    margin-top: 25px;
+    border: solid 3px black;
+    box-shadow: 10px 10px 8px #888888;
+    text-align: center;
+}
+
+.project-sample-caption {
+    text-align: center;
+    font-family: "Garamond";
+    font-size: 100%;
+    padding-top: 1%;
+}

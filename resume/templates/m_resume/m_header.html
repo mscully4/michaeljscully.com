@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<title>Michael Scully's Mobile Webpage</title>
+	<meta name="author" content="Michael Scully">
+	<meta charset="utf-8">
+	{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static 'm_resume/css/m_header.css' %}">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	{% block extrahead %}
+	{% endblock %}
+    </head>
+    <body>
+        <div class="body">
+            <section class="navigation">
+	            <img src="{% static 'm_resume/images/menu/Atlanta.jpg' %}" class="background-image">
+		        <div class="side-bar">
+		            <ul class="side-menu">
+<li class="side-menu-item"><div class="side-menu-icon"><i class="fas fa-user-tie"></i></div><a class="side-menu-link" href="/resume">Professional</a></li>
+<li class="side-menu-item"><div class="side-menu-icon"><i class="fas fa-user-friends"></i></div><a class="side-menu-link" href="/resume">Personal</a></li>
+<li class="side-menu-item"><div class="side-menu-icon"><i class="fas fa-home"></i></div><a class="side-menu-link" href="/resume">Resume</a></li>
+<li class="side-menu-item"><div class="side-menu-icon"><i class="fas fa-user-graduate"></i></div><a class="side-menu-link" href="/education">Education</a></li>
+<li class="side-menu-item"><div class="side-menu-icon"><i class="fas fa-handshake"></i></div><a class="side-menu-link" href="/experience">Experience</a></li>
+<li class="side-menu-item"><div class="side-menu-icon"><i class="fas fa-terminal"></i></div><a class="side-menu-link" href="/projects">Coding Projects</a></li>
+<li class="side-menu-item"><div class="side-menu-icon"><i class="fas fa-laptop"></i></div><a class="side-menu-link" href="/skills">Skills</a></li>
+		            </ul>
+		        </div>
+    	    </section>
+            <section class="main"> 
+                <div class="top-bar">
+                    <i class="fas fa-bars" id="burger"></i>
+        	        <h1 class="title">MichaelScully.com</h3>
+                    <i class="fas fa-user-tie" id="resume-icon"></i>
+                    <i class="fas fa-user-friends" id="personal-icon"></i>
+                </div>
+		        {% block content %}
+		        {% endblock %}
+                <div class="space"></div>
+             </section>
+            </div>
+        </div>
+    </body>
+    <script rel="text/JavaScript" src="{% static 'm_resume/js/m_burger.js' %}"></script>
+</html>

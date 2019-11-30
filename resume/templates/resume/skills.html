@@ -1,0 +1,38 @@
+{% extends "resume/header.html" %}
+{% load staticfiles %}
+
+{% block extrahead %}
+<link type="text/css" rel="stylesheet" href="{% static 'resume/css/skills.css' %}">
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+{% endblock %}
+
+{% block content %}
+<section class="background">
+    <div class="plaque"><h1 class="plaquetext" id="plaquetext">Skills</h1></div>
+    <div class="technical">
+        <h2 class="type">Programming</h2>
+        {% for skill in skills %}
+            {% if skill.typeof %}
+                <a href="skills/{{ skill.pk }}" class="skill card hvr-icon-{{ skill.hover_animation }}">
+                    <p class="name">{{ skill.skill }}</h1>
+                    <p class="description">{{ skill.definition }}</p>
+                    <img class="logo hvr-icon" src="{{ skill.logo.url }}">
+                </a>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="programming">
+        <h2 class="type">Technical</h2>
+        {% for skill in skills %}
+            {% if not skill.typeof %}
+                <a href="skills/{{ skill.pk }}" class="skill card hvr-icon-{{ skill.hover_animation }}">
+                    <p class="name">{{ skill.skill }}</h1>
+                    <p class="description">{{ skill.definition }}</p>
+                    <img class="logo hvr-icon" src="{{ skill.logo.url }}">
+                </a>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="space"></div>
+</section>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "m_resume/m_header.html" %}
+{% load staticfiles %}
+
+{% block extrahead %}
+<link rel="stylesheet" type="text/css" href="{% static 'm_resume/css/m_projects.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <div class="plaque">
+        <p>Coding Projects</p>
+    </div>
+    {% for entry in projects %}
+    <a class="project card" href="projects/{{ entry.pk }}">
+        <div class="banner">
+            {% for url in entry.get_logos %}
+                <img class="logos" src="{{ url }}">
+            {% endfor %}
+        </div>
+        <div>
+            <p class="text">{{ entry.name }}</p>
+            <p class="text">{{ entry.get_languages }}</p>
+        </div>
+        <div>
+            <p class="description">{{ entry.short_description }}</p>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+{% endblock %}

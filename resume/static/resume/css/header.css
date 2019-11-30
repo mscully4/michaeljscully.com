@@ -1,0 +1,200 @@
+@font-face {
+    font-family: "Allura";
+    src: url("../fonts/Allura/Allura-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Courgette";
+    src: url("../fonts/Courgette/Courgette-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Old Standard TT";
+    src: url("../fonts/Old_Standard_TT/OldStandard-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Pinyon Script";
+    src: url("../fonts/Pinyon_Script/PinyonScript-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Yantramanav";
+    src: url("../fonts/Yantramanav/Yantramanav-Regular.ttf");
+}
+
+@font-face {
+    font-family: 'PW Chalk';
+    src: url("../fonts/PW Chalk/PWChalk.ttf");
+}
+
+@font-face {
+    font-family: 'Garamond';
+    src: url("../fonts/Garamond/Garamond Regular.ttf");
+}
+
+@font-face {
+    font-family: 'Terminus';
+    src: url("../fonts/Terminus/Terminus.ttf");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    display: block;
+    margin: auto;
+    display: block;
+    background-color: #c2d2d2;
+    font-size: 20px;
+}
+
+.header-image {
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: auto;
+    position: relative;
+}
+
+header {
+    width: 1100px;
+    border: solid 3px rgba(0, 0, 0, .6);
+    border-bottom: none;
+    box-sizing: border-box;
+    margin: auto;
+}
+
+.title {
+    display: block;
+    font-size: 50px;
+    padding-left: 10px;
+    color: #000;
+    font-family: "Allura", "cursive";
+}
+
+.menubar {
+    height: 50px;
+    width: 1096px;
+    background-color: rgba(0, 0, 0, .6);
+    position: absolute;
+    bottom: 0px;
+}
+
+.menu {
+    text-align: center;
+    overflow: hidden;
+    height: 50px;
+}
+
+.buttons {
+    height: 50px;
+    font-size: 100%;
+    text-decoration: none;
+    color: #fff;
+    padding: 12px 2.5%;
+    font-family: "Courgette";
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.buttons:hover {
+    text-decoration: underline;
+}
+
+.buttons:focus {
+    outline: 0;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 2px rgba(0,0,0,1);
+    min-width: 200px;
+    margin-top: 13px;
+    font-family: "Garamond"
+}
+
+.dropdown-items {
+    text-align: left;
+    padding: 10px 10px;
+    list-style: none;
+    display: block;
+    color: #000;
+    text-decoration: none;
+}
+
+.dropdown-items:hover {
+    background-color: #e5e5e5;
+}
+
+.space {
+    height: 125px;
+}
+
+/* Reoccuring */
+.background {
+    background-color: #fff;
+    width: 1100px;
+    margin: auto;
+    box-sizing: border-box;
+    border-left: solid 2px rgba(0,0,0,.6);
+    border-right: solid 2px rgba(0,0,0,.6);
+    border-bottom: solid 2px rgba(0,0,0,.6);
+}
+
+.card {
+    box-shadow: 0 0 4px #000 !important;
+    border-radius: 6px;
+    background-color: #fff;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+.plaque {
+    display: block;
+    margin: auto;
+    width: 65%;
+    padding: 75px 0;
+}
+
+.plaquetext {
+    text-align: center;
+    border: solid 5px black;
+    border-radius: 45%;
+    font-family: "Pinyon Script";
+    border-left: solid 3px black;
+    border-right: solid 3px black;
+    font-size: 100px; 
+    font-weight: normal;
+    height: 190px;
+    line-height: 190px;
+    background-size: cover;
+}
+
+/* Footer */
+
+.footer {
+    width: 100%;
+    background-color: #c2d2d2;
+    height: 150px;
+    margin: auto;
+    padding-top: 50px;
+    text-align: center;
+    font-family: "Garamond";
+    font-weight: bold;
+}
+.footer-links {
+    color:#183962; 
+    text-decoration: none;
+}

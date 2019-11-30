@@ -1,0 +1,24 @@
+{% extends "m_resume/m_header.html" %}
+{% load staticfiles %}
+
+{% block extrahead %}
+<link rel="stylesheet" type="text/css" href="{% static 'm_resume/css/m_skills.css' %}">
+{% endblock%}
+
+{% block content %}
+<div class="content">
+    <div class="plaque">
+        <p>Skills</p>
+    </div>
+    <div class="individual">
+        <div class="individual-skill">
+            <p class="individual-technology">{{ skill.skill }}</p>
+            <img class="individual-logo" src="{{ skill.logo.url }}">
+        </div>
+        <div class="individual-description">
+            <p>{{ skill.backstory | linebreaks }}</p>
+        </div>
+    </div>
+    <div class="space"></div>
+</div>
+{% endblock %}

@@ -1,0 +1,100 @@
+#plaquetext {
+    background-image: url("../images/skills/SkillsPlaque.jpg");
+    background-size: cover;
+    color: #000;
+}
+
+.technical, .programming {
+    width: 1000px;
+    margin: auto;
+    padding: 25px 0;
+}
+
+.type {
+    margin: auto;
+    font-family: "Garamond";
+    font-size: 180%;
+    text-align: center;
+    padding: 20px 0;
+    text-decoration: underline;
+}
+
+.skill {
+    width: 100%;
+    height: 130px;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: auto 5fr auto;
+    align-items: center;
+    padding: 10px 0;
+    text-decoration: none;
+    color: black;
+    margin: 10px 0;
+}
+
+.name {
+    text-align: center;
+    font-size: 36px;
+    font-family: "Garamond";
+    font-weight: bold;
+    padding: 0 10px;
+}
+
+.description {
+    font-family: "Garamond";
+    font-size: 20px;
+    padding: 0 50px;
+    text-align: center;
+}
+
+.logo {
+    width: 100px;
+    margin: auto;
+}
+
+.card {
+    box-shadow: 0 0 4px rgba(0, 0, 0, .2);
+    border-radius: 6px;
+}
+ 
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 0, 0, .6);
+}
+
+/*Individual Pages*/
+.individual {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: 350px 100px 650px;
+    margin: auto;
+}
+
+.individual_name {
+    font-family: "Garamond";
+    font-size: 180%;
+    margin: auto;
+    font-weight: bold;
+}
+
+.individual_description {
+    font-family: "Garamond";
+    font-size: 110%;
+    margin: auto 15px;
+}
+
+.individual-logo {
+    height: 100%;
+    width: 100%;
+}
+
+.backstory {
+    grid-column: 1 / 4;
+    font-family: "Garamond";
+    font-size: 24px;
+    margin: auto 10px;
+    text-align: left;
+    text-indent: 30px;
+    margin: 0 30px;
+    margin-top: 30px;
+}

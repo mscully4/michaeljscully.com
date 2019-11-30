@@ -1,0 +1,47 @@
+{% extends "resume/header.html" %}
+{% load staticfiles %}
+
+{% block extrahead %}
+<link type="text/css" rel="stylesheet" href="{% static 'resume/css/education.css' %}">
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+{% endblock %}
+
+{% block content %}
+<section class="background">
+    <div class="plaque"><h1 class="plaquetext">Education</h1></div>
+    {% for entry in education %}
+    <div class="university">
+        <img class="banner" src="{{ entry.banner.url }}">
+        <img class="logo" src="{{ entry.logo.url }}">
+        <div class="info">
+            <p>{{ entry.university }}</p>
+            <p>{{ entry.college }}</p>
+            <p>{{ entry.major }}</p>
+            <p>{{ entry.degree }}</p>
+            <p>Class of {{ entry.year }}</p>
+            <p>GPA {{ entry.gpa }}/4</p>
+        </div>
+    </div>
+    {% endfor %}
+    <p class="coursework">My Coursework</p>
+    <div class="classes">
+        {% for subject in classes %}
+        <div class="subject">
+            {% if subject.0.subject == "ECON" %}
+                <p class="department-name">Economics</p>
+            {% elif subject.0.subject == "CSE" or subject.0.subject == "CDT" %}
+                <p class="department-name">Computer Science</p>
+            {% elif subject.0.subject == "ITAO" or subject.0.subject == "ACMS" %}
+                <p class="department-name">Business</p>
+            {% else %}
+                <p class="department-name">Other</p>
+            {% endif %}
+            {% for class in subject %}
+                <p class="class">{{class.course_number}} {{class.subject}} {{class.course_name}}</p>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+<div class="space"></div>
+</section>
+{% endblock %}

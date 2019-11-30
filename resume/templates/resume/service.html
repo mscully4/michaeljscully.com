@@ -1,0 +1,20 @@
+{% extends "resume/header.html" %}
+{% load staticfiles %}
+
+{% block extrahead %}
+<link type="text/css" rel="stylesheet" href="{% static 'resume/css/service.css' %}">
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+{% endblock %}
+
+{% block content %}
+<section class="background">
+    <div class="plaque"><h1 class="plaquetext">Volunteer Work</h1></div>
+    <div class="service">
+        <h1 class="project">{{ service.name }}</h1>
+        <img class="logo" src="{{ service.logo.url }}">
+        <img class="photo" src="{{ service.image.url }}">
+        <p class="text">{{ service.long }}</p>
+    </div>
+    <div class="space"></div>
+</section>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "resume/header.html" %}
+{% load staticfiles %}
+
+{% block extrahead %}
+<link type="text/css" rel="stylesheet" href="{% static 'resume/css/portfolio.css' %}">
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+{% endblock %}
+
+{% block content %}
+<body id="background">
+    <div class="box">
+        <div class="plaque"><h1 class="plaquetext">My Portfolio</h1></div>
+        <table class="investments" cellpadding="0" cellspacing="0" border="0">
+            <col width="100">
+            <col width="275">
+            <col width="200">
+            <col width="150">
+            <col width="150">
+            <thead>
+                <tr style="text-align: left;">
+                    <th>Ticker</th>
+                    <th>Name</th>
+                    <th>Date of Purchase</th>
+                    <th>Price Paid</th>
+                    <th>Current Price</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for Investments in object_list %}
+            <tr class="investment">
+                <td class="ticker">{{ Investments.ticker }}</td>
+                <td>{{ Investments.name }}</td>
+                <td>{{ Investments.date_of_purchase }}</td>
+                <td>{{ Investments.price_at_purchase }}</td>
+                <td class="price">Loading...</td>
+            </tr>
+            {%  endfor %}
+            </tbody>
+        </table>
+        </div>
+    <div class="space"></div>
+</body>
+{% endblock %}
+
+{% block extrafoot %}
+<script src="{% static 'resume/js/portfolio.js' %}"></script>
+{% endblock %}

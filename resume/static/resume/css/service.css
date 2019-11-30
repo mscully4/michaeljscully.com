@@ -1,0 +1,41 @@
+.plaquetext {
+    background: url("../images/service/two.jpg");
+    background-size: cover;
+    color: #000000;
+}
+
+.service {
+    width: 1000px;
+    display: grid;
+    grid-template-rows: 200px 2fr;
+    grid-template-columns: 1fr 1fr;
+    margin: auto;
+}
+
+.project {
+    font-size: 200%;
+    font-family: "Garamond";
+    margin: auto;
+    overflow: visible;
+    white-space: nowrap;
+}
+
+.logo {
+    width: 200px;
+    margin: auto;
+}
+
+.photo {
+    width: 450px;
+    height: 375px;
+    border: solid 3px black;
+    margin: auto;
+    box-shadow: 10px 10px 8px #888888;
+}
+
+.text {
+    font-family: "Garamond";
+    font-size: 100%;
+    padding: 0 10px;
+    text-indent: 20px;
+}

@@ -1,0 +1,37 @@
+{% extends 'resume/header.html' %}
+{% load staticfiles %}
+
+{% block extrahead %}
+<link type="text/css" rel="stylesheet" href="{% static 'resume/css/projects.css' %}">
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+{% endblock %}
+
+{% block content %}
+<section class="background">
+    <div class="plaque"><h1 class="plaquetext">Coding Projects</h1></div>
+    <div class="individual-project">
+        <div class="individual-project-info">
+            <div class="project-banner">
+            {% for url in project.get_logos %}
+                <img class="project-language-logos" src="{{ url }}">
+            {% endfor %}
+            </div>
+            <p class="project-info-name">{{ project.name }}</p>
+            <p class="project-info-languages">{{ project.get_languages }}</p>
+            {% if project.github %}
+                <a class="project-info-link" href="{{project.github}}">Check Out This Project On Github</a>
+            {% endif %}
+        </div>
+        {{ project.boof }}
+        <div class="project-description">{{ project.long_description | linebreaks }}</div>
+    </div>
+    {% if project.sample %}
+    	<img class="project-sample" src="{{ project.sample.url }}">
+    {% endif %}
+    {% if project.caption %}
+        <p class="project-sample-caption">{{ project.caption }}</p>
+    {% endif %}
+    <div class="space"></div>
+</section>
+{% endblock %}
+

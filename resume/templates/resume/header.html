@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Michael Scully's Resume Page</title>
+        <meta name="author" content="Michael Scully">
+        <meta charset="utf-8">
+	{% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'resume/css/header.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'resume/css/Hover/Hover-master/css/hover.css' %}">
+        <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+	{% block extrahead %}
+        {% endblock %}
+    </head>
+    <body>
+        <header>
+            <div class="header-image" style="background: url({% static 'resume/images/header/Header.jpg' %}); background-size: 1100px 200px;">
+                <h1 class="title">Michael Scully</h1>
+                <div class="menubar">
+                    <div class="menu">
+                        <a class="buttons">Home</a>
+                        <a class="buttons" href="/resume">Resume</a>
+                        <a class="buttons" href="/resume/education">Education</a>
+                        <div class="buttons" id="buttons-experience"><p>Business Experience <i class="fas fa-angle-right"></i></p>
+                            <div class="dropdown-content" id="dropdown-experience">
+                                {% if experience.0.0 %}
+                                    {% for line in experience %}
+                                        {% for entry in line %}
+                                            {% if entry %}
+                                                <a class="dropdown-items" href="/resume/experience/{{ entry.pk }}" class="dropdown-items">{{ entry.name }}</a>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endfor %}
+                                {% elif not experience.0.0 %}
+                                    {% for entry in experience %}
+                                        <a class="dropdown-items" href="/resume/experience/{{ entry.pk }}" class="dropdown-items">{{ entry.name }}</a>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="buttons" id="buttons-projects"><p>Coding Projects <i class="fas fa-angle-right"></i></p>
+                            <div class="dropdown-content" id="dropdown-projects">
+                                {% if projects.0.0 %}
+                                    {% for line in projects %}
+                                        {% for entry in line %}
+                                            {% if entry %}
+                                                <a class="dropdown-items" href="/resume/projects/{{ entry.pk }}" class="dropdown-items">{{ entry.name }}</a>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endfor %}
+                                {% elif not projects.0.0 %}
+                                    {% for entry in projects %}
+                                        <a class="dropdown-items" href="/resume/projects/{{ entry.pk }}" class="dropdown-items">{{ entry.name }}</a>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <a class="buttons" href="/resume/service">Service</a>
+                        <a class="buttons" href="/resume/skills">Skills</a>
+                    </div>
+               </div>
+            </div>
+        </header>
+        {% block content %}
+        {% endblock %}
+        <footer class="footer">
+            <p class="credits">Design by Michael Scully</p>
+            <p class="credits"><a class="footer-links" href="mailto:michael.scully1997@gmail.com">Contact Me</a> or Check Out my <a class="footer-links" href="#">Personal Site</a></p>
+            <p class="credits">Animations done using <a href="http://ianlunn.github.io/Hover/" class="footer-links">Hover.css</a></p>
+            <p class="credits">Running on Django 2.0.5</p>
+        </footer>
+        <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+        <script type="text/JavaScript" src="{% static 'resume/js/menubar.js' %}"></script>
+        <!-- <script type="text/JavaScript" src="{% static 'resume/js/browser.js' %}"></script>-->
+        {% block extrafoot %}
+        {% endblock %}
+    </body>
+</html>
