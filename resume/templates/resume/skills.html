@@ -7,13 +7,13 @@
 {% endblock %}
 
 {% block content %}
-<section class="background">
-    <div class="plaque"><h1 class="plaquetext" id="plaquetext">Skills</h1></div>
+<section class="body">
+    <div class="body-plaque"><h1 class="body-plaque-text" id="plaquetext">Skills</h1></div>
     <div class="technical">
         <h2 class="type">Programming</h2>
         {% for skill in skills %}
             {% if skill.typeof %}
-                <a href="skills/{{ skill.pk }}" class="skill card hvr-icon-{{ skill.hover_animation }}">
+                <a href="skills/{{ skill.pk }}" class="skill body-card hvr-icon-{{ skill.hover_animation }}">
                     <p class="name">{{ skill.skill }}</h1>
                     <p class="description">{{ skill.definition }}</p>
                     <img class="logo hvr-icon" src="{{ skill.logo.url }}">
@@ -25,7 +25,7 @@
         <h2 class="type">Technical</h2>
         {% for skill in skills %}
             {% if not skill.typeof %}
-                <a href="skills/{{ skill.pk }}" class="skill card hvr-icon-{{ skill.hover_animation }}">
+                <a href="skills/{{ skill.pk }}" class="skill body-card hvr-icon-{{ skill.hover_animation }}">
                     <p class="name">{{ skill.skill }}</h1>
                     <p class="description">{{ skill.definition }}</p>
                     <img class="logo hvr-icon" src="{{ skill.logo.url }}">

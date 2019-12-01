@@ -7,11 +7,11 @@
 
 {% block content %}
 <div class="content">
-    <div class="plaque">
+    <div class="body-plaque">
         <p>Coding Projects</p>
     </div>
     {% for entry in projects %}
-    <a class="project card" href="projects/{{ entry.pk }}">
+    <a class="project body-card" href="projects/{{ entry.pk }}">
         <div class="banner">
             {% for url in entry.get_logos %}
                 <img class="logos" src="{{ url }}">

@@ -7,13 +7,13 @@
 
 {% block content %}
 <div class="content">
-    <div class="plaque">
+    <div class="body-plaque">
         <p>Skills</p>
     </div>
     <p class="type">Programming</p>  
     {% for entry in skills %}
         {% if entry.typeof %}
-            <a class="skill card" href="skills/{{ entry.pk }}">
+            <a class="skill body-card" href="skills/{{ entry.pk }}">
                 <div>
                     <p class="text">{{ entry.skill }}</p>
                 </div>
@@ -24,7 +24,7 @@
     <p class="type">Technical</p>  
     {% for entry in skills %}
         {% if not entry.typeof %}
-            <a class="skill card" href="skills/{{ entry.pk }}">
+            <a class="skill body-card" href="skills/{{ entry.pk }}">
                 <div>
                     <p class="text">{{ entry.skill }}</p>
                 </div>

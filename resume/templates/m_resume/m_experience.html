@@ -7,11 +7,11 @@
 
 {% block content %}
 <div class="content">
-    <div class="plaque">
+    <div class="body-plaque">
         <p>Experience</p>
     </div>
     {% for entry in experience%}
-    <a class="experience card" href="experience/{{ entry.pk }}">
+    <a class="experience body-card" href="experience/{{ entry.pk }}">
         <img class="banner" src="{{ entry.banner.url }}">
         <div>
             <p class="text">{{ entry.name }}</p>

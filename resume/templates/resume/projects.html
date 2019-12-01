@@ -6,10 +6,10 @@
 {% endblock %}
 
 {% block content %}
-<section class="background">
-    <div class="plaque"><h1 class="plaquetext">Coding Projects</h1></div>
+<section class="body">
+    <div class="body-plaque"><h1 class="body-plaque-text">Coding Projects</h1></div>
     {% for entry in projects %}
-        <a class="card projects" href="projects/{{ entry.pk }}">
+        <a class="body-card projects" href="projects/{{ entry.pk }}">
             <div class="banner">
                 {% for url in entry.get_logos %}
                     <img class="logos" src="{{ url }}">

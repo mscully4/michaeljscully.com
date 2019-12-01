@@ -3,11 +3,11 @@ a {
     text-decoration: none;
 }
 
-.plaquetext {
+/* .body-plaque-text {
         background: url("../images/resume/ResumePlaque.png");
         background-size: cover;
         background-repeat: repeat
-    }
+    } */
 
 .opening {
     height: 300px;

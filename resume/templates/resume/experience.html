@@ -7,10 +7,10 @@
 {% endblock %}
 
 {% block content %}
-<section class="background">
-    <div class="plaque"><h1 class="plaquetext">Experience</h1></div>
+<section class="body">
+    <div class="body-plaque"><h1 class="body-plaque-text">Experience</h1></div>
     {% for entry in experience %}
-    <a class="card experience" href="experience/{{ entry.pk }}">
+    <a class="body-card experience" href="experience/{{ entry.pk }}">
         <img class="banner" src="{{ entry.banner.url }}">
         <div class="info">
             <p>{{ entry.name }}</p>

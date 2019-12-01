@@ -6,124 +6,124 @@
 {% endblock %}
 
 {% block content %}
-    <section class="background">
-        <div class="plaque"><h1 class="plaquetext">Resume</h1></div>
-        <div class="opening">
-            <img id="headshot" src="{% static 'resume/images/resume/Headshot.jpg' %}">
-            <a href="experience/{{ current.pk }}" class="card current">
-                <img class="current-banner" src="{{ current.banner.url }}">
-                <div class="current-info">
-                    <p class="horizontal-line"><b>{{ current.title }}</b></p>
-                    <p class="indented" style="display: block;">{{ current.name }}</p>
-                    <p class="indented" style="display: block;">{{ current.role }}</p>
-                    {% if current.role_continued %}
-                        <p class="indented" style="display: block;">{{ current.role_continued }}</p>
-                    {% endif %}
-                </div>
-            </a>
+  <section class="body">
+    <h1 class="body-title-text">Resume</h1>
+    <div class="opening">
+      <img id="headshot" src="{% static 'resume/images/resume/Headshot.jpg' %}">
+      <a href="experience/{{ current.pk }}" class="body-card current">
+        <img class="current-banner" src="{{ current.banner.url }}">
+        <div class="current-info">
+          <p class="horizontal-line"><b>{{ current.title }}</b></p>
+          <p class="indented" style="display: block;">{{ current.name }}</p>
+          <p class="indented" style="display: block;">{{ current.role }}</p>
+          {% if current.role_continued %}
+              <p class="indented" style="display: block;">{{ current.role_continued }}</p>
+          {% endif %}
         </div>
-        <div class="blank">Education</div>
-        {% for entry in education %}
-        <a href="education" class="card education">
-            <img class="image-horizontal" src="{{ entry.logo.url }}">
-            <div class="education-info">
-                <p class="horizontal-line">{{ entry.university }}</p>
-                <p class="horizontal-line">{{ entry.degree }} in {{ entry.major }}</p>
-                {% if entry.minor %}
-                    <p class="horizontal-line">Minor in {{ entry.minor }}</p>
-                {% endif %}
-            </div>
-            <div>
-                <p class="line">Class of {{ entry.year }} <br> GPA: {{ entry.gpa }}</p>
-            </div>
+      </a>
+    </div>
+    <div class="blank">Education</div>
+      {% for entry in education %}
+        <a href="education" class="body-card education">
+          <img class="image-horizontal" src="{{ entry.logo.url }}">
+          <div class="education-info">
+            <p class="horizontal-line">{{ entry.university }}</p>
+            <p class="horizontal-line">{{ entry.degree }} in {{ entry.major }}</p>
+            {% if entry.minor %}
+              <p class="horizontal-line">Minor in {{ entry.minor }}</p>
+            {% endif %}
+          </div>
+          <div>
+            <p class="line">Class of {{ entry.year }} <br> GPA: {{ entry.gpa }}</p>
+          </div>
         </a>
-        {% endfor %}
-        <div class="blank">Business Experience</div>
-        {% for line in experience %}
+      {% endfor %}
+    <div class="blank">Business Experience</div>
+      {% for line in experience %}
         <div class="row">
-            {% for entry in line %}
-                {% if entry %}
-                <a href="experience/{{ entry.pk }}" class="card experience" style="display: grid;">
-                    <img class="image-vertical" src="{{ entry.banner.url }}">
-                    <div class="row-role">
-                        <p class="vertial-line">{{ entry.name }}</p>
-                        <p class="vertical-line">{{ entry.role }}</p>
-                        {% if entry.role_continued %}
-                            <p class="vertical-line">{{ entry.role_continued }}</p>
-                        {% endif %}
-                        <p class="vertical-line">{{ entry.start_date|date:"F Y" }} - 
-                        {% if entry.end_date %}
-                            {{ entry.end_date|date:"F Y" }}
-                            {% else %}
-                            {{ "Present" }}
-                        {% endif %}
-                        </p>
-                    </div>
-                    <div>
-                        <p class="description">{{ entry.short_description }}</p>
-                    </div>
-                </a>
-                {% endif %}
-            {% endfor %}
-            </div>
-        {% endfor %}
-        <div class="blank">Coding Projects</div>
-            {% for project in projects %}
-                <div class="row">
-                    {% for entry in project %}
-                        {% if entry %}
-                        <a href="projects/{{ entry.pk }}" class="project card">
-                            <div class="individual-project-banner">
-                                {% for url in entry.get_logos %}
-                                    <img class="language-logos" src="{{ url }}">
-                                {% endfor %}
-                            </div>
-                            <div class="row-role">
-                                <p class="vertical-line">{{ entry.name }}</p>
-                                <p class="vertical-line" style="margin:auto">{{ entry.get_languages }}</p>
-                            </div>
-                            <p class="description">{{ entry.short_description }}</p>
-                        </a>
-                        {% endif %}
-                    {% endfor %}
+          {% for entry in line %}
+            {% if entry %}
+              <a href="experience/{{ entry.pk }}" class="body-card experience" style="display: grid;">
+                <img class="image-vertical" src="{{ entry.banner.url }}">
+                <div class="row-role">
+                  <p class="vertial-line">{{ entry.name }}</p>
+                  <p class="vertical-line">{{ entry.role }}</p>
+                  {% if entry.role_continued %}
+                      <p class="vertical-line">{{ entry.role_continued }}</p>
+                  {% endif %}
+                  <p class="vertical-line">{{ entry.start_date|date:"F Y" }} - 
+                  {% if entry.end_date %}
+                    {{ entry.end_date|date:"F Y" }}
+                      {% else %}
+                        {{ "Present" }}
+                    {% endif %}
+                  </p>
                 </div>
-            {% endfor %}
-            <div class="blank">Service Projects</div>
+                <div>
+                  <p class="description">{{ entry.short_description }}</p>
+                </div>
+              </a>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endfor %}
+    <div class="blank">Coding Projects</div>
+      {% for project in projects %}
+        <div class="row">
+          {% for entry in project %}
+            {% if entry %}
+              <a href="projects/{{ entry.pk }}" class="project body-card">
+                <div class="individual-project-banner">
+                  {% for url in entry.get_logos %}
+                    <img class="language-logos" src="{{ url }}">
+                  {% endfor %}
+                </div>
+                <div class="row-role">
+                  <p class="vertical-line">{{ entry.name }}</p>
+                  <p class="vertical-line" style="margin:auto">{{ entry.get_languages }}</p>
+                </div>
+                <p class="description">{{ entry.short_description }}</p>
+              </a>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endfor %}
+            <!-- <div class="blank">Service Projects</div>
             {% for entry in service %}
-                <a href="service" class="card service">
+                <a href="service" class="body-card service">
                     <img class="image-horizontal" src="{{ entry.logo.url }}">
                     <div>
                         <p class="horizontal-line">{{ entry.name }}</p>
                         <p class="horizontal-line">{{ entry.role }}</p>
                     </div>
                 </a>
+            {% endfor %} -->
+      <div class="blank">Skills</div>
+        <div class="skills">
+          <div class="skill-type"><b>Programming</b></div>
+          <div class="skill-type"><b>Technical</b></div>
+          <div class="programming">
+            {% for skill in skills %}
+              {% if skill.typeof %}
+                <a href="skills/{{ skill.pk }}" class="skill body-card hvr-icon-{{ skill.hover_animation }}">
+                  <img class="skill-logo hvr-icon" src="{{ skill.logo.url }}">
+                  <p class="skill-name">{{ skill.skill }}</p>
+                </a>
+              {% endif %}
             {% endfor %}
-            <div class="blank">Skills</div>
-            <div class="skills">
-                <div class="skill-type"><b>Programming</b></div>
-                <div class="skill-type"><b>Technical</b></div>
-                <div class="programming">
-                    {% for skill in skills %}
-                        {% if skill.typeof %}
-			                <a href="skills/{{ skill.pk }}" class="skill card hvr-icon-{{ skill.hover_animation }}">
-				                <img class="skill-logo hvr-icon" src="{{ skill.logo.url }}">
-                                <p class="skill-name">{{ skill.skill }}</p>
-                            </a>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-                <div class="technical">
-                    {% for skill in skills %}
-                        {% if not skill.typeof %}
-                            <a href="skills/{{ skill.pk }}" class="skill card hvr-icon-{{ skill.hover_animation }}">
-                                <img class="skill-logo hvr-icon" src="{{ skill.logo.url }}">
-                                <p class="skill-name">{{ skill.skill }}</p>
-                            </a>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-                <div class="space"></div>
-            </div>
+          </div>
+          <div class="technical">
+            {% for skill in skills %}
+              {% if not skill.typeof %}
+                <a href="skills/{{ skill.pk }}" class="skill body-card hvr-icon-{{ skill.hover_animation }}">
+                  <img class="skill-logo hvr-icon" src="{{ skill.logo.url }}">
+                  <p class="skill-name">{{ skill.skill }}</p>
+                </a>
+              {% endif %}
+            {% endfor %}
+          </div>
+          <div class="space"></div>
+        </div>
     </section>
 {% endblock %}
 
