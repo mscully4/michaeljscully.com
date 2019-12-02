@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from resume.models import Classes , Skills
-from resume.models import Education, Service, Projects, Experience, Projects
+from resume.models import Classes, Skills, Certifications
+from resume.models import Education, Projects, Experience, Projects
 
 import logging
 from itertools import chain
@@ -11,47 +11,23 @@ logger = logging.getLogger('django')
 # Create your views here.
 def index(request):
     #sorting the experiences so the most recent will be first, if there is no end date then create a future date and use that
-    experience_set = sorted(Experience.objects.all(), key=lambda x: x.end_date or date(2121, 4, 20))[::-1]
-    current = Experience.objects.get(current=True)
+    experiences = sorted(Experience.objects.all(), key=lambda x: x.end_date or date(2121, 4, 20))[::-1]
+    projects = Projects.objects.all()
     education = Education.objects.all()
-    service = Service.objects.all()
     skills = Skills.objects.all()
+    certifications = Certifications.objects.all()
     current = Experience.objects.get(current=True)
     if request.user_agent.is_mobile:
-        experience = []
-        for entry in experience_set:
-            experience.append(entry)
-        projects = []
-        for entry in Projects.objects.all():
-            projects.append(entry)
-        activities = []
-        dic = {'current': current,
-                'experience': experience,
-                'service': service,
-                'projects': projects,
-                'education': education,
-                'skills': skills,
-                }
         template = 'm_resume/m_resume.html'
     else:
-        experience = []
-        for i, gig in enumerate(experience_set):
-            if i % 3 == 0:
-                experience.append([None, None, None])
-            experience[i//3][i%3] = gig
-        projects = []
-        for i, project in enumerate(Projects.objects.all()):
-            if i % 3 == 0:
-                projects.append([None, None, None])
-            projects[i//3][i%3] = project
         template = 'resume/resume.html'
     
     dic = {'current': current,
-        'experience': experience,
-        'service': service,
+        'experiences': experiences,
         'projects': projects,
         'education': education,
         'skills': skills,
+        "certifications": certifications,
         }
     
     return render(request, template, dic)
@@ -164,16 +140,16 @@ def individual_skills(request, pk):
 
     return render(request, template, dic)
 
-def service(request):
-    #assert len(Service.objects.all()) > 0
-    dic = {
-        #sort experience in descending order based on end_date
-        "experience": sorted(Experience.objects.all(), key=lambda x: x.end_date or date(2121, 4, 20))[::-1],
-        "projects": Projects.objects.all().order_by("-pk"),
-        "service": Service.objects.all()[0] if Service.objects.all() else [],
-    }
+# def service(request):
+#     #assert len(Service.objects.all()) > 0
+#     dic = {
+#         #sort experience in descending order based on end_date
+#         "experience": sorted(Experience.objects.all(), key=lambda x: x.end_date or date(2121, 4, 20))[::-1],
+#         "projects": Projects.objects.all().order_by("-pk"),
+#         "service": Service.objects.all()[0] if Service.objects.all() else [],
+#     }
     
-    return render(request, 'resume/service.html', dic)
+#     return render(request, 'resume/service.html', dic)
 
 
 # For Testing Purposes

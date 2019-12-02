@@ -3,13 +3,7 @@ a {
     text-decoration: none;
 }
 
-/* .body-plaque-text {
-        background: url("../images/resume/ResumePlaque.png");
-        background-size: cover;
-        background-repeat: repeat
-    } */
-
-.opening {
+.resume-opening {
     height: 300px;
     width: 100%;
     display: grid;
@@ -17,7 +11,7 @@ a {
     grid-template-rows: 1fr;
 }
 
-#headshot {
+#resume-headshot {
     width: 250px;
     height: 300px;
     margin: auto;
@@ -27,7 +21,7 @@ a {
 
 }
 
-.current {
+.resume-current {
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 1fr;
@@ -37,18 +31,19 @@ a {
     margin-top: 90px;
 }
 
-.current-info {
+.resume-current-text {
     width: 100%;
     padding-left: 20%;
     margin: auto 0;
 }
 
-.current-banner {
+.resume-current-banner {
     width: 160px;
     margin: 0 auto;
 }
 
-.indented {
+.resume-current-indented {
+    display: block;
     font-family: 'Garamond';
     font-size: 120%;
     text-indent: 2.5%;
@@ -68,15 +63,20 @@ a {
     color: black;
 }
 
-.row {
-    width: 100%;
-    margin: 2.5% auto;
+.resume-experiences, .resume-projects {
     display: grid;
-    grid-template-rows: 1fr;
     grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
 }
 
-.row-role {
+.resume-experience, .resume-project {
+    display: grid;
+    grid-template-rows: 6em 6em auto;
+    height: 100%;
+    width: 95%;
+}
+
+.resume-experience-info, .resume-project-info {
     margin: auto 0;
     margin-left: 2%;
 }
@@ -101,62 +101,37 @@ a {
     padding-left: 10%;
 }
 
-.description {
-    font-family: 'Garamond';
-    font-size: 100%;
-    padding: 0 2%;
-    margin-bottom: 2%;
-    text-indent: 2%;
-}
+
 
 .individual-project-banner {
     margin: auto;
 }
 
-.language-logos {
-    height: 90px;
+.resume-project-logos {
+    height: 4em;
     margin: auto;
-    margin-top: 10px;
+    margin-top: 1em;
 }
 
 .individual-project-info {
     margin: auto 10px;
 }
 
-.service {
-    width: 90%;
-    margin: auto;
-    min-height: 150px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
-    align-items: center;
-}
 
-.service .image-horizontal {
-    margin-left: 5%;
-}
-
-.service div {
-    text-align: right;
-    margin-right: 5%;
-}
-
-
-.skills {
+.resume-skills, .resume-certifications {
     width: 90%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
     margin: 0 auto;
 }
 
-.skill {
+.resume-skill, .resume-certification {
     width: 90%;
-    height: 90px;
+    height: 8em;
     display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 3fr 2fr;
+    grid-template-columns: 1fr;
     font-family: "Garamond";
     font-size: 120%;
     align-items: center;
@@ -165,29 +140,18 @@ a {
     text-decoration: none;
 }
 
-.skill:hover {
-    font-size: 150%;
+.resume-skill-logo, .resume-certification-logo {
+    margin: auto;
+    width: 50%;
 }
 
-.skill-logo {
-    width: 90px;
-    height: 80px;
-    padding-left: 5px;
-}
-
-.skill-name {
+.resume-skill-text, .resume-certification-text {
     text-align: center;
-    font-size: 120%;
-}
-
-.skill-type {
-    text-align: center;
-    font-family: 'Garamond';
-    font-size: 110%;
+    font-size: 100%;
 }
 
 .blank {
-    height: 50px;
+    height: 2em;
     width: 100%;
     font-family: "Garamond";
     font-size: 180%;
@@ -200,26 +164,34 @@ a {
     margin: auto;
 }
 
-.horizontal-line {
+.resume-text-horizontal {
     font-family: 'Garamond';
     font-size: 120%;
 }
 
-.vertical-line {
+.resume-text-vertical {
     font-family: 'Garamond';
     font-size: 100%;
 }
 
-.image-horizontal {
+.resume-image-horizontal {
     max-height: 100px;
     margin: auto;
 }
 
-.image-vertical {
+.resume-image-vertical {
     width: 90%;
     min-height: 80px;
     max-height: 200px;
     margin: auto;
+}
+
+.resume-description-vertical {
+    font-family: 'Garamond';
+    font-size: 100%;
+    padding: 0 2%;
+    margin-bottom: 2%;
+    text-indent: 2%;
 }
 
 

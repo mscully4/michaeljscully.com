@@ -1,5 +1,13 @@
 from django.db import models
 
+animations = [("back", "Back"), ("forward", "Forward"), ("down", "Down"), ("up", "Down"), ("spin", "Spin"),
+    ("drop", "Drop"), ("fade", "Fade"), ("float-away", "Float Away"), ("sink-away", "Sink Away"), ("grow", "Grow"),
+    ("shrink", "Shrink"), ("pulse", "Pulse"), ("pulse-grow", "Pulse Grow"), ("pulse-shrink", "Pulse Shrink"), 
+    ("push", "Push"), ("pop", "Pop"), ("bounce", "Bounce"), ("rotate", "Rotate"), ("grow-rotate", "Grow Rotate"), 
+    ("float", "Float"), ("sink", "Sink"), ("bob", "Bob"), ("hang", "Hang"), ("wobble-horizontal", "Wobble Horizontal"), 
+    ("wobble-vertical", "Wobble Vertical"), ("buzz", "Buzz"), ("buzz-out", "Buzz Out"),
+    ]
+
 # Create your models here.
 class Education(models.Model):
     university = models.CharField(max_length=140, verbose_name="Name of University")
@@ -26,8 +34,6 @@ class Experience(models.Model):
     short_description = models.TextField()
     long_description = models.TextField(blank=True, null=True, verbose_name="Long Description")
     banner = models.ImageField(verbose_name="Banner Image")
-    banner_width = models.PositiveIntegerField(default=300, verbose_name="Banner Width")
-    banner_height = models.PositiveIntegerField(default=100, verbose_name="Banner Height")
     tile = models.ImageField(verbose_name="Tile Image")
     
     def __str__(self):
@@ -65,27 +71,6 @@ class Projects(models.Model):
     def save(self, *args, **kwargs):
         super(Projects, self).save(*args, **kwargs)
 
-class Service(models.Model):
-    name = models.CharField(max_length=140)
-    role = models.CharField(max_length=140, blank=True, null=True)
-    role_continued = models.CharField(max_length=140, blank=True, null=True)
-    short = models.TextField()
-    long = models.TextField()
-    logo = models.FileField()
-    image = models.ImageField()
-
-    def __str__(self):
-        return self.name
-    
-class Investments(models.Model):
-    ticker = models.CharField(max_length=9)
-    name = models.CharField(max_length=140)
-    date_of_purchase = models.DateField()
-    price_at_purchase = models.FloatField()
-
-    def __str__(self):
-        return self.ticker
-
 class Classes(models.Model):
     subject = models.CharField(max_length=5)
     course_number = models.CharField(max_length=5)
@@ -97,39 +82,8 @@ class Classes(models.Model):
 
 class Skills(models.Model):
     skill = models.CharField(max_length=40)
-    definition = models.TextField()
-    backstory = models.TextField(default="BACKSTORY")
-    options = ((1, 'Programming'), (0, 'Technical'))
-    typeof = models.IntegerField(choices=options, blank=True, null=True)
-    logo = models.FileField(blank=True, null=True)
-    animations = [("back", "Back"),
-                  ("forward", "Forward"),
-                  ("down", "Down"),
-                  ("up", "Down"),
-                  ("spin", "Spin"),
-                  ("drop", "Drop"),
-                  ("fade", "Fade"),
-                  ("float-away", "Float Away"),
-                  ("sink-away", "Sink Away"),
-                  ("grow", "Grow"),
-                  ("shrink", "Shrink"),
-                  ("pulse", "Pulse"),
-                  ("pulse-grow", "Pulse Grow"),
-                  ("pulse-shrink", "Pulse Shrink"),
-                  ("push", "Push"),
-                  ("pop", "Pop"),
-                  ("bounce", "Bounce"),
-                  ("rotate", "Rotate"),
-                  ("grow-rotate", "Grow Rotate"),
-                  ("float", "Float"),
-                  ("sink", "Sink"),
-                  ("bob", "Bob"),
-                  ("hang", "Hang"),
-                  ("wobble-horizontal", "Wobble Horizontal"),
-                  ("wobble-vertical", "Wobble Vertical"),
-                  ("buzz", "Buzz"),
-                  ("buzz-out", "Buzz Out"),
-        ]
+    description = models.TextField()
+    logo = models.FileField(verbose_name="Language Logo")
     hover_animation = models.CharField(max_length=40, blank=True, null=True, choices=animations)
 
     def __str__(self):
@@ -143,3 +97,26 @@ class Languages(models.Model):
 
     def __str__(self):
         return self.name
+
+from datetime import date
+from django.core.exceptions import ValidationError
+
+def date_validator_past_only(value):
+    if value > date.today():
+        raise ValidationError("Only Dates in the Past Are Allowed")
+
+def date_validator_future_only(value):
+    if value < date.today():
+        raise ValidationError("Only Dates in the Future Are Allowed")
+
+class Certifications(models.Model):
+    name = models.CharField(max_length=140)
+    vendor = models.CharField(max_length=60)
+    acquired = models.DateField(verbose_name="Acquisiton Date of the Certificate", validators=[date_validator_past_only])
+    expire = models.DateField(verbose_name="Expiration Date of the Certificate", validators=[date_validator_future_only])
+    certificate = models.ImageField()
+    icon = models.ImageField(blank=True, null=True)
+
+    def __str__(self):
+        return "{} {}".format(self.vendor, self.name)
+

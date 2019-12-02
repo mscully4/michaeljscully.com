@@ -87,10 +87,10 @@ if os.getenv('GAE_APPLICATION', None):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'HOST': '/cloudsql/michaeljscullydotcom:us-east1:michaeljscullydotcomdatabase',
+            'HOST': config['GCloud']['HOST'],
             'USER': config['GCloud']['USER'],
             'PASSWORD': config['GCloud']['PASSWORD'],
-            'NAME': 'data'
+            'NAME': config['GCloud']['DATABASE_NAME']
         }
     }
 else:

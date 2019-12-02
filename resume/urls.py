@@ -17,7 +17,6 @@ Including another URLconf
 from django.urls import path
 from . import views
 from django.views.generic import ListView, DetailView
-from resume.models import Investments, Classes, Experience #, Skills
 
 urlpatterns = [
     path('', views.index, name="index"),
@@ -27,7 +26,6 @@ urlpatterns = [
     path('experience/<int:pk>', views.individual_experience, name="individual_experience"),
     path('projects', views.projects, name="projects"),
     path('projects/<int:pk>', views.individual_projects, name="individual_projects"),
-    path('service', views.service, name="service"),
     path('skills', views.skills, name="skills"),
     path('skills/<int:pk>', views.individual_skills, name="individual_skills"),
     path('502', views.test_502_error, name="502 Error"),

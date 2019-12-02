@@ -1,6 +1,6 @@
 from django.contrib import admin
-from resume.models import Investments, Classes, Languages
-from resume.models import Service, Projects, Education, Experience, Skills
+from resume.models import Classes, Languages
+from resume.models import Projects, Education, Experience, Skills, Certifications
 from resume.forms import MonthYearForm
 from resume.widgets import MonthYearWidget
 from django import forms
@@ -21,9 +21,7 @@ class ExperienceClassAdmin(admin.ModelAdmin):
 admin.site.register(Education)
 admin.site.register(Experience, ExperienceClassAdmin)
 admin.site.register(Projects)
-admin.site.register(Service)
 admin.site.register(Skills)
-
-admin.site.register(Investments)
 admin.site.register(Classes)
 admin.site.register(Languages)
+admin.site.register(Certifications)
