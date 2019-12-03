@@ -49,18 +49,32 @@ a {
     text-indent: 2.5%;
 }
 
-.education {
-    width: 90%;
-    height: auto;
-    margin: auto;
-    padding: 1% 0;
+.resume-educations {
     display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
-    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+}
+
+.resume-education {
+    width: 90%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 3fr 1fr 1fr;
+    grid-template-columns: 1fr;
+    font-family: "Garamond";
+    /* font-size: 100%;
     align-items: center;
-    justify-content: center;
-    text-decoration: none;
+    margin: 2.5% auto;
     color: black;
+    text-decoration: none; */
+}
+
+.resume-education-logo {
+    width: 50%;
+}
+
+.resume-education-info {
+    font-size: 120%;
 }
 
 .resume-experiences, .resume-projects {
@@ -81,42 +95,11 @@ a {
     margin-left: 2%;
 }
 
-.experience, .project {
-    height: 100%;
-    width: 95%;
-    margin: auto;
-    display: grid !important;
-    grid-template-columns: 1fr;
-}
-
-.experience {
-    grid-template-rows: 100px 100px auto;
-}
-
-.project {
-    grid-template-rows: 100px 80px auto;
-}
-
-.education-info {
-    padding-left: 10%;
-}
-
-
-
-.individual-project-banner {
-    margin: auto;
-}
-
 .resume-project-logos {
     height: 4em;
     margin: auto;
     margin-top: 1em;
 }
-
-.individual-project-info {
-    margin: auto 10px;
-}
-
 
 .resume-skills, .resume-certifications {
     width: 90%;
@@ -164,9 +147,10 @@ a {
     margin: auto;
 }
 
-.resume-text-horizontal {
+.resume-text-square {
     font-family: 'Garamond';
-    font-size: 120%;
+    font-size: 100%;
+    text-align: center;
 }
 
 .resume-text-vertical {
@@ -174,7 +158,7 @@ a {
     font-size: 100%;
 }
 
-.resume-image-horizontal {
+.resume-image-square {
     max-height: 100px;
     margin: auto;
 }

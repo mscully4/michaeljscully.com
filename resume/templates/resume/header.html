@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'resume/css/Hover/Hover-master/css/hover.css' %}">
     <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Aguafina+Script|Allura|Cormorant+Garamond|Courgette&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     {% block extrahead %}
     {% endblock %}
   </head>
@@ -25,36 +26,16 @@
               <a class="header-buttons" href="/resume/education">Education</a>
               <div class="header-buttons" id="buttons-experience"><p>Experience <i class="fas fa-angle-right"></i></p>
                 <div class="header-dropdown-content" id="dropdown-experience">
-                  {% if experience.0.0 %}
-                    {% for line in experience %}
-                      {% for entry in line %}
-                        {% if entry %}
-                          <a class="header-dropdown-items" href="/resume/experience/{{ entry.pk }}">{{ entry.name }}</a>
-                        {% endif %}
-                      {% endfor %}
-                    {% endfor %}
-                  {% elif not experience.0.0 %}
-                    {% for entry in experience %}
-                      <a class="header-dropdown-items" href="/resume/experience/{{ entry.pk }}">{{ entry.name }}</a>
-                    {% endfor %}
-                  {% endif %}
+                  {% for entry in experiences %}
+                    <a class="header-dropdown-items" href="/resume/experience/{{ entry.pk }}">{{ entry.name }}</a>
+                  {% endfor %}
                   </div>
               </div>
               <div class="header-buttons" id="buttons-projects"><p>Projects <i class="fas fa-angle-right"></i></p>
                 <div class="header-dropdown-content" id="dropdown-projects">
-                  {% if projects.0.0 %}
-                    {% for line in projects %}
-                      {% for entry in line %}
-                        {% if entry %}
-                          <a class="header-dropdown-items" href="/resume/projects/{{ entry.pk }}">{{ entry.name }}</a>
-                        {% endif %}
-                      {% endfor %}
-                    {% endfor %}
-                  {% elif not projects.0.0 %}
-                    {% for entry in projects %}
-                      <a class="header-dropdown-items" href="/resume/projects/{{ entry.pk }}">{{ entry.name }}</a>
-                    {% endfor %}
-                  {% endif %}
+                  {% for entry in projects %}
+                    <a class="header-dropdown-items" href="/resume/projects/{{ entry.pk }}">{{ entry.name }}</a>
+                  {% endfor %}
                 </div>
               </div>
               <a class="header-buttons" href="/resume/skills">Skills</a>
@@ -71,7 +52,6 @@
       <p class="footer-credits">Animations done using <a href="http://ianlunn.github.io/Hover/" class="footer-links">Hover.css</a></p>
       <p class="footer-credits">Running on Django 2.0.5</p>
     </footer>
-    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script type="text/JavaScript" src="{% static 'resume/js/menubar.js' %}"></script>
     <!-- <script type="text/JavaScript" src="{% static 'resume/js/browser.js' %}"></script>-->
     {% block extrafoot %}

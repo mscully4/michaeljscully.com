@@ -7,25 +7,22 @@
 
 {% block content %}
 <section class="body">
-    <div class="body-plaque"><h1 class="body-plaque-text">Experience</h1></div>
-    <div class="individual-experience">
-        <div class="individual-info">
-            <p class="individual-name">{{ position.name }}</p>
-            <p>{{ position.role }}</p>
-            {% if position.role_continued %}
-                <p>{{ position.role_continued }}</p>
-            {% endif %}
-            {% if position.duration %}
-                <p>{{ position.duration }}</p>
-            {% endif %}
-        </div>
-        
-        <img class="individual-banner" src="{{ position.banner.url }}">
-        <div class="individual-article">
-            <img class="individual-tile" src="{{ position.tile.url }}">
-            <div class="individual-description">{{ position.long_description | linebreaks }}</div>
-        </div>
-    </div>
-    <div class="space"></div>
+  <h1 class="body-title-text">Experience</h1>
+  <div class="experience">
+      <div class="experience-text">
+          <p class="individual-name">{{ position.name }}</p>
+          <p>{{ position.role }}</p>
+          {% if position.duration %}
+              <p>{{ position.duration }}</p>
+          {% endif %}
+      </div>
+      
+      <img class="experience-banner" src="{{ position.banner.url }}">
+      <div class="experience-description-wrapper">
+          <img class="experience-tile" src="{{ position.tile.url }}">
+          <div class="individual-description">{{ position.long_description | linebreaks }}</div>
+      </div>
+  </div>
+  <div class="space"></div>
 </section>
 {% endblock %}

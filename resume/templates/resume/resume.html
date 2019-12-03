@@ -19,21 +19,25 @@
       </a>
     </div>
     <div class="blank">Education</div>
+    
+    <div class='resume-educations'>
       {% for entry in education %}
-        <a href="education" class="body-card education">
-          <img class="resume-image-horizontal" src="{{ entry.logo.url }}">
-          <div class="education-info">
-            <p class="resume-text-horizontal">{{ entry.university }}</p>
-            <p class="resume-text-horizontal">{{ entry.degree }} in {{ entry.major }}</p>
+        <a href="education" class="body-card resume-education">
+          <img class="resume-education-logo" src="{{ entry.logo.url }}">
+          <div class="resume-education-info">
+            <p class="resume-text-square">{{ entry.university }}</p>
+            <p class="resume-text-square">{{ entry.degree }} in {{ entry.major }}</p>
             {% if entry.minor %}
-              <p class="resume-text-horizontal">Minor in {{ entry.minor }}</p>
+              <p class="resume-text-square">Minor in {{ entry.minor }}</p>
             {% endif %}
           </div>
-          <div>
-            <p class="line">Class of {{ entry.year }} <br> GPA: {{ entry.gpa }}</p>
+          <div class="resume-education-info">
+            <p class="resume-text-square">Class of {{ entry.year }} <br> GPA: {{ entry.gpa }}</p>
           </div>
         </a>
       {% endfor %}
+    </div>  
+    
 
     <div class="blank">Business Experience</div>
 
