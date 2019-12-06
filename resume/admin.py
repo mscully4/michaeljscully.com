@@ -18,10 +18,16 @@ class ExperienceForm(forms.ModelForm):
 class ExperienceClassAdmin(admin.ModelAdmin):
     form = ExperienceForm
 
-admin.site.register(Education)
+class ClassesInline(admin.TabularInline):
+    model = Classes
+
+class EducationAdmin(admin.ModelAdmin):
+    inlines=[ClassesInline, ]
+
+admin.site.register(Education, EducationAdmin)
 admin.site.register(Experience, ExperienceClassAdmin)
 admin.site.register(Projects)
 admin.site.register(Skills)
-admin.site.register(Classes)
+# admin.site.register(Classes)
 admin.site.register(Languages)
 admin.site.register(Certifications)

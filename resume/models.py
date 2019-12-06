@@ -16,6 +16,7 @@ class Education(models.Model):
     major = models.CharField(max_length=140, verbose_name="Major")
     year = models.CharField(max_length=4, verbose_name="Year")
     gpa = models.DecimalField(decimal_places=2, max_digits=4, default=4.00, verbose_name="GPA")
+    # classes = models.ForeignKey('Classes', on_delete=models.CASCADE)
     banner = models.FileField(default="IMAGE URL", verbose_name="Banner Image")
     logo = models.FileField(default="IMAGE URL", verbose_name="Logo")
     m_logo_width = models.PositiveIntegerField(default=50, verbose_name="Mobile Logo Width")
@@ -72,6 +73,7 @@ class Projects(models.Model):
         super(Projects, self).save(*args, **kwargs)
 
 class Classes(models.Model):
+    school = models.ForeignKey(Education, on_delete=models.CASCADE)
     subject = models.CharField(max_length=5)
     course_number = models.CharField(max_length=5)
     course_name = models.CharField(max_length=140)

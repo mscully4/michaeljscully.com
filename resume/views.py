@@ -34,14 +34,11 @@ def index(request):
 
 def education(request): 
     education = Education.objects.all().order_by('-pk')
-    econ = Classes.objects.filter(subject="ECON").order_by("subject", "course_number")
-    cse = Classes.objects.filter(subject__in=["CSE", "CDT"]).order_by("-subject", "course_number")
-    business = Classes.objects.filter(subject__in=["ITAO", "ACCT", "ACMS"]).order_by("subject", "course_number")
-    other = Classes.objects.exclude(subject__in=["ECON", "CSE", "CDT", "ITAO", "ACCT", "ACMS"]).order_by("subject", "course_number")
-    dic = {"experience": Experience.objects.all().order_by("-pk"),
+    classes = [Classes.objects.filter(school_id=1) for i in list(Classes.objects.order_by('school_id').values_list('school_id').distinct())]
+    dic = {"experiences": Experience.objects.all().order_by("-pk"),
             "projects": Projects.objects.all().order_by("-pk"),
             'education': education,
-            'classes': [econ, cse, business, other],
+            'classes': Classes.objects.all(),
            }
     if request.user_agent.is_mobile:
         return render(request, 'm_resume/m_education.html', dic)
@@ -58,7 +55,7 @@ def individual_education(request, pk):
 
 def experience(request):
     dic = {
-        "experience": sorted(Experience.objects.all(), key=lambda x: x.end_date or date(2121, 4, 20))[::-1],
+        "experiences": sorted(Experience.objects.all(), key=lambda x: x.end_date or date(2121, 4, 20))[::-1],
         "projects": Projects.objects.all().order_by("-pk"),
     }
 
@@ -72,7 +69,7 @@ def experience(request):
 def individual_experience(request, pk):
     experience = Experience.objects.filter(pk=pk)[0]
     dic = {
-        "experience": sorted(Experience.objects.all(), key=lambda x: x.end_date or date(2121, 4, 20))[::-1],
+        "experiences": sorted(Experience.objects.all(), key=lambda x: x.end_date or date(2121, 4, 20))[::-1],
         "projects": Projects.objects.all().order_by("-pk"),
         "position": experience,
     }
@@ -86,7 +83,7 @@ def individual_experience(request, pk):
 
 def projects(request):
     dic = {
-        "experience": sorted(Experience.objects.all(), key=lambda x: x.end_date or date(2121, 4, 20))[::-1],
+        "experiences": sorted(Experience.objects.all(), key=lambda x: x.end_date or date(2121, 4, 20))[::-1],
         "projects": Projects.objects.all().order_by("-pk"),
         "skills": Skills.objects.all()
     }
@@ -100,7 +97,7 @@ def projects(request):
 
 def individual_projects(request, pk):
     dic = {
-        "experience": sorted(Experience.objects.all(), key=lambda x: x.end_date or date(2121, 4, 20))[::-1],
+        "experiences": sorted(Experience.objects.all(), key=lambda x: x.end_date or date(2121, 4, 20))[::-1],
         "projects": Projects.objects.all().order_by("-pk"),
         "project": Projects.objects.filter(pk=pk)[0],
     }
@@ -114,7 +111,7 @@ def individual_projects(request, pk):
 
 def skills(request):
     dic = {
-        "experience": sorted(Experience.objects.all(), key=lambda x: x.end_date or date(2121, 4, 20))[::-1],
+        "experiences": sorted(Experience.objects.all(), key=lambda x: x.end_date or date(2121, 4, 20))[::-1],
         "projects": Projects.objects.all().order_by("-pk"),
         "skills": Skills.objects.all()
     }
@@ -128,7 +125,7 @@ def skills(request):
 
 def individual_skills(request, pk):
     dic = {
-        "experience": sorted(Experience.objects.all(), key=lambda x: x.end_date or date(2121, 4, 20))[::-1],
+        "experiences": sorted(Experience.objects.all(), key=lambda x: x.end_date or date(2121, 4, 20))[::-1],
         "projects": Projects.objects.all().order_by("-pk"),
         "skill": Skills.objects.filter(pk=pk)[0],
     }

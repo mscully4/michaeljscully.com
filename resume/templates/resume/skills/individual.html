@@ -8,13 +8,14 @@
 
 {% block content %}
 <section class="body">
-    <div class="body-plaque"><h1 class="body-plaque-text" id="plaquetext">Skills</h1></div>
-    <div class="individual">
-        <div class="individual_name">{{ skill.skill }}</div>
-        <div><img class="individual-logo" src="{{ skill.logo.url }}"></div>
-        <div class="individual_description">{{ skill.definition }}</div>
-        <div class="backstory">{{ skill.backstory | linebreaks }}</div>
+<h1 class="body-title-text">Skills</h1>
+  <div class="skill">
+    <div class="skill-info-wrapper">
+      <div class="skill-text">{{ skill.skill }}</div>
+      <img class="skill-logo" src="{{ skill.logo.url }}">
     </div>
-    <div class="space"></div>
+    <div class="backstory">{{ skill.backstory | linebreaks }}</div>
+  </div>
+  <div class="space"></div>
 </section>
 {% endblock %}
