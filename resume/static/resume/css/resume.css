@@ -12,8 +12,7 @@ a {
 }
 
 #resume-headshot {
-    width: 250px;
-    height: 300px;
+    width: 70%;
     margin: auto;
     /* border: solid 5px black; */
     /* box-shadow: 0px 8px 16px 2px rgba(0,0,0,1); */
@@ -23,7 +22,7 @@ a {
 
 .resume-current {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
     align-items: center;
     width: 85%;
@@ -33,20 +32,13 @@ a {
 
 .resume-current-text {
     width: 100%;
-    padding-left: 20%;
-    margin: auto 0;
+    text-align: center;
+    font-family: 'Garamond';
 }
 
 .resume-current-banner {
-    width: 160px;
+    width: 80%;
     margin: 0 auto;
-}
-
-.resume-current-indented {
-    display: block;
-    font-family: 'Garamond';
-    font-size: 120%;
-    text-indent: 2.5%;
 }
 
 .resume-educations {
@@ -70,11 +62,14 @@ a {
 }
 
 .resume-education-logo {
-    width: 50%;
+    margin: auto;
+    height: 90%
 }
 
 .resume-education-info {
-    font-size: 120%;
+    font-size: 1.6vw;
+    font-family: 'Garamond';
+    text-align: center;
 }
 
 .resume-experiences, .resume-projects {
@@ -116,7 +111,7 @@ a {
     grid-template-rows: 3fr 2fr;
     grid-template-columns: 1fr;
     font-family: "Garamond";
-    font-size: 120%;
+    font-size: 1.5vw;
     align-items: center;
     margin: 2.5% auto;
     color: black;
@@ -149,13 +144,13 @@ a {
 
 .resume-text-square {
     font-family: 'Garamond';
-    font-size: 100%;
+    font-size: 1.6vw;
     text-align: center;
 }
 
 .resume-text-vertical {
     font-family: 'Garamond';
-    font-size: 100%;
+    font-size: 1.5vw;
 }
 
 .resume-image-square {
@@ -172,7 +167,7 @@ a {
 
 .resume-description-vertical {
     font-family: 'Garamond';
-    font-size: 100%;
+    font-size: 1.5vw;
     padding: 0 2%;
     margin-bottom: 2%;
     text-indent: 2%;

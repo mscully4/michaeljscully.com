@@ -19,6 +19,7 @@
 .experiences-banner {
     width: 90%;
     margin: auto;
+    display: flex;
 }
 
 .experiences-text {

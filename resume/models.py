@@ -1,4 +1,5 @@
 from django.db import models
+from multiselectfield import MultiSelectField
 
 animations = [("back", "Back"), ("forward", "Forward"), ("down", "Down"), ("up", "Down"), ("spin", "Spin"),
     ("drop", "Drop"), ("fade", "Fade"), ("float-away", "Float Away"), ("sink-away", "Sink Away"), ("grow", "Grow"),
@@ -50,27 +51,29 @@ class Experience(models.Model):
 
 class Projects(models.Model):
     name = models.CharField(max_length=140)
-    short_description = models.TextField()
+    overview = models.CharField(max_length=140)
     long_description = models.TextField()
-    languages = models.ManyToManyField('Languages', related_name="boof")
+    # choices = [(obj.logo.url, obj.skill) for obj in Skills.objects.all()]
+    # print(choices)
+    # skills_used = MultiSelectField(choices=choices, max_length=300)
+    skills = models.ManyToManyField('Skills')
     github = models.CharField(max_length=140, verbose_name="GitHub Link")
-    sample = models.FileField(null=True, blank=True, verbose_name="Post a picture of your project")
-    caption = models.TextField(null=True, blank=True, verbose_name="Sample Photo Caption")
  
     def __str__(self):
         return self.name
 
-    def get_logos(self):
-        languages = [str(lang) for lang in self.languages.all()]
-        urls = [Skills.objects.get(skill=i).logo.url for i in languages]
-        return urls
+    # def get_logos(self):
+    #     languages = [str(lang) for lang in self.languages.all()]
+    #     urls = [Skills.objects.get(skill=i).logo.url for i in languages]
+    #     return urls
    
-    def get_languages(self):
-        languages = ", ".join([str(lang) for lang in self.languages.all()])
-        return languages
+    # def get_languages(self):
+    #     languages = ", ".join([str(lang) for lang in self.languages.all()])
+    #     return languages
 
     def save(self, *args, **kwargs):
         super(Projects, self).save(*args, **kwargs)
+
 
 class Classes(models.Model):
     school = models.ForeignKey(Education, on_delete=models.CASCADE)
@@ -87,18 +90,11 @@ class Skills(models.Model):
     description = models.TextField()
     logo = models.FileField(verbose_name="Language Logo")
     hover_animation = models.CharField(max_length=40, blank=True, null=True, choices=animations)
+    
 
     def __str__(self):
         return self.skill
 
-class Languages(models.Model):
-    #if len(Skills.objects.all()) > 0:
-     #   options = tuple([(option.skill, option.skill) for option in Skills.objects.all()]) 
-    options = []
-    name = models.CharField(max_length=140, choices=options)
-
-    def __str__(self):
-        return self.name
 
 from datetime import date
 from django.core.exceptions import ValidationError

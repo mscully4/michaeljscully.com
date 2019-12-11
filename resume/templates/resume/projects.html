@@ -4,24 +4,28 @@
 {% block extrahead %}
 <link type="text/css" rel="stylesheet" href="{% static 'resume/css/projects.css' %}">
 <script rel="text/JavaScript" src="{% static 'resume/js/resizingCards.js' %}"></script>
+<script rel="text/JavaScript" src="{% static 'resume/js/removeCommas.js' %}"></script>
 {% endblock %}
 
 {% block content %}
 <section class="body">
-  <h1 class="body-title-text">Coding Projects</h1>
-  {% for entry in projects %}
-    <a class="body-card projects" href="projects/{{ entry.pk }}">
-      <div class="banner">
-        {% for url in entry.get_logos %}
-          <img class="logos" src="{{ url }}">
+  <h1 class="body-title-text">Projects</h1>
+  <div class="projects-container">
+    {% for entry in projects %}
+    <a class="body-card projects-project" href="projects/{{ entry.pk }}">
+      <div class="projects-banner">
+        {% for skill in entry.skills.all %}
+          <img class="projects-languages-logo" src="{{ skill.logo.url }}">
         {% endfor %}
       </div>
-      <div class="info">
+      <div class="projects-text">
         <p>{{ entry.name }}</p>
-        <p>{{ entry.get_languages }}</p>
+        <p>{{ entry.overview }}</p>
+        <p class="removeCommas">{% for skill in entry.skills.all %}, {{ skill.skill }}{% endfor %}</p>
       </div>
     </a>
   {% endfor %}
+  </div>
   <div class="space"></div>
 </section>
 {% endblock %}

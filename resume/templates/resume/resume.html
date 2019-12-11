@@ -25,14 +25,14 @@
         <a href="education" class="body-card resume-education">
           <img class="resume-education-logo" src="{{ entry.logo.url }}">
           <div class="resume-education-info">
-            <p class="resume-text-square">{{ entry.university }}</p>
-            <p class="resume-text-square">{{ entry.degree }} in {{ entry.major }}</p>
+            <p>{{ entry.university }}</p>
+            <p>{{ entry.degree }} in {{ entry.major }}</p>
             {% if entry.minor %}
-              <p class="resume-text-square">Minor in {{ entry.minor }}</p>
+              <p>Minor in {{ entry.minor }}</p>
             {% endif %}
           </div>
           <div class="resume-education-info">
-            <p class="resume-text-square">Class of {{ entry.year }} <br> GPA: {{ entry.gpa }}</p>
+            <p>Class of {{ entry.year }} <br> GPA: {{ entry.gpa }}</p>
           </div>
         </a>
       {% endfor %}

@@ -1,3 +1,4 @@
+
 $(document).ready(() => {
   //Experience
   $(".experiences-experience").height($(".experiences-experience").width()*.7)
@@ -8,11 +9,12 @@ $(document).ready(() => {
   //Skills
   $(".skills-skill").height($(".skills-skill").width() * 1.2)
   $(window).resize(function() {
+    console.log($(".skills-skill").width() * 1.2)
     $(".skills-skill").height($(".skills-skill").width() * 1.2)
   })
 
-  $(".skill-info-wrapper").height($(".skill-info-wrapper").width() * .75)
-  $(window).resize(function() {
-    $(".skill-info-wrapper").height($(".skill-info-wrapper").width() * .75)
-  })
+  // $(".skill-info-wrapper").height($(".skill-info-wrapper").width() * .75)
+  // $(window).resize(function() {
+  //   $(".skill-info-wrapper").height($(".skill-info-wrapper").width() * .75)
+  // })
 })

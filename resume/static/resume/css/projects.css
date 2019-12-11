@@ -1,48 +1,41 @@
-.plaquetext {
-    background: url("../images/projects/ProjectsPlaque.jpg");
-    color: #000;
-    background-size: cover;
-}
-
-.projects {
+.projects-container {
     display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 2fr 1fr;
-    width: 90%;
-    height: 200px;
-    margin: 2.5% auto;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.projects-project {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr;
+    width: 95%;
+    /* min-height: 30%; */
+    margin: 2.5% 2.5%;
+    align-items: center;
     text-decoration: none;
-}
-
-.logos {
-    width: 15%;
-    margin: auto;
-}
-
-.info p {
-    text-decoration: none !important;
     color: #000;
-    font-size: 120%;
 }
 
-.info {
+.projects-banner {
+    width: 96%;
     margin: auto;
+    display: flex;
+}
+
+.projects-languages-logo {
+    width: 23%;
+}
+
+.projects-text {
     font-family: "Garamond";
-}
-
-.banner {
-    margin: auto;
-    margin-left: 5%;
+    font-size: 1.5vw;
+    margin: auto 2.5%;
 }
 
 /*Individual Pages*/
-.individual-project {
-    width: 1000px;
-    height: auto;
-    /*display: grid;
-    grid-template-columns: 450px 550px;
-    grid-template-rows: auto auto;*/
-    display: inline;
+.project {
+    width: 90%;
+    min-height: 10em;
 }
 
 .individual-project-info {
@@ -54,53 +47,29 @@
     float: left;
 }
 
-.project-banner {
-    height: 100px;
-    width: 90%;
+.project-info-wrapper {
+    width: 50%;
+    float: left;
 }
 
-.project-language-logos {
-    box-shadow: 10px 10px 8px #888888;
-    border: solid 3px black;
-    height: 100%;
-    padding: 1%;
-    box-sizing: border-box;
+.project-languages-logos {
+    display: flex;
+    width: 80%;
 }
 
-.project-info-name, .project-info-languages, .project-info-link {
+.project-languages-logo {
+    width: 25%;
+}
+
+.project-text {
+    margin: 5% 2.5%;
     font-family: "Garamond";
-    margin-left: 20px;
-}
-
-.project-info-name {
-    font-size: 160%;
-    margin-top: 10px;
-}
-
-.project-info-languages, .project-info-link {
-    font-size: 120%;
+    font-size: 2vw;
 }
 
 .project-description {
     display: block;
-    margin: 0 50px;
     font-family: "Garamond";
-    font-size: 100%;
+    font-size: 2vw;
     text-indent: 20px;
-}
-
-.project-sample {
-    display: block;
-    margin: auto;
-    margin-top: 25px;
-    border: solid 3px black;
-    box-shadow: 10px 10px 8px #888888;
-    text-align: center;
-}
-
-.project-sample-caption {
-    text-align: center;
-    font-family: "Garamond";
-    font-size: 100%;
-    padding-top: 1%;
 }

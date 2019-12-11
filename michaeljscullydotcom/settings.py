@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_user_agents',
     'resume',
-    'storages'
+    'storages',
+    'multiselectfield'
 ]
 
 MIDDLEWARE = [
@@ -158,23 +159,23 @@ USE_TZ = True
 # MEDIA_URL = '/media/'
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-AWS_ACCESS_KEY_ID = config['AWS']['AWS_ACCESS_KEY_ID'] #"AKIA2WIZHBHNND3OZRQS" #os.getenv('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = config['AWS']['AWS_SECRET_ACCESS_KEY'] #'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' #os.getenv('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = config['AWS']['AWS_STORAGE_BUCKET_NAME'] #'michaeljscullydotcom' #os.getenv('AWS_STORAGE_BUCKET_NAME')
-AWS_DEFAULT_ACL = None
-AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
-AWS_S3_REGION_NAME = 'us-east-1'
-# s3 static settings
-STATIC_ROOT = 'static'
-STATIC_URL = '/static/'
-# STATIC_LOCATION = 'static'
-# STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
-# STATICFILES_STORAGE = 'config.storage_backends.StaticStorage'
-# s3 media settings
-MEDIA_LOCATION = 'media'
-MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIA_LOCATION}/'
-DEFAULT_FILE_STORAGE = 'config.storage_backends.PrivateMediaStorage'
+# AWS_ACCESS_KEY_ID = config['AWS']['AWS_ACCESS_KEY_ID'] #"AKIA2WIZHBHNND3OZRQS" #os.getenv('AWS_ACCESS_KEY_ID')
+# AWS_SECRET_ACCESS_KEY = config['AWS']['AWS_SECRET_ACCESS_KEY'] #'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' #os.getenv('AWS_SECRET_ACCESS_KEY')
+# AWS_STORAGE_BUCKET_NAME = config['AWS']['AWS_STORAGE_BUCKET_NAME'] #'michaeljscullydotcom' #os.getenv('AWS_STORAGE_BUCKET_NAME')
+# AWS_DEFAULT_ACL = None
+# AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+# AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+# AWS_S3_REGION_NAME = 'us-east-1'
+# # s3 static settings
+# STATIC_ROOT = 'static'
+# STATIC_URL = '/static/'
+# # STATIC_LOCATION = 'static'
+# # STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
+# # STATICFILES_STORAGE = 'config.storage_backends.StaticStorage'
+# # s3 media settings
+# MEDIA_LOCATION = 'media'
+# MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIA_LOCATION}/'
+# DEFAULT_FILE_STORAGE = 'config.storage_backends.PrivateMediaStorage'
 
 # AWS_ACCESS_KEY_ID = "AKIA2WIZHBHNIAJPDOTK" #os.getenv('AWS_ACCESS_KEY_ID')
 # AWS_SECRET_ACCESS_KEY = "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" #os.getenv('AWS_SECRET_ACCESS_KEY')
@@ -188,14 +189,19 @@ DEFAULT_FILE_STORAGE = 'config.storage_backends.PrivateMediaStorage'
 # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # # add the correct application credentials
-# os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "C:/Users/Michael.Scully/CodingProjects/michaeljscullydotcom/secrets/storage-admin.json"
-# GS_DEFAULT_ACL = "projectPrivate"
-# # define the default file storage for both static and media
-# DEFAULT_FILE_STORAGE = 'config.storage_backends.GoogleCloudMediaStorage'
-# STATICFILES_STORAGE = 'config.storage_backends.GoogleCloudStaticStorage'
-# # # add the names of the buckets
-# # GS_MEDIA_BUCKET_NAME = 'michaeljscullydotcommedia'
-# GS_STATIC_BUCKET_NAME = 'michaeljscullydotcomstatic'
-# # # define the static urls for both static and media
-# STATIC_URL = 'https://storage.googleapis.com/{}/'.format(GS_STATIC_BUCKET_NAME)
-# MEDIA_URL = 'https://storage.googleapis.com/{}/'.format(GS_MEDIA_BUCKET_NAME)
+if DEBUG == True:
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = './media/'
+    STATIC_URL = '/static/'
+else:
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "C:/Users/Michael.Scully/CodingProjects/michaeljscullydotcom/secrets/storage-admin.json"
+    # GS_DEFAULT_ACL = "projectPrivate"
+    # # define the default file storage for both static and media
+    DEFAULT_FILE_STORAGE = 'config.storage_backends.GoogleCloudMediaStorage'
+    STATICFILES_STORAGE = 'config.storage_backends.GoogleCloudStaticStorage'
+    # # # add the names of the buckets
+    GS_MEDIA_BUCKET_NAME = 'michaeljscullydotcommedia'
+    GS_STATIC_BUCKET_NAME = 'michaeljscullydotcomstatic'
+    # # # define the static urls for both static and media
+    STATIC_URL = 'https://storage.googleapis.com/{}/'.format(GS_STATIC_BUCKET_NAME)
+    MEDIA_URL = 'https://storage.googleapis.com/{}/'.format(GS_MEDIA_BUCKET_NAME)

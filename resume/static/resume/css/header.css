@@ -73,13 +73,16 @@ header {
 
 .header-location {
     display: block;
-    font-size: 2.5em;
+    font-size: 3.5vw;
     padding-left: .25em;
     color: #000;
     font-family: "Allura", "cursive";
 }
 
 .header-menubar {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 3fr 7fr;
     height: 3em;
     width: 100%;
     background-color: rgb(18,18,18, .7);
@@ -88,26 +91,24 @@ header {
 }
 
 .header-title {
-    display:inline-block;
-    width: 29%; 
+    display:inline-block; 
     color:white; 
     font-family: 'allura';
-    font-size: 200%;
+    font-size: 2.5vw;
     text-align: center;
 }
 
 .header-menu-items {
+    width: 100%;
     height: 100%;
     display: flex; 
     justify-content: space-between;
 }
 
 .header-buttons {
-    height: 3em;
-    font-size: 1.2em;
+    font-size: 1.25vw;
     text-decoration: none;
     color: #fff;
-    padding: 12px 2.5%; 
     font-family: "Courgette";
     border: none;
     cursor: pointer;
@@ -165,7 +166,7 @@ header {
 .body-title-text {
     text-align: center;
     font-family: 'Aguafina Script', cursive;
-    font-size: 8em; 
+    font-size: 15vw; 
     font-weight: normal;
     padding: .5em 0;
 }
