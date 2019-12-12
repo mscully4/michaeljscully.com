@@ -68,14 +68,15 @@
     <div class="resume-projects">
       {% for entry in projects %}
         <a href="projects/{{ entry.pk }}" class="resume-project body-card">
-          <div class="resume-image-vertical">
-            {% for url in entry.get_logos %}
-              <img class="resume-project-logos" src="{{ url }}">
+          <div class="resume-project-banner">
+            {% for skill in entry.skills.all %}
+                <img class="resume-project-logos" src="{{ skill.logo.url }}">  
             {% endfor %}
           </div>
           <div class="resume-project-info">
             <p class="resume-text-vertical">{{ entry.name }}</p>
-            <p class="resume-text-vertical" style="margin:auto">{{ entry.get_languages }}</p>
+            <p class="resume-text-vertical" style="margin:auto">{{ entry.overview }}</p>
+            <p class="resume-text-vertical removeCommas">{% for skill in entry.skills.all %}, {{ skill.skill }}{% endfor %}</p>
           </div>
           <div style="height: 100%">
             <p class="resume-description-vertical">{{ entry.short_description }}</p>
@@ -98,7 +99,7 @@
       <div class="blank">Certifications</div>
       <div class="resume-certifications">
         {% for cert in certifications %}
-          <a href="certifications/{{ cert.pk }}" class="resume-certification body-card">
+          <a class="resume-certification body-card">
             <img class="resume-certification-logo" src="{{ cert.icon.url }}">
             <p class="resume-certification-text">{{ cert.vendor }} {{cert.name}}</p>
           </a>
@@ -111,4 +112,5 @@
 {% block extrafoot %}
 <script rel="text/JavaScript" src="{% static 'resume/js/centering.js' %}"></script>
 <script rel="text/JavaScript" src="{% static 'resume/js/isMobile.js' %}"></script>
+<script rel="text/JavaScript" src="{% static 'resume/js/removeCommas.js' %}"></script>
 {% endblock %}

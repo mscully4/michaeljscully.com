@@ -20,17 +20,15 @@ class Education(models.Model):
     # classes = models.ForeignKey('Classes', on_delete=models.CASCADE)
     banner = models.FileField(default="IMAGE URL", verbose_name="Banner Image")
     logo = models.FileField(default="IMAGE URL", verbose_name="Logo")
-    m_logo_width = models.PositiveIntegerField(default=50, verbose_name="Mobile Logo Width")
     mascot = models.FileField(default="IMAGE URL", verbose_name="Mascot Image")
 
     def __str__(self):
         return self.university
-    
+import datetime
 class Experience(models.Model):
     name = models.CharField(max_length=140, verbose_name="Company Name")
     role = models.CharField(max_length=140)
-    role_continued = models.CharField(max_length=140, blank=True, null=True, verbose_name="Role (Continued)")
-    start_date = models.DateField(verbose_name="Start Date", blank=True, null=True)
+    start_date = models.DateField(verbose_name="Start Date")
     end_date = models.DateField(verbose_name="End Date", blank=True, null=True)
     current = models.BooleanField(verbose_name="Current Role?", default=False)
     short_description = models.TextField()
@@ -57,7 +55,6 @@ class Projects(models.Model):
     # print(choices)
     # skills_used = MultiSelectField(choices=choices, max_length=300)
     skills = models.ManyToManyField('Skills')
-    github = models.CharField(max_length=140, verbose_name="GitHub Link")
  
     def __str__(self):
         return self.name
@@ -87,7 +84,7 @@ class Classes(models.Model):
 
 class Skills(models.Model):
     skill = models.CharField(max_length=40)
-    description = models.TextField()
+    frameworks = models.TextField()
     logo = models.FileField(verbose_name="Language Logo")
     hover_animation = models.CharField(max_length=40, blank=True, null=True, choices=animations)
     

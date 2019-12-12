@@ -36,6 +36,10 @@ a {
     font-family: 'Garamond';
 }
 
+.resume-current-indented {
+    font-size: 1.8vw;
+}
+
 .resume-current-banner {
     width: 80%;
     margin: 0 auto;
@@ -78,7 +82,7 @@ a {
     grid-template-rows: auto;
 }
 
-.resume-experience, .resume-project {
+.resume-experience {
     display: grid;
     grid-template-rows: 6em 6em auto;
     height: 100%;
@@ -90,10 +94,23 @@ a {
     margin-left: 2%;
 }
 
+.resume-project {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr;
+    width: 95%;
+}
+
+.resume-project-banner {
+    width: 96%;
+    text-align: center;
+    margin: 2.5% auto;
+}
+
 .resume-project-logos {
-    height: 4em;
-    margin: auto;
-    margin-top: 1em;
+    width: 25%;
+    /* margin: auto;
+    margin-top: 1em; */
 }
 
 .resume-skills, .resume-certifications {

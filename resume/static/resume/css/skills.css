@@ -65,9 +65,7 @@
 }
 
 .skill-frameworks, .skill-projects {
-    display: grid;
-    grid-template-rows: auto;
-    grid-template-columns: 1fr;
+    padding-bottom: 5%;
     width: 100%; 
 }
 
@@ -79,9 +77,10 @@
     width: 100%;
 }
 
-.skill-project-links, .skills-details-text {
-    font-size: 2vw;
-    padding-left: 10%;
+.skill-details-text {
+    font-size: 1.5vw;
+    padding-left: 5%;
+    padding-top: .5vw;
 }
 
 
