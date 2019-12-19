@@ -21,7 +21,6 @@ from django.views.generic import ListView, DetailView
 urlpatterns = [
     path('', views.index, name="index"),
     path('education', views.education, name="education"),
-    #path('education/<int:pk>', views.individual_education, name="individual_education"),
     path('experience', views.experience, name="experience"),
     path('experience/<int:pk>', views.individual_experience, name="individual_experience"),
     path('projects', views.projects, name="projects"),

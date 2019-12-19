@@ -27,7 +27,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config['Django']['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -189,12 +189,14 @@ USE_TZ = True
 # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # # add the correct application credentials
+
 if DEBUG == True:
     MEDIA_URL = '/media/'
     MEDIA_ROOT = './media/'
     STATIC_URL = '/static/'
 else:
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "C:/Users/Michael.Scully/CodingProjects/michaeljscullydotcom/secrets/storage-admin.json"
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "./secrets/storage-admin.json"
+    print(os.environ["GOOGLE_APPLICATION_CREDENTIALS"])
     # GS_DEFAULT_ACL = "projectPrivate"
     # # define the default file storage for both static and media
     DEFAULT_FILE_STORAGE = 'config.storage_backends.GoogleCloudMediaStorage'

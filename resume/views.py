@@ -40,16 +40,15 @@ def education(request):
             'education': education,
             'classes': Classes.objects.all(),
            }
-    if request.user_agent.is_mobile:
-        return render(request, 'm_resume/m_education.html', dic)
-    else:
-        return render(request, 'resume/education.html', dic)
+    # if request.user_agent.is_mobile:
+    #     return render(request, 'm_resume/m_education.html', dic)
+    # else:
+    return render(request, 'resume/education.html', dic)
 
 def individual_education(request, pk):
     individual_education = Education.objects.filter(pk=pk)
     logger.info(individual_education)
-    dic = {"individual_education": individual_education}
-    return render(request, 'm_resume/m_education.html', dic)
+    return render(request, 'm_resume/m_education.html', {"individual_education": individual_education})
 
 
 
@@ -59,10 +58,10 @@ def experience(request):
         "projects": Projects.objects.all().order_by("-pk"),
     }
 
-    if request.user_agent.is_mobile:
-        template = 'm_resume/m_experience.html'
-    else:
-        template = 'resume/experience.html'
+    # if request.user_agent.is_mobile:
+    #     template = 'm_resume/m_experience.html'
+    # else:
+    template = 'resume/experience.html'
     
     return render(request, template, dic)
 
@@ -74,10 +73,10 @@ def individual_experience(request, pk):
         "position": experience,
     }
 
-    if request.user_agent.is_mobile:
-        template = 'm_resume/m_experience/m_individual.html'
-    else:
-        template = 'resume/experience/individual.html'
+    # if request.user_agent.is_mobile:
+    #     template = 'm_resume/m_experience/m_individual.html'
+    # else:
+    template = 'resume/experience/individual.html'
         
     return render(request, template, dic)
 
@@ -88,10 +87,10 @@ def projects(request):
         "skills": Skills.objects.all()
     }
     
-    if request.user_agent.is_mobile:
-        template = 'm_resume/m_projects.html'
-    else:
-        template = 'resume/projects.html'
+    # if request.user_agent.is_mobile:
+    #     template = 'm_resume/m_projects.html'
+    # else:
+    template = 'resume/projects.html'
 
     return render(request, template, dic)    
 
@@ -102,10 +101,10 @@ def individual_projects(request, pk):
         "project": Projects.objects.filter(pk=pk)[0],
     }
    
-    if request.user_agent.is_mobile:
-        template = 'm_resume/m_projects/m_individual.html'
-    else:
-        template = 'resume/projects/individual.html'
+    # if request.user_agent.is_mobile:
+    #     template = 'm_resume/m_projects/m_individual.html'
+    # else:
+    template = 'resume/projects/individual.html'
         
     return render(request, template, dic)
 
@@ -116,10 +115,10 @@ def skills(request):
         "skills": Skills.objects.all()
     }
 
-    if request.user_agent.is_mobile:
-        template = 'm_resume/m_skills.html'
-    else:
-        template = 'resume/skills.html'
+    # if request.user_agent.is_mobile:
+    #     template = 'm_resume/m_skills.html'
+    # else:
+    template = 'resume/skills.html'
 
     return render(request, template, dic)
 
@@ -130,10 +129,10 @@ def individual_skills(request, pk):
         "skill": Skills.objects.filter(pk=pk)[0],
     }
     
-    if request.user_agent.is_mobile:
-        template = 'm_resume/m_skills/m_individual.html'
-    else:
-        template = 'resume/skills/individual.html'
+    # if request.user_agent.is_mobile:
+    #     template = 'm_resume/m_skills/m_individual.html'
+    # else:
+    template = 'resume/skills/individual.html'
 
     return render(request, template, dic)
 

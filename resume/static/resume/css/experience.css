@@ -2,6 +2,7 @@
     display: grid;
     grid-template-rows: auto;
     grid-template-columns: 1fr 1fr 1fr;
+    width: 95%;
 }
 
 .experiences-experience {
@@ -9,7 +10,7 @@
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr;
     width: 95%;
-    /* min-height: 30%; */
+    min-height: 15vw;
     margin: 2.5% 2.5%;
     align-items: center;
     text-decoration: none;
