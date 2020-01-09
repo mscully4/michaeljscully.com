@@ -19,7 +19,7 @@
 .projects-banner {
     width: 96%;
     margin: auto;
-    display: flex;
+    text-align: center;
 }
 
 .projects-languages-logo {
@@ -53,7 +53,7 @@
 }
 
 .project-languages-logos {
-    display: flex;
+    text-align: center;
     width: 80%;
 }
 

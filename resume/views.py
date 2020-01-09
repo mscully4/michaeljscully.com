@@ -16,11 +16,15 @@ def index(request):
     education = Education.objects.all()
     skills = Skills.objects.all()
     certifications = Certifications.objects.all()
-    current = Experience.objects.get(current=True)
-    if request.user_agent.is_mobile:
-        template = 'm_resume/m_resume.html'
-    else:
-        template = 'resume/resume.html'
+    try: 
+        current = Experience.objects.get(current=True)
+    except: 
+        current = None
+
+    # if request.user_agent.is_mobile:
+    #     template = 'm_resume/m_resume.html'
+    # else:
+    template = 'resume/resume.html'
     
     dic = {'current': current,
         'experiences': experiences,
