@@ -3,7 +3,7 @@ botocore==1.13.28
 cachetools==3.1.1
 certifi==2019.9.11
 chardet==3.0.4
-Django==2.1.15
+Django==2.2.10
 django-gcloud-storage==0.4.0
 django-multiselectfield==0.1.10
 django-storages==1.7.2
