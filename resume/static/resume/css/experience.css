@@ -44,8 +44,8 @@
     font-size: 140%;
 }
 
-.individual-name {
-    font-size: 160%;
+.experience-name {
+    font-size: 32px;
     font-weight: bold;
 }
 
@@ -71,7 +71,7 @@
 
 .experience-description {
     font-family: "Garamond";
-    font-size: 100%;
+    font-size: 20px;
     padding: 0 20px;
     text-indent: 20px;
 }

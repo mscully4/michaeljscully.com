@@ -10,7 +10,7 @@
   <h1 class="body-title-text">Experience</h1>
   <div class="experience">
       <div class="experience-text">
-          <p class="individual-name">{{ position.name }}</p>
+          <p class="experience-name">{{ position.name }}</p>
           <p>{{ position.role }}</p>
           {% if position.duration %}
               <p>{{ position.duration }}</p>
@@ -20,7 +20,7 @@
       <img class="experience-banner" src="{{ position.banner.url }}">
       <div class="experience-description-wrapper">
           <img class="experience-tile" src="{{ position.tile.url }}">
-          <div class="individual-description">{{ position.long_description | linebreaks }}</div>
+          <div class="experience-description">{{ position.long_description | linebreaks }}</div>
       </div>
   </div>
   <div class="space"></div>

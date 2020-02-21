@@ -1,0 +1,10 @@
+secrets/*
+env/*
+media/*
+credentials.ini
+michaeljscullydotcom/__pycache__/*
+resume/__pycache__/*
+resume/migrations/__pycache__/*
+database.bat
+resume/migrations/*
+

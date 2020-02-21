@@ -9,7 +9,7 @@
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr;
     width: 95%;
-    /* min-height: 30%; */
+    min-height: 12em;
     margin: 2.5% 2.5%;
     align-items: center;
     text-decoration: none;
@@ -28,7 +28,7 @@
 
 .projects-text {
     font-family: "Garamond";
-    font-size: 1.5vw;
+    font-size: 20px;
     margin: auto 2.5%;
 }
 
@@ -64,12 +64,12 @@
 .project-text {
     margin: 5% 2.5%;
     font-family: "Garamond";
-    font-size: 2vw;
+    font-size: 20px;
 }
 
 .project-description {
     display: block;
     font-family: "Garamond";
-    font-size: 2vw;
+    font-size: 20px;
     text-indent: 20px;
 }
