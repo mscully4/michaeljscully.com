@@ -1,0 +1,88 @@
+.skills-container {
+    width: 95%;
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.skills-skill {
+    display: grid;
+    grid-template-rows: 3fr 1fr;
+    grid-template-columns: 1fr;
+    width: 95%;
+    /* min-height: 30%; */
+    margin: 2.5% 2.5%;
+    align-items: center;
+    text-decoration: none;
+    color: #000;
+}
+
+.skills-logo {
+    height: 90%;
+    margin: auto;
+}
+
+.skills-text {
+    font-family: "Garamond";
+    font-size: 28px;
+    margin: auto 2.5%;
+    text-align: center;
+}
+
+/*Individual Pages*/
+.skill {
+    width: 95%;
+    margin: auto;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    font-family: "Garamond";
+}
+
+.skill-info-wrapper {
+    width: 100%;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    grid-template-columns: 1fr;
+}
+
+.skill-name {
+    font-family: "Garamond";
+    font-size: 40px;
+    margin: auto;
+    font-weight: bold;
+}
+
+.skill-logo {
+    width: 50%;
+}
+
+.skill-details-wrapper {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr;
+    width: 100%;
+}
+
+.skill-frameworks, .skill-projects {
+    padding-bottom: 5%;
+    width: 100%; 
+}
+
+.skill-details-header {  
+    font-size: 24px;
+}
+
+.skill-projects {
+    width: 100%;
+}
+
+.skill-details-text {
+    font-size: 20px;
+    padding-left: 5%;
+    padding-top: .5vw;
+}
+
+
+
+

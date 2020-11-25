@@ -1,0 +1,38 @@
+{% extends "resume/header.html" %}
+{% load static %}
+
+{% block extrahead %}
+<link type="text/css" rel="stylesheet" href="{% static 'resume/css/education.css' %}">
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script> -->
+{% endblock %}
+
+{% block content %}
+<section class="body">
+  <h1 class="body-title-text">Education</h1>
+  <div class="education-container">
+  {% for entry in education %}
+    <div class="education-school">
+      <img class="education-banner" src="{{ entry.banner.url }}">
+      <img class="education-logo" src="{{ entry.logo.url }}">
+      <div class="education-text">
+        <p>{{ entry.university }}</p>
+        <p>{{ entry.college }}</p>
+        <p>{{ entry.degree }} in {{ entry.major }}</p>
+        <p>Class of {{ entry.year }}</p>
+        <p>GPA {{ entry.gpa }}/4</p>
+      </div>
+    </div>
+    <p class="education-coursework-title">Coursework</p>
+    <ul class="education-coursework-container">
+      {% for class in entry.classes_set.all %}
+        {% if class.school_id == entry.id %}
+          <li>{{class.course_number}} {{class.subject}} {{class.course_name}}</li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  {% endfor %}
+
+  </div>
+<div class="space"></div>
+</section>
+{% endblock %}

@@ -1,0 +1,76 @@
+.experiences-container {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 95%;
+}
+
+.experiences-experience {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr;
+    width: 95%;
+    min-height: 15vw;
+    margin: 2.5% 2.5%;
+    align-items: center;
+    text-decoration: none;
+    color: #000;
+}
+
+.experiences-banner {
+    width: 90%;
+    margin: auto;
+    display: flex;
+}
+
+.experiences-text {
+    font-family: "Garamond";
+    font-size: 1.5vw;
+    margin: auto 2.5%;
+}
+
+/*Individual Pages*/
+.experience {
+    width: 90%;
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr 1fr;
+    margin: auto;
+}
+
+.experience-text {
+    font-family: "Garamond";
+    margin: auto;
+    font-size: 250%;
+}
+
+.experience-name {
+    font-weight: bold;
+}
+
+.experience-banner {
+    width: 80%;
+    max-width: 400px;
+    max-height: 100px;
+    margin: 50px auto;
+    /* box-shadow: 0px 8px 16px 2px rgba(0,0,0,1); */
+}
+
+.experience-description-wrapper {
+    grid-column: 1/3;
+}
+
+.experience-tile {
+    width: 40%;
+    /* border: solid 3px black; */
+    margin: 5% 5%;
+    /* box-shadow: 0px 8px 16px 2px rgba(0,0,0,1); */
+    float: left;
+}
+
+.experience-description {
+    font-family: "Garamond";
+    font-size: 140%;
+    padding: 0 20px;
+    text-indent: 20px;
+}

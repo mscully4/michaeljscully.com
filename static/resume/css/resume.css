@@ -1,0 +1,193 @@
+a {
+    color: black;
+    text-decoration: none;
+}
+
+.resume-opening {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 4fr 6fr;
+    grid-template-rows: 1fr;
+}
+
+#resume-headshot {
+    width: 70%;
+    margin: auto;
+    /* border: solid 5px black; */
+    /* box-shadow: 0px 8px 16px 2px rgba(0,0,0,1); */
+    box-sizing: border-box;
+    box-shadow: 10px 10px 8px #888888;
+}
+
+.resume-current {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+    width: 85%;
+    height: 120px;
+    margin-top: 90px;
+}
+
+.resume-current-text {
+    width: 100%;
+    text-align: center;
+    font-family: 'Garamond';
+}
+
+.resume-current-indented {
+    font-size: 24px;
+}
+
+.resume-current-banner {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.resume-educations {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+}
+
+.resume-education {
+    width: 90%;
+    height: 300px;
+    display: grid;
+    grid-template-rows: 3fr 1fr 1fr;
+    grid-template-columns: 1fr;
+    font-family: "Garamond";
+    /* font-size: 100%;
+    align-items: center;
+    margin: 2.5% auto;
+    color: black;
+    text-decoration: none; */
+}
+
+.resume-education-logo {
+    margin: auto;
+    height: 90%
+}
+
+.resume-education-info {
+    height: 100%;
+    font-size: 22px;
+    font-family: 'Garamond';
+    text-align: center;
+}
+
+.resume-experiences, .resume-projects {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+}
+
+.resume-experience {
+    display: grid;
+    grid-template-rows: 6em 6em auto;
+    height: 100%;
+    width: 95%;
+}
+
+.resume-experience-info, .resume-project-info {
+    margin: auto 0;
+    margin-left: 2%;
+}
+
+.resume-project {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr;
+    width: 95%;
+}
+
+.resume-project-banner {
+    width: 96%;
+    text-align: center;
+    margin: 2.5% auto;
+}
+
+.resume-project-logos {
+    width: 25%;
+    /* margin: auto;
+    margin-top: 1em; */
+}
+
+.resume-skills, .resume-certifications {
+    width: 90%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    margin: 0 auto;
+}
+
+.resume-skill, .resume-certification {
+    width: 90%;
+    height: 8em;
+    display: grid;
+    grid-template-rows: 3fr 2fr;
+    grid-template-columns: 1fr;
+    font-family: "Garamond";
+    font-size: 20px;
+    align-items: center;
+    margin: 2.5% auto;
+    color: black;
+    text-decoration: none;
+}
+
+.resume-skill-logo, .resume-certification-logo {
+    margin: auto;
+    /* width: 50%; */
+    max-height: 90%;
+}
+
+.resume-skill-text, .resume-certification-text {
+    text-align: center;
+    font-size: 100%;
+}
+
+.blank {
+    width: 100%;
+    font-family: "Garamond";
+    font-size: 180%;
+    text-align: center;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: underline;
+    padding-top: 5%;
+    padding-bottom: 2.5%;
+    margin: auto;
+}
+
+.resume-text-square {
+    font-family: 'Garamond';
+    font-size: 22px;
+    text-align: center;
+}
+
+.resume-text-vertical {
+    font-family: 'Garamond';
+    font-size: 20px;
+}
+
+.resume-image-square {
+    max-height: 100px;
+    margin: auto;
+}
+
+.resume-image-vertical {
+    width: 90%;
+    padding: 10px 0;
+    max-height: 90%;
+    margin: auto;
+}
+
+.resume-description-vertical {
+    font-family: 'Garamond';
+    font-size: 20px;
+    padding: 0 2%;
+    margin-bottom: 2%;
+    text-indent: 2%;
+}
+
+

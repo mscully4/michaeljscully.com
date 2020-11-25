@@ -1,0 +1,65 @@
+{% extends "m_resume/m_header.html" %}
+{% load staticfiles %}
+
+{% block extrahead %}
+<link rel="stylesheet" type="text/css" href="{% static 'm_resume/css/m_education.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="content">
+	<div class="body-plaque">
+		<p>Education</p>
+	</div>
+	{% for entry in education %}
+	<div class="degree">
+		<img class="banner" src="{{ entry.banner.url }}">
+		<div class="degree-info">
+			<p class="education-text">{{ entry.university }}</p>
+			<p class="education-text">{{ entry.college }}</p>
+			<p class="education-text">{{ entry.degree }}</p>
+			<p class="education-text">{{ entry.major }}</p>
+			<p class="education-text">{{ entry.gpa }}/4</p>
+			<p class="education-text">Class of {{ entry.year }}</p>
+		</div>
+		<img class="mascot" src="{{ entry.mascot.url }}">
+		{% if econ %}
+		<div class="classes">
+			<p class="subject">Economics</p>
+			{% for entry in econ %}
+				<p class="class-info">{{ entry.course_number }} {{ entry.subject }} {{ entry.course_name }}</p>
+			{% endfor %}
+		</div>
+		{% endif %}
+
+		{% if cse %}
+		<div class="classes">
+			<p class="subject">Computer Science</p>
+			{% for entry in cse %}
+				<p class="class-info">{{ entry.course_number }} {{ entry.subject }} {{ entry.course_name }}</p>
+			{% endfor %}
+		</div>
+		{% endif %}
+		
+		{% if business %}
+		<div class="classes">
+			<p class="subject">Business</p>
+			{% for entry in business %}
+				<p class="class-info">{{ entry.course_number }} {{ entry.subject }} {{ entry.course_name }}</p>
+			{% endfor %}
+		</div>
+		{% endif %}
+
+		{% if other %}
+		<div class="classes">
+			<p class="subject">Other</p>
+			{% for entry in other %}
+				<p class="class-info">{{ entry.course_number }} {{ entry.subject }} {{ entry.course_name }}</p>
+			{% endfor %}
+		</div>
+		{% endif %}
+
+    </div>
+	{% endfor %}
+	<div class="space"></div>
+</div>
+{% endblock %}

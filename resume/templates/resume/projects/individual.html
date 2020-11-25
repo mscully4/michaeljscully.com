@@ -1,0 +1,30 @@
+{% extends 'resume/header.html' %}
+{% load static %}
+
+{% block extrahead %}
+<link type="text/css" rel="stylesheet" href="{% static 'resume/css/projects.css' %}">
+<script rel="text/JavaScript" src="{% static 'resume/js/removeCommas.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<section class="body">
+  <h1 class="body-title-text">Projects</h1>
+  <div class="project">
+    <div class="project-info-wrapper">
+      <div class="project-languages-logos">
+        {% for skill in project.skills.all %}
+          <img class="project-languages-logo" src="{{ skill.logo.url }}">
+        {% endfor %}
+      </div>
+      <div class="project-text">
+        <p>{{ project.name }}</p>
+        <p>{{ project.overview }}</p>
+        <p class="removeCommas">{% for skill in project.skills.all %}, {{ skill.skill }}{% endfor %}</p>
+      </div>
+    </div>
+    <div class="project-description">{{ project.long_description | linebreaks}}</div>
+  </div> 
+  <div class="space"></div>
+</section>
+{% endblock %}
+

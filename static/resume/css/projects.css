@@ -1,0 +1,75 @@
+.projects-container {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.projects-project {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr;
+    width: 95%;
+    min-height: 12em;
+    margin: 2.5% 2.5%;
+    align-items: center;
+    text-decoration: none;
+    color: #000;
+}
+
+.projects-banner {
+    width: 96%;
+    margin: auto;
+    text-align: center;
+}
+
+.projects-languages-logo {
+    width: 23%;
+}
+
+.projects-text {
+    font-family: "Garamond";
+    font-size: 20px;
+    margin: auto 2.5%;
+}
+
+/*Individual Pages*/
+.project {
+    width: 90%;
+    min-height: 15em;
+}
+
+.individual-project-info {
+    width: 450px;
+    height: auto;
+    font-family: "Garamond";
+    margin-left: 20px;
+    margin-bottom: 20px;
+    float: left;
+}
+
+.project-info-wrapper {
+    width: 50%;
+    float: left;
+}
+
+.project-languages-logos {
+    text-align: center;
+    width: 80%;
+}
+
+.project-languages-logo {
+    width: 25%;
+}
+
+.project-text {
+    margin: 5% 2.5%;
+    font-family: "Garamond";
+    font-size: 20px;
+}
+
+.project-description {
+    display: block;
+    font-family: "Garamond";
+    font-size: 20px;
+    text-indent: 20px;
+}

@@ -1,0 +1,34 @@
+{% extends "m_resume/m_header.html" %}
+{% load staticfiles %}
+
+{% block extrahead %}
+<link rel="stylesheet" type="text/css" href="{% static 'm_resume/css/m_projects.css' %}">
+{% endblock%}
+
+{% block content %}
+<div class="content">
+    <div class="body-plaque">
+        <p>Coding Projects</p>
+    </div>
+    <div class="individual">
+        <div class="individual-text">
+            <div class="individual-banner">
+                {% for url in project.get_logos %}
+                    <img class="individual-logos" src="{{ url }}">
+                {% endfor  %}
+            </div>
+            <p>{{ project.name }}</p>
+            <p>{{ project.get_languages }}</p>
+            {% if project.github %}
+                <a class="gituhub-link" href="{{ project.github }}">Check Out This Project On Github</a>
+            {% endif %}
+        </div>
+        <div class="individual-description">{{ project.long_description | linebreaks }}</div>
+        <img class="individual-sample" src="{{ project.sample.url }}">
+        {% if project.sample_caption %}
+            <p class="individual-sample-caption">{{ project.sample_caption }}</p>
+        {% endif %}
+    </div>
+    <div class="space"></div>
+</div>
+{% endblock %}

@@ -1,0 +1,98 @@
+{% extends "m_resume/m_header.html" %}
+{% load staticfiles %}
+
+{% block extrahead %}
+<link rel="stylesheet" type="text/css" href="{% static 'm_resume/css/m_resume.css' %}"
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <img src="{% static 'm_resume/images/resume/Headshot.jpg' %}" id="headshot">
+    {% if current %}
+    <div class="space">Current Role</div>
+        <a class="current body-card" href="experience/{{ current.pk}}">
+	        <img src="{{ current.tile.url }}" class="current-logo">
+	        <div class="current-text">
+                <p class="current-role-text">Current Role: </p>
+	            <p class="current-role">{{ current.name }}</p>
+	            <p class="current-role">{{ current.role }}</p>
+	            {% if current.role_continued %}
+	                <p class="current-role">{{ current.role_continued }}</p>
+	            {% endif  %}
+	        </div>
+        </a>
+    </div>
+    {% endif %}
+    <div class="space">Education</div>
+    <div>
+        {% for entry in education %}
+	    <a class="education body-card" href="education">
+	        <img src="{{ entry.logo.url }}" style="width: {{ entry.m_logo_width }}%" class="education-logo">
+	        <div class="education-text">
+	    	    <p>{{ entry.university }}<p>
+	    	    <p>{{ entry.college }}</p>
+	    	    <p>{{ entry.degree }} in {{ entry.major }}</p>
+	    	    <p>Class of {{ entry.year }}</p>
+	        </div>
+	    </a>
+	{% endfor %}
+    </div>
+    <div class="space">Experience</div>
+    <div>
+        {% for entry in experience %}
+    	<a class="experience body-card" href="experience/{{ entry.pk }}">
+	        <img class="experience-banner" src="{{ entry.banner.url }}">
+	        <div class="experience-title">
+	            <p class="experience-text">{{ entry.name }}</p>
+		        <p class="experience-text">{{ entry.role }}</p>
+		        {% if entry.role_continued %}
+		            <p class="experience-text">{{ entry.role_continued }}</p>
+		        {% endif %}
+		        <p class="experience-text" >{{ entry.duration }}</p>
+	        </div>
+	        <div style="text-indent: 10%" class="experience-text">{{ entry.short_description }}</div>
+	    </a>
+        {% endfor %}
+    </div>
+    <div class="space">Coding Projects</div>
+    <div>
+        {% for entry in projects %}
+	    <a class="projects body-card" href="projects/{{ entry.pk }}">
+            <div class="projects-banner">
+                {% for url in entry.get_logos %}
+                    <img class="projects-logos" src="{{ url }}">
+                {% endfor %}
+            </div>
+            <div class="projects-title">
+		        <p class="projects-text">{{ entry.name }}</p>
+		        <p class="projects-text">{{ entry.get_languages }}</p>
+		    </div>
+		    <p class="projects-text" style="text-indent: 20px;">{{ entry.short_description }}</p>
+	    </a>
+	{% endfor %}
+    </div>
+    <div class="space">Programming Languages</div>
+    <div>
+	{% for entry in skills %}
+	    {% if entry.typeof %}
+	    <a class="skill body-card" href="skills/{{ entry.pk }}">
+		<img class="skill-logo" src="{{ entry.logo.url }}">
+	        <p class="skill-name">{{ entry.skill }}</p>
+	    </a>
+	    {% endif %}
+	{% endfor  %}
+    </div>
+    <div class="space">Technical Skills</div>
+    <div>
+    {% for entry in skills %}
+	    {% if not entry.typeof %}
+	    <a class="skill body-card" href="skills/{{ entry.pk }}">
+	    <img class="skill-logo" src="{{ entry.logo.url }}">
+       	    <p class="skill-name">{{ entry.skill }}</p>
+	    </a>
+	    {% endif %}
+	{% endfor %}
+    </div>
+    <div class="space"></div>
+</div>
+{% endblock %}

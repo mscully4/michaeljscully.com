@@ -1,0 +1,81 @@
+.plaquetext {
+    background: url("../images/extracurriculars/skyline.jpg");
+    background-size: 875px 140px;
+    background-repeat: repeat;
+}
+
+.activity {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+    width: 1000px;
+    height: 400px;
+}
+
+.tile {
+    width: 400px;
+    height: 300px;
+    border: solid 3px black;
+    margin: auto;
+    box-shadow: 10px 10px 8px #888888;
+}
+
+.companyName {
+    margin: auto;
+    font-family: "Garamond";
+}
+
+.image {
+    width: 400px;
+    height: 300px;
+}
+
+.image:hover {
+	filter: sepia(.9);
+}
+
+/* Individual Pages*/
+.extracurricular {
+    width: 1000px;
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: 400px 600px;
+    margin: auto;
+}
+
+.logo {
+    margin: 50px auto;
+    width: 80%;
+    /*border: solid 5px black;*/
+    box-sizing: border-box;
+}
+
+.sign {
+    width: 400px;
+    height: 300px;
+    border: solid 5px black;
+    box-sizing: border-box;
+    margin: 20px auto;
+    box-shadow: 10px 10px 8px #888888;
+}
+
+.info {
+    font-family: "Garamond";
+    margin: auto;
+}
+
+.name {
+    font-size: 180%;
+    font-weight: bold;
+}
+
+.role {
+    font-size: 140%;
+}
+
+.description {
+    font-size: 100%;
+    font-family: "Garamond";
+    text-indent: 20px;
+    margin: 0 40px;
+}

@@ -1,0 +1,34 @@
+{% extends "resume/header.html" %}
+{% load static %}
+
+{% block extrahead %}
+<link type="text/css" rel="stylesheet" href="{% static 'resume/css/experience.css' %}">
+<script rel="text/JavaScript" src="{% static 'resume/js/resizingCards.js' %}"></script>
+{% endblock %}
+
+<!--Put in character maximums for the text fields-->
+
+{% block content %}
+<section class="body">
+  <h1 class="body-title-text">Experience</h1>
+  <div class='experiences-container'>
+    {% for entry in experiences %}
+      <a class="body-card experiences-experience" href="experience/{{ entry.pk }}">
+        <img class="experiences-banner" src="{{ entry.banner.url }}">
+        <div class="experiences-text">
+          <p>{{ entry.name }}</p>
+          <p>{{ entry.role }}</p>
+          <p>{{ entry.start_date|date:"F Y" }} - 
+            {% if e.end_date %}
+              {{ entry.end_date|date:"F Y" }}
+            {% else %}
+              {{ "Present" }}
+            {% endif %}
+          </p>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+  <div class="space"></div>
+</section>
+{% endblock %}

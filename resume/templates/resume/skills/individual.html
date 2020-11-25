@@ -1,0 +1,33 @@
+{% extends "resume/header.html" %}
+{% load static %}
+
+{% block extrahead %}
+<link type="text/css" rel="stylesheet" href="{% static 'resume/css/skills.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="body">
+<h1 class="body-title-text">Skills</h1>
+<div class="skill">
+  <div class="skill-info-wrapper">
+    <p class="skill-name">{{ skill.skill }}</p>
+    <img class="skill-logo" src="{{ skill.logo.url }}">
+  </div>
+  <div class="skill-details-wrapper">
+    {% if skill.frameworks %}
+    <div class="skill-frameworks">
+      <p class="skill-details-header">Libraries/Frameworks:</p>
+      <p class="skill-details-text">{{ skill.frameworks }}</p>
+    </div>
+    {% endif %}
+    <div class="skill-projects">
+      <p class="skill-details-header">Projects Using This Skill:</p>
+      {% for project in skill.projects_set.all %}
+        <a class="skill-details-text" href="../../resume/projects/{{ project.id }}">{{ project.name }} {{project.overview}}</a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+  <div class="space"></div>
+</section>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "m_resume/m_header.html" %}
+{% load staticfiles %}
+
+{% block extrahead %}
+<link rel="stylesheet" type="text/css" href="{% static 'm_resume/css/m_skills.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <div class="body-plaque">
+        <p>Skills</p>
+    </div>
+    <p class="type">Programming</p>  
+    {% for entry in skills %}
+        {% if entry.typeof %}
+            <a class="skill body-card" href="skills/{{ entry.pk }}">
+                <div>
+                    <p class="text">{{ entry.skill }}</p>
+                </div>
+                <img class="logo" src="{{ entry.logo.url }}">
+            </a>
+        {% endif %}
+    {% endfor %}
+    <p class="type">Technical</p>  
+    {% for entry in skills %}
+        {% if not entry.typeof %}
+            <a class="skill body-card" href="skills/{{ entry.pk }}">
+                <div>
+                    <p class="text">{{ entry.skill }}</p>
+                </div>
+                <img class="logo" src="{{ entry.logo.url }}">
+            </a>
+        {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,200 @@
+@font-face {
+    font-family: "Allura";
+    src: url("../fonts/Allura/Allura-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Courgette";
+    src: url("https://fonts.googleapis.com/css?family=Courgette&display=swap");
+}
+
+@font-face {
+    font-family: "Old Standard TT";
+    src: url("../fonts/Old_Standard_TT/OldStandard-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Pinyon Script";
+    src: url("../fonts/Pinyon_Script/PinyonScript-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Yantramanav";
+    src: url("../fonts/Yantramanav/Yantramanav-Regular.ttf");
+}
+
+@font-face {
+    font-family: 'PW Chalk';
+    src: url("../fonts/PW Chalk/PWChalk.ttf");
+}
+
+@font-face {
+    font-family: 'Garamond';
+    src: url("../fonts/Garamond/Garamond Regular.ttf");
+}
+
+@font-face {
+    font-family: 'Terminus';
+    src: url("../fonts/Terminus/Terminus.ttf");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    margin: auto;
+}
+
+body {
+    width: 70%;
+    margin: auto;
+}
+
+.body, header {
+    /* box-shadow: 0 0 8px #000; */
+    box-shadow: 0px 8px 16px 2px rgba(0,0,0,1)
+}
+
+header {
+    width: 100%;
+    /* border: solid 3px rgba(0, 0, 0, .6); */
+    border-bottom: none;
+    margin: auto;
+    height: 13em;
+}
+
+.header-banner-image {
+    width: 100%;
+    height: 13em;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: auto;
+    position: relative;
+}
+
+.header-location {
+    display: block;
+    font-size: 3.5vw;
+    padding-left: .25em;
+    color: #000;
+    font-family: "Allura", "cursive";
+}
+
+.header-menubar {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 3fr 7fr;
+    height: 4em;
+    width: 100%;
+    background-color: rgb(18,18,18, .7);
+    position: absolute;
+    bottom: 0px;
+}
+
+.header-title {
+    display:inline-block; 
+    color:white; 
+    font-family: 'allura';
+    font-size: 2.5vw;
+    text-align: center;
+}
+
+.header-menu-items {
+    width: 100%;
+    height: 100%;
+    display: flex; 
+    justify-content: space-between;
+}
+
+.header-buttons {
+    font-size: 1.4vw;
+    text-decoration: none;
+    color: #fff;
+    font-family: "Courgette";
+    border: none;
+    cursor: pointer;
+    /* display: inline-block; */
+}
+
+.header-buttons:hover {
+    text-decoration: underline;
+}
+
+.header-buttons:focus {
+    outline: 0;
+}
+
+.header-dropdown-content {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 2px rgba(0,0,0,1);
+    min-width: 200px;
+    margin-top: 13px;
+    font-family: "Garamond"
+}
+
+.header-dropdown-items {
+    text-align: left;
+    padding: 10px 10px;
+    list-style: none;
+    display: block;
+    color: #000;
+    text-decoration: none;
+}
+
+.header-dropdown-items:hover {
+    background-color: #e5e5e5;
+}
+
+.space {
+    height: 125px;
+}
+
+/* Reoccuring */
+.body {
+    background-color: #fff;
+    width: 100%;
+    margin: auto;
+    /* box-sizing: border-box; */
+    /* border-left: solid 3px rgba(0,0,0,.6);
+    border-right: solid 3px rgba(0,0,0,.6);
+    border-bottom: solid 3px rgba(0,0,0,.6); */
+    
+}
+
+.body-title-text {
+    text-align: center;
+    font-family: 'Aguafina Script', cursive;
+    font-size: 15vw; 
+    font-weight: normal;
+    padding: .5em 0;
+}
+
+.body-card {
+    box-shadow: 0 0 4px #000 !important;
+    border-radius: 6px;
+    background-color: #fff;
+    cursor: pointer;
+
+}
+
+.body-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+/* Footer */
+.footer {
+    width: 100%;
+    background-color: #fff;
+    height: 4em;
+    margin: 4em auto;
+    text-align: center;
+    font-family: "Garamond";
+    font-weight: bold;
+}
+.footer-links {
+    color:#183962; 
+    text-decoration: none;
+}
