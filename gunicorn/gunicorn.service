@@ -1,0 +1,9 @@
+[Unit]
+Description=gunicorn daemon
+After=network.target
+
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/michaeljscullydotcom/myproject
+ExecStart=/home/ubuntu/michaeljscullydotcom/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/ubuntu/michaeljscullydotcom/michaeljscullydotcom.sock myproject.wsgi:application
