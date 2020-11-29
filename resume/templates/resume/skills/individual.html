@@ -23,7 +23,7 @@
     <div class="skill-projects">
       <p class="skill-details-header">Projects Using This Skill:</p>
       {% for project in skill.projects_set.all %}
-        <a class="skill-details-text" href="../../resume/projects/{{ project.id }}">{{ project.name }} {{project.overview}}</a>
+        <a class="skill-details-text" href="../../resume/projects/{{ project.id }}">{{ project.name }} {{project.overview}}</a><br>
       {% endfor %}
     </div>
   </div>
