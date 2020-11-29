@@ -49,7 +49,7 @@
             <p class="resume-text-vertical">{{ entry.name }}</p>
             <p class="resume-text-vertical">{{ entry.role }}</p>
             <p class="resume-text-vertical">{{ entry.start_date|date:"F Y" }} - 
-            {% if e.end_date %}
+	    {% if entry.end_date %}
               {{ entry.end_date|date:"F Y" }}
             {% else %}
               {{ "Present" }}
