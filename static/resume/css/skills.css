@@ -18,7 +18,8 @@
 }
 
 .skills-logo {
-    height: 90%;
+    max-height: 90%;
+    max-width: 90%;
     margin: auto;
 }
 
