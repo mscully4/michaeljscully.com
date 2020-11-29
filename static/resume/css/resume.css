@@ -176,7 +176,7 @@ a {
 }
 
 .resume-image-vertical {
-    width: 90%;
+    max-width: 90%;
     padding: 10px 0;
     max-height: 90%;
     margin: auto;
