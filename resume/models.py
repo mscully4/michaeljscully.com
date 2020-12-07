@@ -1,5 +1,6 @@
 from django.db import models
 from multiselectfield import MultiSelectField
+import datetime
 
 animations = [("back", "Back"), ("forward", "Forward"), ("down", "Down"), ("up", "Down"), ("spin", "Spin"),
     ("drop", "Drop"), ("fade", "Fade"), ("float-away", "Float Away"), ("sink-away", "Sink Away"), ("grow", "Grow"),
@@ -24,14 +25,14 @@ class Education(models.Model):
 
     def __str__(self):
         return self.university
-import datetime
+
+
 class Experience(models.Model):
     name = models.CharField(max_length=140, verbose_name="Company Name")
     role = models.CharField(max_length=140)
     start_date = models.DateField(verbose_name="Start Date")
     end_date = models.DateField(verbose_name="End Date", blank=True, null=True)
     current = models.BooleanField(verbose_name="Current Role?", default=False)
-    short_description = models.TextField()
     long_description = models.TextField(blank=True, null=True, verbose_name="Long Description")
     banner = models.ImageField(verbose_name="Banner Image")
     tile = models.ImageField(verbose_name="Tile Image")
@@ -48,25 +49,15 @@ class Experience(models.Model):
         super(Experience, self).save(*args, **kwargs)
 
 class Projects(models.Model):
-    name = models.CharField(max_length=140)
-    overview = models.CharField(max_length=140)
+    industry = models.CharField(max_length=140)
+    role = models.CharField(max_length=140)
+    start_date = models.DateField(verbose_name="Start Date", blank=True, null=True)
+    end_date = models.DateField(verbose_name="End Date", blank=True, null=True)
     long_description = models.TextField()
-    # choices = [(obj.logo.url, obj.skill) for obj in Skills.objects.all()]
-    # print(choices)
-    # skills_used = MultiSelectField(choices=choices, max_length=300)
     skills = models.ManyToManyField('Skills')
  
     def __str__(self):
-        return self.name
-
-    # def get_logos(self):
-    #     languages = [str(lang) for lang in self.languages.all()]
-    #     urls = [Skills.objects.get(skill=i).logo.url for i in languages]
-    #     return urls
-   
-    # def get_languages(self):
-    #     languages = ", ".join([str(lang) for lang in self.languages.all()])
-    #     return languages
+        return self.role
 
     def save(self, *args, **kwargs):
         super(Projects, self).save(*args, **kwargs)
