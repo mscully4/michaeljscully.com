@@ -1,0 +1,301 @@
+import React, { Component } from 'react';
+import { Column, Table } from 'react-virtualized';
+import { PropTypes } from 'prop-types'
+import clsx from 'clsx';
+import { withStyles } from '@material-ui/styles';
+import { Scrollbars } from 'react-custom-scrollbars';
+import ReactCountryFlag from "react-country-flag"
+
+import 'react-virtualized/styles.css';
+// import "flag-icon-css/css/flag-icon.min.css";
+
+import { getDistanceBetweenTwoPoints } from '../utils/Formulas.js';
+import { place_colors, FONT_GREY, OFF_BLACK_2, OFF_BLACK_3, OFF_BLACK_4, ICE_BLUE } from "../utils/Colors"
+import { add, gallery, Svg, placeTypeSVGs } from "../utils/SVGs"
+
+//Places within these distances of the center of the map will be included in the table
+const DISTANCE_FROM_CITY = 200 /*miles*/
+const DISTANCE_FROM_PLACE = 200
+
+const styles = theme => ({
+  container: {
+    backgroundColor: OFF_BLACK_2,
+    width: '100%'
+  },
+  table: {
+    width: '100%'
+  },
+  tableRow: {
+    cursor: 'pointer',
+    '&:focus': {
+      outline: "none"
+    },
+  },
+  row_a: {
+    backgroundColor: OFF_BLACK_3
+  },
+  row_b: {
+    backgroundColor: OFF_BLACK_4
+
+  },
+  tableRowHover: {
+    backgroundColor: ICE_BLUE,
+  },
+  cell: {
+    display: "grid",
+    gridTemplateRows: "1fr",
+    gridTemplateColumns: "1fr 1fr 1fr",
+    alignItems: 'center'
+  },
+  cellText: {
+    textAlign: 'center',
+    paddingLeft: "30%",
+    paddingRight: '2.5%',
+    margin: 'auto',
+    fontWeight: 'bold',
+    color: FONT_GREY,
+    whiteSpace: 'normal',
+    wordWrap: 'break-word'
+  },
+  addSVG: {
+    position: 'absolute',
+    top: 10,
+    right: 25,
+    height: 25,
+    width: 25,
+  },
+  photoGallerySVG: {
+    position: 'absolute',
+    height: 25,
+    width: 30,
+    top: 10,
+    right: 25,
+
+  },
+  typeSVG: {
+    position: 'absolute',
+    height: '50%',
+    left: 40,
+    top: '25%',
+  },
+  columnHeader: {
+    textAlign: "center",
+    color: FONT_GREY
+  },
+  column: {
+    width: '100%'
+  }
+})
+
+class VirtualTable extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      scrollTop: 0,
+      allowMouseOver: true,
+    }
+  }
+
+  handleScroll = ({ target: { scrollTop } }) => {
+    this.setState({ scrollTop });
+  };
+
+  getRowClassName = (index, obj) => {
+    const classes = this.props.classes;
+    return clsx({ [classes.tableRow]: index !== -1 },
+      { [classes.tableRowHover]: (obj ? obj.index : -1) === this.props.hoverIndex },
+      { [classes.row_b]: index % 2 === 0 },
+      { [classes.row_a]: index % 2 === 1 },
+    )
+  }
+
+  generateSVG = (type) => {
+    const icons = placeTypeSVGs;
+    return (
+      <Svg className={clsx(this.props.classes.typeSVG)} viewbox={icons[type] ? icons[type].viewBox: null}>
+        {icons[type] ? icons[type].path.map((el, i) => <path key={`${i}`} d={el} fill={place_colors[type]} stroke={place_colors[type]} />) : null}
+      </Svg>
+    )
+  }
+
+  cellRendererPlace = (cellData) => {
+    const classes = this.props.classes;
+    return (
+      <div>
+
+        <div className={clsx(classes.cellText)}>{cellData.rowData.name.trim()}</div>
+        <div className={clsx(classes.cellText)}>{cellData.rowData.city.trim()}{cellData.rowData.state.trim() ? `, ${cellData.rowData.state.trim()}` : ""}</div>
+        <p style={{position: 'absolute', top: 10, right: 30}}>Photos: {cellData.rowData.images.length}</p>
+        {this.generateSVG(cellData.rowData.main_type)}
+
+      </div>
+    )
+  }
+
+  cellRendererCity = (cellData) => {
+    const classes = this.props.classes;
+    var greyOutGalleryIcon = true;
+
+    cellData.rowData.places.forEach(element => {
+      if (element.images.length > 0) greyOutGalleryIcon = false
+    });
+
+    return (
+      <div style={{width: '100%'}} className={'boof'}>
+        <ReactCountryFlag
+          countryCode={cellData.rowData.countryCode}
+          svg
+          style={{
+            position: "absolute",
+            height: '30%',
+            left: '10%',
+            top: '35%',
+            width: 'auto'
+          }}
+          title={cellData.rowDate}
+        />
+
+        <p className={clsx(classes.cellText)}>
+          {cellData.rowData.city}, <br />   {cellData.rowData.country}
+        </p>
+
+
+        <Svg
+          className={clsx(this.props.classes.photoGallerySVG)}
+          onClick={(e) => { if (!greyOutGalleryIcon) this.props.onCityGalleryClick(cellData.cellData, e) }}
+          value={"KILL"}
+          viewBox={gallery.viewBox}
+        >
+          {gallery.path.map((el, i) => <path key={`${i}`} d={el} fill={`rgba(248, 248, 248, ${greyOutGalleryIcon ? ".2" : "1"})`} />)}
+        </Svg>
+
+      </div>
+    )
+  }
+
+  getPlaces = () => {
+    if (this.props.closestCity.distanceFromMapCenter <= DISTANCE_FROM_CITY) {
+      return this.props.closestCity.places
+    } else {
+      return this.props.places.filter((el) => getDistanceBetweenTwoPoints(this.props.mapCenter.lat, this.props.mapCenter.lng, el.latitude, el.longitude) < DISTANCE_FROM_PLACE)
+    }
+  }
+
+  renderThumb({ style, ...props }) {
+    const thumbStyle = {
+      backgroundColor: FONT_GREY
+    };
+    return (
+      <div
+        style={{ ...style, ...thumbStyle }}
+        {...props} />
+    );
+  }
+
+  renderView = ({ style, ...props }) => {
+    //this hides the default scrollbar
+    style.marginRight = -50;
+    style.marginBottom = -16;
+    return <div style={style} {...props} />
+  }
+
+
+  render = () => {
+    const WIDTH = window.innerWidth * .36;
+    const HEIGHT = window.innerHeight;
+    const list = this.props.granularity ? this.props.cities : this.getPlaces();
+
+    const HEADER_HEIGHT = 40;
+
+    const classes = this.props.classes
+    return (
+      <div className={classes.container}>
+
+        <Scrollbars
+          className={clsx(classes.scrollBar)}
+          onScroll={this.handleScroll}
+          renderThumbVertical={obj => this.renderThumb(obj)}
+          renderView={this.renderView}
+        >
+          <Table
+            autoHeight
+            scrollTop={this.state.scrollTop}
+            width={WIDTH}
+            className={classes.table}
+            height={HEIGHT}
+            headerHeight={HEADER_HEIGHT}
+            headerStyle={{ margin: 'auto'}}
+            rowHeight={HEIGHT / 5}
+            rowCount={list.length}
+            rowGetter={({ index }) => list[index]}
+            rowClassName={({ index }) => this.getRowClassName(index, list[index])}
+            rowStyle={{'width': '100%'}}
+            onRowMouseOver={(obj) => {
+              if (this.state.allowMouseOver) {
+                this.props.changeHoverIndex(obj.rowData.index);
+                this.props.changeMapCenter(obj.rowData);
+              }
+            }}
+            onRowMouseOut={() => this.props.changeHoverIndex(null)}
+            onRowClick={(obj, e) => {
+              //Temporarily disable the mouse over functionality to avoid a mouse over action right after a click event
+              this.setState({
+                allowMouseOver: false,
+              })
+              console.log(obj)
+              this.props.changeMapCenter(obj.rowData);
+              this.props.tableRowClick(obj, e)
+              setTimeout(() => {
+                this.setState({
+                  allowMouseOver: true
+                })
+              }, 250)
+            }}
+          >
+            <Column
+              label="Destination"
+              dataKey="destination"
+              width={'100%'}
+              headerStyle={{
+                color: FONT_GREY,
+              }}
+              className={classes.column}
+              style={{
+                // 'width': '100% !important'
+              }}
+              headerRenderer={() => {
+                return (
+                  <div className={classes.columnHeader}>
+                    {this.props.granularity ? "Destinations" : "Places"}
+                  </div>
+                )
+              }}
+              cellRenderer={this.props.granularity ? this.cellRendererCity : this.cellRendererPlace}
+              cellDataGetter={({ dataKey, rowData }) => rowData}
+            />
+          </Table>
+        </Scrollbars>
+      </div>
+
+    )
+  }
+}
+
+VirtualTable.propTypes = {
+  "owner": PropTypes.bool,
+  "cities": PropTypes.array,
+  "places": PropTypes.array,
+  "hoverIndex": PropTypes.number,
+  "changeHoverIndex": PropTypes.func,
+  "tableRowClick": PropTypes.func,
+  "granularity": PropTypes.number,
+  "selectedCity": PropTypes.object,
+  "closestCity": PropTypes.object,
+  "mapCenter": PropTypes.object,
+  "changeMapCenter": PropTypes.func,
+  "onCityGalleryClick": PropTypes.func,
+  "place_colors": PropTypes.object,
+  "city_colors": PropTypes.array
+}
+
+export default withStyles(styles)(VirtualTable);
