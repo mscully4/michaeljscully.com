@@ -14,8 +14,8 @@ import os
 
 import configparser as cp
 config = cp.ConfigParser()
-assert os.path.isfile('./config.ini'), "Config file does not exist"
-config.read('./config.ini')
+assert os.path.isfile('./secrets.ini'), "Config file does not exist"
+config.read('./secrets.ini')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -129,9 +129,9 @@ USE_TZ = True
 
 STATICFILES_DIRS = ['/home/ubuntu/michaeljscullydotcom/myproject/static']
 
-AWS_ACCESS_KEY_ID = config['AWS']['AWS_ACCESS_KEY_ID']
-AWS_SECRET_ACCESS_KEY = config['AWS']['AWS_SECRET_ACCESS_KEY'] 
-AWS_STORAGE_BUCKET_NAME = config['AWS']['AWS_STORAGE_BUCKET_NAME']
+AWS_ACCESS_KEY_ID = config['AWS']['ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY = config['AWS']['SECRET_ACCESS_KEY'] 
+AWS_STORAGE_BUCKET_NAME = config['AWS']['BUCKET_NAME']
 AWS_DEFAULT_ACL = 'public-read'
 AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
 AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
