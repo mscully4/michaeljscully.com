@@ -1,0 +1,14 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                // Get some code from a GitHub repository
+                git 'https://github.com/mscully4/michaeljscullydotcom.git'
+                sh 'python3 -m pip install -r requirements.txt'
+
+            }
+        }
+    }
+}
