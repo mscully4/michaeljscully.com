@@ -127,7 +127,7 @@ USE_TZ = True
 #STATIC_URL = '/static/'
 #STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
-STATICFILES_DIRS = ['/home/ubuntu/michaeljscullydotcom/myproject/static']
+STATICFILES_DIRS = ['/home/ubuntu/michaeljscully.com/myproject/static']
 
 AWS_ACCESS_KEY_ID = config['AWS']['ACCESS_KEY_ID']
 AWS_SECRET_ACCESS_KEY = config['AWS']['SECRET_ACCESS_KEY'] 
