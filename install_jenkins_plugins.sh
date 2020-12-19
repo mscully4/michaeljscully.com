@@ -20,3 +20,8 @@ done
 #Restart Jenkins
 curl -X POST --user "admin:${JENKINS_TOKEN}" http://localhost:8080/safeRestart
 
+#Retrieve Job Definition
+# sudo curl "http://localhost:8080/job/michaeljscully.com/config.xml" --user "admin:${JENKINS_TOKEN}"
+
+#Create the job
+curl -s -XPOST 'http://localhost:8080/createItem?name=michaeljscully.com' -u "admin:${JENKINS_TOKEN}" --data-binary @config.xml -H "Content-Type:text/xml"
