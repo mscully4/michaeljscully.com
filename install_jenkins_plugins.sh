@@ -11,7 +11,7 @@ JENKINS_TOKEN=$(curl -sS --cookie ./cookie -H $JENKINS_CRUMB 'http://localhost:8
 JENKINS_TOKEN=$(echo "${JENKINS_TOKEN//\"/}")
 
 #Install plugin
-PLUGINS=('git' 'git-client' 'workflow-job' 'build-timeout' 'timestamper' 'pipeline-stage-view' 'workflow-durable-task-step' 'workflow-cps' 'pipeline-model-definition' 'durable-task' 'pipeline-model-api' 'pipeline-model-extensions')
+PLUGINS=('git' 'git-client' 'workflow-job' 'build-timeout' 'timestamper' 'pipeline-stage-view' 'workflow-durable-task-step' 'workflow-cps' 'pipeline-model-definition' 'pipeline-model-api') #'durable-task' 'pipeline-model-api' 'pipeline-model-extensions')
 
 for p in "${PLUGINS[@]}"; do
     curl -X POST -d "<jenkins><install plugin=\"${p}@latest\" /></jenkins>" --header 'Content-Type: text/xml' --user "admin:${JENKINS_TOKEN}" http://localhost:8080/pluginManager/installNecessaryPlugins
