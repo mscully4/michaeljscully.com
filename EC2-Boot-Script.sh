@@ -23,3 +23,8 @@ wget localhost:8080/jnlpJars/jenkins-cli.jar -O /home/ubuntu/jenkins-cli.jar
 
 #Grant Jenkins Sudo Access
 echo "jenkins ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/jenkins
+
+aws s3 cp s3://michaeljscullydotcom/install_jenkins_plugins.sh ~/install_jenkins_plugins.sh
+aws s3 cp s3://michaeljscullydotcom/config.xml ~/config.xml
+chmod +x install_jenkins_plugins.sh
+./install_jenkins_plugins.sh
