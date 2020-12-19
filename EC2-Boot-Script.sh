@@ -14,9 +14,9 @@ sudo apt -y install python3-pip
 sudo apt -y install nodejs
 sudo apt -y install openjdk-8-jdk
 sudo apt-get -y install jenkins
-sudo apt install gunicorn
-sudo apt install awscli
-python3 -m pip install venv
+sudo apt -y install gunicorn
+sudo apt -y install awscli
+sudo apt -y install jq
 
 #Download Jenkins CLI
 wget 3.21.221.96:8080/jnlpJars/jenkins-cli.jar -O /home/ubuntu/
