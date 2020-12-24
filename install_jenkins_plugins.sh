@@ -11,14 +11,14 @@ JENKINS_TOKEN=$(curl -sS --cookie ./cookie -H $JENKINS_CRUMB 'http://localhost:8
 JENKINS_TOKEN=$(echo "${JENKINS_TOKEN//\"/}")
 
 #Install plugin
-PLUGINS=('git' 'git-client' 'workflow-job' 'build-timeout' 'timestamper' 'pipeline-stage-view' 'workflow-durable-task-step' 'workflow-cps' 'pipeline-model-definition' 'pipeline-model-api') #'durable-task' 'pipeline-model-api' 'pipeline-model-extensions')
+PLUGINS=('git' 'git-client' 'workflow-job' 'build-timeout' 'timestamper' 'pipeline-stage-view' 'workflow-durable-task-step' 'workflow-cps' 'pipeline-model-definition' 'pipeline-model-api' 'pipeline-github-lib') #'durable-task' 'pipeline-model-api' 'pipeline-model-extensions')
 
 for p in "${PLUGINS[@]}"; do
     curl -X POST -d "<jenkins><install plugin=\"${p}@latest\" /></jenkins>" --header 'Content-Type: text/xml' --user "admin:${JENKINS_TOKEN}" http://localhost:8080/pluginManager/installNecessaryPlugins
 done
 
 #Restart Jenkins
-curl -X POST --user "admin:${JENKINS_TOKEN}" http://localhost:8080/safeRestart
+curl -X POST --user "admin:${JENKINS_TOKEN}" 'http://localhost:8080/safeRestart'
 
 sleep 60s
 
@@ -35,7 +35,7 @@ JENKINS_TOKEN=$(curl -sS --cookie ./cookie -H $JENKINS_CRUMB 'http://localhost:8
 JENKINS_TOKEN=$(echo "${JENKINS_TOKEN//\"/}")
 
 #Create the job
-curl -s -XPOST 'http://localhost:8080/createItem?name=michaeljscully.com' -u "admin:${JENKINS_TOKEN}" --data-binary @config.xml -H "Content-Type:text/xml"
+curl -XPOST 'http://localhost:8080/createItem?name=michaeljscully.com' -u "admin:${JENKINS_TOKEN}" --data-binary @config.xml -H "Content-Type:text/xml"
 
 #Build the job
-curl -s -XPOST 'http://localhost:8000/job/michaeljscully.com/build' -u "admin:${JENKINS_TOKEN}" 
+curl -XPOST 'http://localhost:8080/job/michaeljscully.com/build' -u "admin:${JENKINS_TOKEN}" 
