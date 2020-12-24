@@ -21,7 +21,8 @@ sudo apt -y install jq
 #Grant Jenkins Sudo Access
 echo "jenkins ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/jenkins
 
-aws s3 cp s3://michaeljscullydotcom/install_jenkins_plugins.sh ~/install_jenkins_plugins.sh
-aws s3 cp s3://michaeljscullydotcom/config.xml ~/config.xml
+wget https://raw.githubusercontent.com/mscully4/michaeljscully.com/master/install_jenkins_plugins.sh -O ./install_jenkins_plugins.sh
+wget https://raw.githubusercontent.com/mscully4/michaeljscully.com/master/config.xml -O ./config.xml
+
 chmod +x install_jenkins_plugins.sh
 ./install_jenkins_plugins.sh
