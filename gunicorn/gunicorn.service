@@ -6,4 +6,4 @@ After=network.target
 User=ubuntu
 Group=www-data
 WorkingDirectory=/var/lib/jenkins/workspace/michaeljscully.com/
-ExecStart=sudo /usr/local/bin/gunicorn --access-logfile - --workers 3 --bind unix:/var/lib/jenkins/workspace/michaeljscully.com/michaeljscully.com.sock myproject.wsgi:application
+ExecStart=sudo gunicorn --access-logfile - --workers 3 --bind unix:/var/lib/jenkins/workspace/michaeljscully.com/michaeljscully.com.sock myproject.wsgi:application
