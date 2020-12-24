@@ -20,8 +20,19 @@ done
 #Restart Jenkins
 curl -X POST --user "admin:${JENKINS_TOKEN}" http://localhost:8080/safeRestart
 
-#Retrieve Job Definition
-# sudo curl "http://localhost:8080/job/michaeljscully.com/config.xml" --user "admin:${JENKINS_TOKEN}"
+sleep 60s
+
+#Need to re-authenticate after restart
+
+#Retrieve password
+PASSWORD=$(sudo cat /var/lib/jenkins/secrets/initialAdminPassword)
+
+#Retrieve Crumb and Token
+JENKINS_CRUMB=$(curl -sS --cookie-jar ./cookie "http://admin:${PASSWORD}@localhost:8080/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,\":\",//crumb)")
+JENKINS_TOKEN=$(curl -sS --cookie ./cookie -H $JENKINS_CRUMB 'http://localhost:8080/me/descriptorByName/jenkins.security.ApiTokenProperty/generateNewToken' -X POST --data 'newTokenName=jenkins' --user admin:$PASSWORD | jq .data.tokenValue)
+
+#Strip extra quotes from JENKINS_TOKEN
+JENKINS_TOKEN=$(echo "${JENKINS_TOKEN//\"/}")
 
 #Create the job
 curl -s -XPOST 'http://localhost:8080/createItem?name=michaeljscully.com' -u "admin:${JENKINS_TOKEN}" --data-binary @config.xml -H "Content-Type:text/xml"
