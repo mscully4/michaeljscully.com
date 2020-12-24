@@ -39,7 +39,7 @@
             steps {
                 //Update Gunicorn configuration
                 sh &apos;sudo cp gunicorn/gunicorn.service /etc/systemd/system/&apos;
-                sh &apos;sudo systemctl deamon-reload&apos;
+                sh &apos;sudo systemctl daemon-reload&apos;
                 sh &apos;sudo service gunicorn restart&apos;
 
                 //Update nginx configuration
