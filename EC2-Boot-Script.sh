@@ -2,13 +2,12 @@
 
 curl -sL https://rpm.nodesource.com/setup_15.x | sudo bash -
 
-sudo amazon-linux-extras -y install python3.8
-sudo amazon-linux-extras -y install nginx1
-
+sudo amazon-linux-extras enable python3.8
+sudo amazon-linux-extras enable nginx1
 
 sudo yum-config-manager --enable epel
 sudo yum -y update
-sudo yum -y install jq java-1.8.0 git nodejs
+sudo yum -y install jq java-1.8.0 git nodejs python38 nginx
 
 sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
 sudo rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key
