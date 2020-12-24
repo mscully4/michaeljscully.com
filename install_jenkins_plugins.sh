@@ -36,3 +36,6 @@ JENKINS_TOKEN=$(echo "${JENKINS_TOKEN//\"/}")
 
 #Create the job
 curl -s -XPOST 'http://localhost:8080/createItem?name=michaeljscully.com' -u "admin:${JENKINS_TOKEN}" --data-binary @config.xml -H "Content-Type:text/xml"
+
+#Build the job
+curl -s -XPOST 'http://localhost:8000/job/michaeljscully.com/build' -u "admin:${JENKINS_TOKEN}" 
