@@ -18,9 +18,6 @@ sudo apt -y install gunicorn
 sudo apt -y install awscli
 sudo apt -y install jq
 
-#Download Jenkins CLI
-wget localhost:8080/jnlpJars/jenkins-cli.jar -O /home/ubuntu/jenkins-cli.jar
-
 #Grant Jenkins Sudo Access
 echo "jenkins ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/jenkins
 
