@@ -24,6 +24,7 @@ pipeline {
             steps {
                 //Update Gunicorn configuration
                 sh 'sudo cp gunicorn/gunicorn.service /etc/systemd/system/'
+                sh 'sudo systemctl deamon-reload'
                 sh 'sudo service gunicorn restart'
 
                 //Update nginx configuration
