@@ -23,6 +23,8 @@ echo "jenkins ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/jenkins
 
 wget https://raw.githubusercontent.com/mscully4/michaeljscully.com/master/install_jenkins_plugins.sh -O /home/ubuntu/install_jenkins_plugins.sh
 wget https://raw.githubusercontent.com/mscully4/michaeljscully.com/master/config.xml -O /home/ubuntu/config.xml
+wget https://raw.githubusercontent.com/mscully4/michaeljscully.com/master/build_jenkins_job.sh -O /home/ubuntu/build_jenkins_job.sh
+wget https://raw.githubusercontent.com/mscully4/michaeljscully.com/master/attach_elastic_ip.sh -O /home/ubuntu/attach_elastic_ip.sh
 
 sudo service jenkins start
 
