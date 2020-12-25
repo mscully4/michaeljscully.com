@@ -22,7 +22,7 @@ sleep 30s
 #Restart Jenkins
 curl -X POST --user "admin:${JENKINS_TOKEN}" 'http://localhost:8080/safeRestart'
 
-sleep 60s
+sleep 500s
 
 #Need to re-authenticate after restart
 
@@ -39,5 +39,7 @@ JENKINS_TOKEN=$(echo "${JENKINS_TOKEN//\"/}")
 #Create the job
 curl -XPOST 'http://localhost:8080/createItem?name=michaeljscully.com' -u "admin:${JENKINS_TOKEN}" --data-binary @config.xml -H "Content-Type:text/xml"
 
+sleep 5s
+
 #Build the job
-curl -XPOST 'http://localhost:8080/job/michaeljscully.com/build' -u "admin:${JENKINS_TOKEN}" 
+curl -XPOST 'http://localhost:8080/job/michaeljscully.com/build' -u "admin:${JENKINS_TOKEN}"
