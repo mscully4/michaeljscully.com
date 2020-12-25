@@ -1,5 +1,7 @@
 #!/bin/bash
 
+sudo echo "Jenkins HTTP Response Code: $(curl -s -o /dev/null -w "%{http_code}" localhost:8080/login)" >> home/ubuntu/log.txt
+
 #Retrieve password
 PASSWORD=$(sudo cat /var/lib/jenkins/secrets/initialAdminPassword)
 
