@@ -35,3 +35,7 @@ chmod +x /home/ubuntu/install_jenkins_plugins.sh
 
 chmod +x /home/ubuntu/build_jenkins_job.sh
 /home/ubuntu/build_jenkins_job.sh
+
+chmod +x /home/ubuntu/attach_elastic_ip.sh
+/home/ubuntu/attach_elastic_ip.sh
+sudo echo "$(date): Executed attach_elastic_ip.sh" >> /home/ubuntu/log.txt
