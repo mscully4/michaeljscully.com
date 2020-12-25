@@ -25,7 +25,7 @@ sleep 30s
 curl -X POST --user "admin:${JENKINS_TOKEN}" 'http://localhost:8080/safeRestart'
 sudo echo "$(date): Restarted Jenkins" >> /home/ubuntu/log.txt
 
-sleep 500s
+sleep 300s
 
 sudo echo "$(date): Slept for a long time" >> /home/ubuntu/log.txt
 #Need to re-authenticate after restart
