@@ -31,4 +31,7 @@ sudo service jenkins start
 sleep 20s
 
 chmod +x /home/ubuntu/install_jenkins_plugins.sh
-/home/ubuntu/install_jenkins_plugins.sh 
+/home/ubuntu/install_jenkins_plugins.sh
+
+chmod +x /home/ubuntu/build_jenkins_job.sh
+/home/ubuntu/build_jenkins_job.sh
