@@ -15,15 +15,9 @@ curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 
 sudo apt -y update
 sudo apt-get -y update
-sudo apt-get -y install nginx
-sudo apt -y install python3-pip
-sudo apt -y install nodejs
-sudo apt -y install openjdk-8-jdk
-sudo apt-get -y install jenkins
-sudo apt -y install gunicorn
-sudo apt -y install awscli
-sudo apt -y install jq
 
+sudo apt-get -y install nginx jenkins
+sudo apt -y install python3-pip nodejs openjdk-8-jdk gunicorn awscli jq
 #Grant Jenkins Sudo Access
 echo "jenkins ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/jenkins
 
