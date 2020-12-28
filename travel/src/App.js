@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import Main from "./components/Main.js"
 import './App.css';
 import {city_colors} from "./utils/Colors.js"
+import { shuffle } from './utils/Formulas'
 
 const S3_ENDPOINT = 'https://mscully-travel-map.s3.us-east-2.amazonaws.com/data.json'
 
@@ -50,7 +51,7 @@ class App extends Component {
 
   compileCities = (destinations) => {
     var place_index = 0
-    return destinations.map((val, i) => {
+    return shuffle(destinations.map((val, i) => {
       var places = val.places.map((el, x) => {
         return {
           ...el,
@@ -64,7 +65,7 @@ class App extends Component {
         color: city_colors[Math.floor(Math.random() * city_colors.length)],
         places: places
       }
-    })
+    }))
   }
 
   compilePlaces = (destinations) => {
