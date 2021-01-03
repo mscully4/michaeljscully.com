@@ -20,7 +20,6 @@
         <p>{{ project.industry }}</p>
         <p>{{ project.role }}</p>
         <p>{{ project.overview }}</p>
-        <p class="removeCommas">{% for skill in project.skills.all %}, {{ skill.skill }}{% endfor %}</p>
       </div>
     </div>
     <div class="project-description">{{ project.long_description | linebreaks}}</div>
