@@ -71,7 +71,8 @@
             {% endfor %}
           </div>
           <div class="resume-project-info">
-            <p class="resume-text-vertical">{{ entry.name }}</p>
+            <p class="resume-text-vertical">{{ entry.industry }}</p>
+            <p class="resume-text-vertical">{{ entry.role }}</p>
             <p class="resume-text-vertical" style="margin:auto">{{ entry.overview }}</p>
             <p class="resume-text-vertical removeCommas">{% for skill in entry.skills.all %}, {{ skill.skill }}{% endfor %}</p>
           </div>

@@ -51,6 +51,7 @@ class Experience(models.Model):
 class Projects(models.Model):
     industry = models.CharField(max_length=140)
     role = models.CharField(max_length=140)
+    overview = models.CharField(max_length=300, default="")
     start_date = models.DateField(verbose_name="Start Date", blank=True, null=True)
     end_date = models.DateField(verbose_name="End Date", blank=True, null=True)
     long_description = models.TextField()

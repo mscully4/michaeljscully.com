@@ -19,7 +19,8 @@
         {% endfor %}
       </div>
       <div class="projects-text">
-        <p>{{ entry.name }}</p>
+        <p>{{ entry.industry }}</p>
+        <p>{{ entry.role }}</p>
         <p>{{ entry.overview }}</p>
         <p class="removeCommas">{% for skill in entry.skills.all %}, {{ skill.skill }}{% endfor %}</p>
       </div>
