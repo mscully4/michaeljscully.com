@@ -140,18 +140,6 @@ def individual_skills(request, pk):
 
     return render(request, template, dic)
 
-# def service(request):
-#     #assert len(Service.objects.all()) > 0
-#     dic = {
-#         #sort experience in descending order based on end_date
-#         "experience": sorted(Experience.objects.all(), key=lambda x: x.end_date or date(2121, 4, 20))[::-1],
-#         "projects": Projects.objects.all().order_by("-pk"),
-#         "service": Service.objects.all()[0] if Service.objects.all() else [],
-#     }
-    
-#     return render(request, 'resume/service.html', dic)
-
-
 # For Testing Purposes
 from django.http import HttpResponse
 
