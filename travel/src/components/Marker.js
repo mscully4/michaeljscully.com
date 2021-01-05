@@ -79,10 +79,9 @@ class Marker extends Component {
   }
 
   render() {
-    console.log(this.props.data, Math.floor(Math.abs(this.props.data.latitude - 90) * 1000))
     const { zoom, data } = this.props
     const scale = ((zoom - 4) / 10);
-    const color = this.props.granularity ? data.color : place_colors[data.main_type];
+    const color = data.color;
     return (
 
       <div
