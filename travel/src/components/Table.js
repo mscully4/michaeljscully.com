@@ -47,11 +47,22 @@ const styles = theme => ({
     gridTemplateColumns: "1fr 1fr 1fr",
     alignItems: 'center'
   },
+  cellPlace: {
+    display: "grid", 
+    gridTemplateRows: '1fr', 
+    gridTemplateColumns: '1fr 2fr',
+    height: '100%',
+    alignItems: 'center' 
+  },
+  cellCity: {
+    display: "grid", 
+    gridTemplateRows: '1fr', 
+    gridTemplateColumns: '1fr 2fr',
+    height: '100%',
+    alignItems: 'center' 
+  },
   cellText: {
     textAlign: 'center',
-    paddingLeft: "30%",
-    paddingRight: '2.5%',
-    margin: 'auto',
     fontWeight: 'bold',
     color: FONT_GREY,
     whiteSpace: 'normal',
@@ -72,18 +83,18 @@ const styles = theme => ({
     right: 25,
 
   },
-  typeSVG: {
-    position: 'absolute',
-    height: '50%',
-    left: 40,
-    top: '25%',
+  coverImage: {
+    maxWidth: '80%',
+    maxHeight:' 80%',
+    margin: 'auto'
   },
   columnHeader: {
     textAlign: "center",
     color: FONT_GREY
   },
   column: {
-    width: '100%'
+    width: '100%',
+    height: '100%'
   }
 })
 
@@ -120,13 +131,14 @@ class VirtualTable extends Component {
 
   cellRendererPlace = (cellData) => {
     const classes = this.props.classes;
+    const src = cellData.cellData.coverPhoto ? cellData.cellData.coverPhoto.src : null
     return (
-      <div>
-
-        <div className={clsx(classes.cellText)}>{cellData.rowData.name.trim()}</div>
-        <div className={clsx(classes.cellText)}>{cellData.rowData.city.trim()}{cellData.rowData.state.trim() ? `, ${cellData.rowData.state.trim()}` : ""}</div>
-        <p style={{position: 'absolute', top: 10, right: 30}}>Photos: {cellData.rowData.images.length}</p>
-        {this.generateSVG(cellData.rowData.main_type)}
+      <div className={(clsx(classes.cellPlace))}>
+        <img className={clsx(classes.coverImage)} src={src} img/>
+        <div>
+          <div className={clsx(classes.cellText)}>{cellData.rowData.name.trim()}</div>
+          <div className={clsx(classes.cellText)}>{cellData.rowData.city.trim()}{cellData.rowData.state.trim() ? `, ${cellData.rowData.state.trim()}` : ""}</div>
+        </div>
 
       </div>
     )
@@ -141,16 +153,14 @@ class VirtualTable extends Component {
     });
 
     return (
-      <div style={{width: '100%'}} className={'boof'}>
+      <div className={clsx(classes.cellCity)}>
         <ReactCountryFlag
           countryCode={cellData.rowData.countryCode}
           svg
           style={{
-            position: "absolute",
             height: '30%',
-            left: '10%',
-            top: '35%',
-            width: 'auto'
+            width: 'auto',
+            margin: 'auto'
           }}
           title={cellData.rowDate}
         />
@@ -242,7 +252,6 @@ class VirtualTable extends Component {
               this.setState({
                 allowMouseOver: false,
               })
-              console.log(obj)
               this.props.changeMapCenter(obj.rowData);
               this.props.tableRowClick(obj, e)
               setTimeout(() => {
