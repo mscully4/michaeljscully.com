@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import Main from "./components/Main.js"
 import './App.css';
-import {city_colors} from "./utils/Colors.js"
+import { city_colors, place_colors } from "./utils/Colors.js"
 import { shuffle } from './utils/Formulas'
 
 const S3_ENDPOINT = 'https://mscully-travel-map.s3.us-east-2.amazonaws.com/data.json'
@@ -50,7 +50,6 @@ class App extends Component {
   }
 
   compileCities = (destinations) => {
-    var place_index = 0
     return shuffle(destinations.map((val, i) => {
       var places = val.places.map((el, x) => {
         return {
@@ -74,9 +73,14 @@ class App extends Component {
       for (var z = 0; z < destinations[i].places.length; ++z) {
         var place = destinations[i].places[z];
         place.images = place.images.map((obj, i) => {
-          return { ...obj, index: i, boof: "dsf" }
+          return {...obj, index: i}
         })
-        places.push({ ...place, index })
+        
+        places.push({
+          ...place, 
+          index, 
+          color: place_colors[Math.floor(Math.random() * place_colors.length)],
+        })
         ++index
       }
     }
