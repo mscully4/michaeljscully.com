@@ -137,7 +137,7 @@ class VirtualTable extends Component {
         <img className={clsx(classes.coverImage)} src={src} img/>
         <div>
           <div className={clsx(classes.cellText)}>{cellData.rowData.name.trim()}</div>
-          <div className={clsx(classes.cellText)}>{cellData.rowData.city.trim()}{cellData.rowData.state.trim() ? `, ${cellData.rowData.state.trim()}` : ""}</div>
+          <div className={clsx(classes.cellText)}>{cellData.rowData.city.trim()}{cellData.rowData.country.trim() ? `, ${cellData.rowData.country.trim()}` : ""}</div>
         </div>
 
       </div>
