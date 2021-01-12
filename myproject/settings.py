@@ -13,7 +13,7 @@ from pathlib import Path
 import os 
 
 import configparser as cp
-config = cp.ConfigParser()
+config = cp.RawConfigParser()
 assert os.path.isfile('./secrets.ini'), "Config file does not exist"
 config.read('./secrets.ini')
 
@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '@ksxq$vk3s%mm+r_agnnx49^khmf4v2&6g=gful_jf$-#zpmvl'
+SECRET_KEY = config['DJANGO']['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
