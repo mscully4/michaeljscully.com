@@ -20,6 +20,14 @@
         <p>{{ project.industry }}</p>
         <p>{{ project.role }}</p>
         <p>{{ project.overview }}</p>
+        <p>
+          {{ project.start_date|date:"F Y" }} - 
+          {% if project.end_date %}
+            {{ project.end_date|date:"F Y" }}
+          {% else %}
+            {{ "Present" }}
+          {% endif %}
+        </p>
       </div>
     </div>
     <div class="project-description">{{ project.long_description | linebreaks}}</div>

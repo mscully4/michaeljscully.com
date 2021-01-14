@@ -22,6 +22,13 @@
         <p>{{ entry.industry }}</p>
         <p>{{ entry.role }}</p>
         <p>{{ entry.overview }}</p>
+        <p>{{ entry.start_date|date:"F Y" }} - 
+          {% if e.end_date %}
+            {{ entry.end_date|date:"F Y" }}
+          {% else %}
+            {{ "Present" }}
+          {% endif %}
+        </p>
       </div>
     </a>
   {% endfor %}

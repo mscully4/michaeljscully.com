@@ -74,6 +74,13 @@
             <p class="resume-text-vertical">{{ entry.industry }}</p>
             <p class="resume-text-vertical">{{ entry.role }}</p>
             <p class="resume-text-vertical" style="margin:auto">{{ entry.overview }}</p>
+            <p class="resume-text-vertical">{{ entry.start_date|date:"F Y" }} - 
+              {% if entry.end_date %}
+                {{ entry.end_date|date:"F Y" }}
+              {% else %}
+                {{ "Present" }}
+              {% endif %}
+            </p>
           </div>
           <div style="height: 100%">
             <p class="resume-description-vertical">{{ entry.short_description }}</p>
