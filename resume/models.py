@@ -65,7 +65,7 @@ class Education(models.Model):
 
     def save(self, *args, **kwargs):
         super(Education, self).save(*args, **kwargs)
-        overwrite_db(settings.DATABASES['default']['NAME'], settings.AWS_STORAGE_BUCKET_NAME)
+        overwrite_db(settings.DATABASES['default']['NAME'], settings.AWS_STORAGE_BUCKET_NAME, 'db.sqlite3')
 
 
 class Experience(models.Model):
@@ -88,7 +88,7 @@ class Experience(models.Model):
                     obj.current = False
                     obj.save(chain=True)
         super(Experience, self).save(*args, **kwargs)
-        overwrite_db(settings.DATABASES['default']['NAME'], settings.AWS_STORAGE_BUCKET_NAME)
+        overwrite_db(settings.DATABASES['default']['NAME'], settings.AWS_STORAGE_BUCKET_NAME, 'db.sqlite3')
 
 
 class Projects(models.Model):
@@ -105,7 +105,7 @@ class Projects(models.Model):
 
     def save(self, *args, **kwargs):
         super(Projects, self).save(*args, **kwargs)
-        overwrite_db(settings.DATABASES['default']['NAME'], settings.AWS_STORAGE_BUCKET_NAME)
+        overwrite_db(settings.DATABASES['default']['NAME'], settings.AWS_STORAGE_BUCKET_NAME, 'db.sqlite3')
 
 
 class Classes(models.Model):
@@ -120,7 +120,7 @@ class Classes(models.Model):
 
     def save(self, *args, **kwargs):
         super(Classes, self).save(*args, **kwargs)
-        overwrite_db(settings.DATABASES['default']['NAME'], settings.AWS_STORAGE_BUCKET_NAME)
+        overwrite_db(settings.DATABASES['default']['NAME'], settings.AWS_STORAGE_BUCKET_NAME, 'db.sqlite3')
 
 
 class Skills(models.Model):
@@ -134,7 +134,7 @@ class Skills(models.Model):
 
     def save(self, *args, **kwargs):
         super(Skills, self).save(*args, **kwargs)
-        overwrite_db(settings.DATABASES['default']['NAME'], settings.AWS_STORAGE_BUCKET_NAME)
+        overwrite_db(settings.DATABASES['default']['NAME'], settings.AWS_STORAGE_BUCKET_NAME, 'db.sqlite3')
 
 
 class Certifications(models.Model):
@@ -150,5 +150,5 @@ class Certifications(models.Model):
 
     def save(self, *args, **kwargs):
         super(Certifications, self).save(*args, **kwargs)
-        overwrite_db(settings.DATABASES['default']['NAME'], settings.AWS_STORAGE_BUCKET_NAME)
+        overwrite_db(settings.DATABASES['default']['NAME'], settings.AWS_STORAGE_BUCKET_NAME, 'db.sqlite3')
 
