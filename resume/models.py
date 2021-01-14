@@ -1,6 +1,7 @@
 from django.db import models
 from multiselectfield import MultiSelectField
 import datetime
+from django.conf import settings
 
 animations = [("back", "Back"), ("forward", "Forward"), ("down", "Down"), ("up", "Down"), ("spin", "Spin"),
     ("drop", "Drop"), ("fade", "Fade"), ("float-away", "Float Away"), ("sink-away", "Sink Away"), ("grow", "Grow"),
@@ -10,6 +11,34 @@ animations = [("back", "Back"), ("forward", "Forward"), ("down", "Down"), ("up",
     ("wobble-vertical", "Wobble Vertical"), ("buzz", "Buzz"), ("buzz-out", "Buzz Out"),
     ]
 
+import json 
+import boto3
+
+print()
+
+def overwrite_db(file_name, bucket, object_name=None):
+    """Upload a file to an S3 bucket
+
+    :param file_name: File to upload
+    :param bucket: Bucket to upload to
+    :param object_name: S3 object name. If not specified then file_name is used
+    :return: True if file was uploaded, else False
+    """
+
+    # If S3 object_name was not specified, use file_name
+    if object_name is None:
+        object_name = file_name
+
+    # Upload the file
+    s3_client = boto3.client('s3')
+    try:
+        response = s3_client.upload_file(file_name, bucket, object_name)
+    except Exception as e:
+        print(e)
+        return False
+    return True
+
+
 # Create your models here.
 class Education(models.Model):
     university = models.CharField(max_length=140, verbose_name="Name of University")
@@ -18,13 +47,16 @@ class Education(models.Model):
     major = models.CharField(max_length=140, verbose_name="Major")
     year = models.CharField(max_length=4, verbose_name="Year")
     gpa = models.DecimalField(decimal_places=2, max_digits=4, default=4.00, verbose_name="GPA")
-    # classes = models.ForeignKey('Classes', on_delete=models.CASCADE)
     banner = models.FileField(default="IMAGE URL", verbose_name="Banner Image")
     logo = models.FileField(default="IMAGE URL", verbose_name="Logo")
     mascot = models.FileField(default="IMAGE URL", verbose_name="Mascot Image")
 
     def __str__(self):
         return self.university
+
+    def save(self, *args, **kwargs):
+        super(Education, self).save(*args, **kwargs)
+        overwrite_db(settings.DATABASES['default']['NAME'], settings.AWS_STORAGE_BUCKET_NAME)
 
 
 class Experience(models.Model):
@@ -47,6 +79,8 @@ class Experience(models.Model):
                     obj.current = False
                     obj.save(chain=True)
         super(Experience, self).save(*args, **kwargs)
+        overwrite_db(settings.DATABASES['default']['NAME'], settings.AWS_STORAGE_BUCKET_NAME)
+
 
 class Projects(models.Model):
     industry = models.CharField(max_length=140)
@@ -62,6 +96,7 @@ class Projects(models.Model):
 
     def save(self, *args, **kwargs):
         super(Projects, self).save(*args, **kwargs)
+        overwrite_db(settings.DATABASES['default']['NAME'], settings.AWS_STORAGE_BUCKET_NAME)
 
 
 class Classes(models.Model):
@@ -74,16 +109,23 @@ class Classes(models.Model):
     def __str__(self):
         return self.course_name
 
+    def save(self, *args, **kwargs):
+        super(Classes, self).save(*args, **kwargs)
+        overwrite_db(settings.DATABASES['default']['NAME'], settings.AWS_STORAGE_BUCKET_NAME)
+
+
 class Skills(models.Model):
     skill = models.CharField(max_length=40)
     frameworks = models.TextField()
     logo = models.FileField(verbose_name="Language Logo")
     hover_animation = models.CharField(max_length=40, blank=True, null=True, choices=animations)
     
-
     def __str__(self):
         return self.skill
 
+    def save(self, *args, **kwargs):
+        super(Skills, self).save(*args, **kwargs)
+        overwrite_db(settings.DATABASES['default']['NAME'], settings.AWS_STORAGE_BUCKET_NAME)
 
 from datetime import date
 from django.core.exceptions import ValidationError
@@ -106,4 +148,8 @@ class Certifications(models.Model):
 
     def __str__(self):
         return "{} {}".format(self.vendor, self.name)
+
+    def save(self, *args, **kwargs):
+        super(Certifications, self).save(*args, **kwargs)
+        overwrite_db(settings.DATABASES['default']['NAME'], settings.AWS_STORAGE_BUCKET_NAME)
 
