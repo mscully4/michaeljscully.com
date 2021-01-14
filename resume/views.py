@@ -11,8 +11,8 @@ logger = logging.getLogger('django')
 # Create your views here.
 def index(request):
     #sorting the experiences so the most recent will be first, if there is no end date then create a future date and use that
-    experiences = sorted(Experience.objects.all(), key=lambda x: x.end_date or date(2121, 4, 20))[::-1]
-    projects = Projects.objects.all()
+    experiences = sorted(Experience.objects.all(), reverse=True, key=lambda x: x.end_date or date(2121, 4, 20))
+    projects = sorted(Projects.objects.all(), reverse=True, key=lambda x: x.end_date or date(2121, 4, 20))
     education = Education.objects.all()
     skills = Skills.objects.all()
     certifications = Certifications.objects.all()
@@ -58,7 +58,7 @@ def individual_education(request, pk):
 
 def experience(request):
     dic = {
-        "experiences": sorted(Experience.objects.all(), key=lambda x: x.end_date or date(2121, 4, 20))[::-1],
+        "experiences": sorted(Experience.objects.all(), reverse=True, key=lambda x: x.end_date or date(2121, 4, 20)),
         "projects": Projects.objects.all().order_by("-pk"),
     }
 
@@ -72,9 +72,7 @@ def experience(request):
 def individual_experience(request, pk):
     experience = Experience.objects.filter(pk=pk)[0]
     dic = {
-        "experiences": sorted(Experience.objects.all(), key=lambda x: x.end_date or date(2121, 4, 20))[::-1],
-        "projects": Projects.objects.all().order_by("-pk"),
-        "position": experience,
+        "position": experience
     }
 
     # if request.user_agent.is_mobile:
@@ -86,9 +84,7 @@ def individual_experience(request, pk):
 
 def projects(request):
     dic = {
-        "experiences": sorted(Experience.objects.all(), key=lambda x: x.end_date or date(2121, 4, 20))[::-1],
-        "projects": Projects.objects.all().order_by("-pk"),
-        "skills": Skills.objects.all()
+        "projects": sorted(Projects.objects.all(), reverse=True, key=lambda x: x.end_date or date(2121, 4, 20))
     }
     
     # if request.user_agent.is_mobile:
@@ -100,9 +96,7 @@ def projects(request):
 
 def individual_projects(request, pk):
     dic = {
-        "experiences": sorted(Experience.objects.all(), key=lambda x: x.end_date or date(2121, 4, 20))[::-1],
-        "projects": Projects.objects.all().order_by("-pk"),
-        "project": Projects.objects.filter(pk=pk)[0],
+        "project": Projects.objects.filter(pk=pk)[0]
     }
    
     # if request.user_agent.is_mobile:
@@ -114,8 +108,6 @@ def individual_projects(request, pk):
 
 def skills(request):
     dic = {
-        "experiences": sorted(Experience.objects.all(), key=lambda x: x.end_date or date(2121, 4, 20))[::-1],
-        "projects": Projects.objects.all().order_by("-pk"),
         "skills": Skills.objects.all()
     }
 
@@ -128,9 +120,7 @@ def skills(request):
 
 def individual_skills(request, pk):
     dic = {
-        "experiences": sorted(Experience.objects.all(), key=lambda x: x.end_date or date(2121, 4, 20))[::-1],
-        "projects": Projects.objects.all().order_by("-pk"),
-        "skill": Skills.objects.filter(pk=pk)[0],
+        "skill": Skills.objects.filter(pk=pk)[0]
     }
     
     # if request.user_agent.is_mobile:
