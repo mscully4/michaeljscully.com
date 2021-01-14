@@ -46,6 +46,7 @@ def overwrite_db(file_name, bucket, object_name=None):
         return False
     return True
 
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
 class Education(models.Model):
@@ -53,7 +54,8 @@ class Education(models.Model):
     college = models.CharField(max_length=140, verbose_name="College")
     degree = models.CharField(max_length=140, verbose_name="Type of Degree")
     major = models.CharField(max_length=140, verbose_name="Major", null=True, blank=True)
-    year = models.CharField(max_length=4, verbose_name="Year")
+    start_year = models.IntegerField(verbose_name="Start Year", validators=[MinValueValidator(2000), MaxValueValidator(2100)])
+    end_year = models.IntegerField(verbose_name="End Year", null=True, blank=True, validators=[MinValueValidator(2000), MaxValueValidator(2100)])
     gpa = models.DecimalField(decimal_places=2, max_digits=4, default=4.00, verbose_name="GPA")
     banner = models.FileField(default="IMAGE URL", verbose_name="Banner Image")
     logo = models.FileField(default="IMAGE URL", verbose_name="Logo")
