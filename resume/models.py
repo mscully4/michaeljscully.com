@@ -1,7 +1,10 @@
 from django.db import models
 from multiselectfield import MultiSelectField
-import datetime
 from django.conf import settings
+import json 
+import boto3
+from datetime import date
+from django.core.exceptions import ValidationError
 
 animations = [("back", "Back"), ("forward", "Forward"), ("down", "Down"), ("up", "Down"), ("spin", "Spin"),
     ("drop", "Drop"), ("fade", "Fade"), ("float-away", "Float Away"), ("sink-away", "Sink Away"), ("grow", "Grow"),
@@ -11,9 +14,16 @@ animations = [("back", "Back"), ("forward", "Forward"), ("down", "Down"), ("up",
     ("wobble-vertical", "Wobble Vertical"), ("buzz", "Buzz"), ("buzz-out", "Buzz Out"),
     ]
 
-import json 
-import boto3
+#Validators
+def date_validator_past_only(value):
+    if value > date.today():
+        raise ValidationError("Only Dates in the Past Are Allowed")
 
+def date_validator_future_only(value):
+    if value < date.today():
+        raise ValidationError("Only Dates in the Future Are Allowed")
+
+#Utilities
 def overwrite_db(file_name, bucket, object_name=None):
     """Upload a file to an S3 bucket
 
@@ -125,16 +135,6 @@ class Skills(models.Model):
         super(Skills, self).save(*args, **kwargs)
         overwrite_db(settings.DATABASES['default']['NAME'], settings.AWS_STORAGE_BUCKET_NAME)
 
-from datetime import date
-from django.core.exceptions import ValidationError
-
-def date_validator_past_only(value):
-    if value > date.today():
-        raise ValidationError("Only Dates in the Past Are Allowed")
-
-def date_validator_future_only(value):
-    if value < date.today():
-        raise ValidationError("Only Dates in the Future Are Allowed")
 
 class Certifications(models.Model):
     name = models.CharField(max_length=140)
