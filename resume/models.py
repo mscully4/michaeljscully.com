@@ -14,8 +14,6 @@ animations = [("back", "Back"), ("forward", "Forward"), ("down", "Down"), ("up",
 import json 
 import boto3
 
-print()
-
 def overwrite_db(file_name, bucket, object_name=None):
     """Upload a file to an S3 bucket
 
