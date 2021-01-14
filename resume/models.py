@@ -52,12 +52,11 @@ class Education(models.Model):
     university = models.CharField(max_length=140, verbose_name="Name of University")
     college = models.CharField(max_length=140, verbose_name="College")
     degree = models.CharField(max_length=140, verbose_name="Type of Degree")
-    major = models.CharField(max_length=140, verbose_name="Major")
+    major = models.CharField(max_length=140, verbose_name="Major", null=True, blank=True)
     year = models.CharField(max_length=4, verbose_name="Year")
     gpa = models.DecimalField(decimal_places=2, max_digits=4, default=4.00, verbose_name="GPA")
     banner = models.FileField(default="IMAGE URL", verbose_name="Banner Image")
     logo = models.FileField(default="IMAGE URL", verbose_name="Logo")
-    mascot = models.FileField(default="IMAGE URL", verbose_name="Mascot Image")
 
     def __str__(self):
         return self.university
