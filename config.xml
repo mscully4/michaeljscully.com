@@ -26,7 +26,7 @@
                 sh &apos;aws s3 cp s3://michaeljscullydotcom/secrets.ini secrets.ini&apos;
                 sh &apos;aws s3 cp s3://michaeljscullydotcom/db.sqlite3 db.sqlite3&apos;
                 sh &apos;sudo pip3 install --target=/usr/lib/python3/dist-packages -r requirements.txt&apos;
-                
+                sh &apos;./manage.py migrate&apos;
                 
                 //Travel
                 dir(&apos;travel&apos;) {
