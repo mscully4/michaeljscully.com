@@ -141,7 +141,6 @@ class Certifications(models.Model):
     vendor = models.CharField(max_length=60)
     acquired = models.DateField(verbose_name="Acquisiton Date of the Certificate", validators=[date_validator_past_only])
     expire = models.DateField(verbose_name="Expiration Date of the Certificate", validators=[date_validator_future_only])
-    certificate = models.ImageField()
     icon = models.ImageField(blank=True, null=True)
 
     def __str__(self):
