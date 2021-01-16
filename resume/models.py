@@ -93,15 +93,14 @@ class Experience(models.Model):
 
 class Projects(models.Model):
     industry = models.CharField(max_length=140)
-    role = models.CharField(max_length=140)
-    overview = models.CharField(max_length=300, default="")
+    overview = models.CharField(max_length=300)
     start_date = models.DateField(verbose_name="Start Date", blank=True, null=True)
     end_date = models.DateField(verbose_name="End Date", blank=True, null=True)
     long_description = models.TextField()
     skills = models.ManyToManyField('Skills')
  
     def __str__(self):
-        return self.role
+        return f"{self.industry}: {self.overview}"
 
     def save(self, *args, **kwargs):
         super(Projects, self).save(*args, **kwargs)
