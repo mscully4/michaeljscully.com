@@ -64,7 +64,7 @@ class Map extends Component {
       .filter(el => this.withinBounds(el))
       .map(data =>
         <Marker
-          key={data.pk}
+          key={data.city + data.index}
           lat={data.latitude}
           lng={data.longitude}
           data={data}
@@ -80,7 +80,7 @@ class Map extends Component {
       .filter(el => this.withinBounds(el))
       .map(data =>
         <Marker
-          key={data.pk}
+          key={data.name + data.index}
           lat={data.latitude}
           lng={data.longitude}
           data={data}
