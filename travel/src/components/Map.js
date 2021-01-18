@@ -61,7 +61,7 @@ class Map extends Component {
   createMarkers = (granularity) => {
     if (granularity && this.props.cities) {
       return this.props.cities
-      .filter(el => this.withinBounds(el))
+      // .filter(el => this.withinBounds(el))
       .map(data =>
         <Marker
           key={data.city + data.index}
@@ -77,7 +77,7 @@ class Map extends Component {
       )
     } else if (!granularity && this.props.places) {
       return this.props.places
-      .filter(el => this.withinBounds(el))
+      // .filter(el => this.withinBounds(el))
       .map(data =>
         <Marker
           key={data.name + data.index}
