@@ -374,13 +374,6 @@ class Main extends React.Component {
                 views={this.state.preparedImages}
                 currentIndex={this.state.currImg}
               /> : null}
-
-            {/* {this.props.error.show ?
-              <Error
-                isOpen={true}
-                error={this.props.error}
-            /> : null} */}
-
           </div>
         </div>
       )
