@@ -95,14 +95,13 @@ a {
 
 .resume-project-banner {
     width: 96%;
-    text-align: center;
     margin: 2.5% auto;
+    display: grid;
 }
 
 .resume-project-logos {
-    width: 25%;
-    /* margin: auto;
-    margin-top: 1em; */
+    max-width: 90%;
+    max-height: 90%;
 }
 
 .resume-skills, .resume-certifications {
