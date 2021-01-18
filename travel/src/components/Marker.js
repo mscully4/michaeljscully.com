@@ -12,8 +12,6 @@ const HEIGHT = 20;
 
 const styles = theme => ({
   MarkerContainer: {
-    width: WIDTH,
-    height: HEIGHT,
     position: 'absolute',
   },
   MarkerStyle: {
