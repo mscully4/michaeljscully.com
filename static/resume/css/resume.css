@@ -128,7 +128,7 @@ a {
 
 .resume-skill-logo, .resume-certification-logo {
     margin: auto;
-    /* width: 50%; */
+    max-width: 90%;
     max-height: 90%;
 }
 
