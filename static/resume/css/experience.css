@@ -9,9 +9,9 @@
     display: grid;
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr;
-    width: 95%;
+    width: 90%;
     min-height: 15vw;
-    margin: 2.5% 2.5%;
+    margin: 5% 5%;
     align-items: center;
     text-decoration: none;
     color: #000;
