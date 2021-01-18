@@ -17,14 +17,17 @@ class Map extends Component {
     super(props);
 
     this.state = {
-
+      bounds: {}
     }
   }
 
-  onChange = ({ center, zoom }) => {
+  onChange = ({ center, zoom, bounds }) => {
     this.props.changeGranularity(zoom)
     this.props.changeMapCenter({ latitude: center.lat, longitude: center.lng })
     this.props.setClosestCity(this.props.cities, center.lat, center.lng)
+    this.setState({
+      bounds: bounds
+    })
   }
 
   createMapOptions = (maps) => {
@@ -45,9 +48,21 @@ class Map extends Component {
     };
   }
 
+  withinBounds = (obj) => {
+    // var latitude = this.props.granularity ? obj.latitude : obj.latitude, longitude = this.props.granularity ? obj.longitude : obj.longitude
+    if (this.state.bounds.nw) {
+      return obj.latitude <= this.state.bounds.nw.lat
+        && obj.latitude >= this.state.bounds.sw.lat 
+        && obj.longitude >= this.state.bounds.nw.lng
+        && obj.longitude <= this.state.bounds.ne.lng
+    }
+  }
+
   createMarkers = (granularity) => {
     if (granularity && this.props.cities) {
-      return this.props.cities.map(data =>
+      return this.props.cities
+      .filter(el => this.withinBounds(el))
+      .map(data =>
         <Marker
           key={data.pk}
           lat={data.latitude}
@@ -61,7 +76,9 @@ class Map extends Component {
         />
       )
     } else if (!granularity && this.props.places) {
-      return this.props.places.map(data =>
+      return this.props.places
+      .filter(el => this.withinBounds(el))
+      .map(data =>
         <Marker
           key={data.pk}
           lat={data.latitude}
