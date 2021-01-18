@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Modal, ModalBody } from 'reactstrap';
-import { withStyles } from '@material-ui/styles';
 
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from 'react-responsive-carousel';
-
-// import { ImgEditor} from '../components/ImageEditor';
-import { close, editorPath, trash, Svg } from '../utils/SVGs'
-import { ICE_BLUE, FONT_GREY } from '../utils/Colors'
+import Viewer from 'react-viewer';
 
 class ImageViewer extends Component {
   constructor(props) {
@@ -21,30 +14,16 @@ class ImageViewer extends Component {
   render() {
     var currentIndex = this.props.currentIndex >= this.props.views.length ? 0 : this.props.currentIndex
     return (
-
-      <Modal
-        isOpen={true}
-        toggle={this.props.toggleViewer}
-        size={"xl"}
-        style={{ backgroundColor: "transparent" }}
-      >
-        <Carousel 
-        showArrows={true} 
-        showThumbs={false} 
-        selectedItem={currentIndex} 
-        dynamicHeight={true}
-        renderItem={(item, options) => item}
-        >
-          {this.props.views.map((photo, index) => {
-            return (
-              <div>
-                <img key={index} src={photo.src} />
-              </div>
-            )
-          })}
-        </Carousel>
-      </Modal>
-
+      <Viewer
+      visible={true}
+      activeIndex={currentIndex}
+      onClose={() => { this.props.toggleViewer(false); } }
+      images={this.props.views}
+      downloadable={true}
+      rotatable={false}
+      drag={false}
+      scalable={false}
+      />
     )
   }
 }
