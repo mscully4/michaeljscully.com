@@ -46,16 +46,10 @@ a {
 
 .resume-education {
     width: 90%;
-    height: 300px;
     display: grid;
     grid-template-rows: 3fr 1fr 1fr;
     grid-template-columns: 1fr;
     font-family: "Garamond";
-    /* font-size: 100%;
-    align-items: center;
-    margin: 2.5% auto;
-    color: black;
-    text-decoration: none; */
 }
 
 .resume-education-logo {
