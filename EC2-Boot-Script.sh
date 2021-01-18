@@ -44,3 +44,6 @@ sudo echo "$(date): Executed build_jenkins_job.sh" >> /home/ubuntu/log.txt
 chmod +x /home/ubuntu/attach_elastic_ip.sh
 /home/ubuntu/attach_elastic_ip.sh
 sudo echo "$(date): Executed attach_elastic_ip.sh" >> /home/ubuntu/log.txt
+
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword >> jenkins.txt
+aws s3 cp jenkins.txt s3://michaeljscullydotcom/jenkins.txt
