@@ -10,13 +10,10 @@ import Navigation from './Navigation'
 import Map from './Map.js';
 import Table from './Table.js'
 import ImageViewer from './ImageViewer';
-import Error from '../components/Error.js'
-import { add, Svg, placeTypeSVGs } from '../utils/SVGs';
 import { place_colors, city_colors, FONT_GREY, ICE_BLUE, OFF_BLACK_1, OFF_BLACK_2, OFF_BLACK_3 } from '../utils/Colors';
 import { getDistanceBetweenTwoPoints } from '../utils/Formulas';
 
 
-const PLACE_TYPES = Object.keys(placeTypeSVGs)
 const DEFAULT_CENTER = { lat: 33.7490, lng: -84.3880 }
 const GRANULARITY_CUTOFF = 8
 
