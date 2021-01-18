@@ -54,7 +54,8 @@ a {
 
 .resume-education-logo {
     margin: auto;
-    height: 90%
+    max-height: 90%;
+    max-width: 90%;
 }
 
 .resume-education-info {
