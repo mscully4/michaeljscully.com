@@ -8,9 +8,9 @@
     display: grid;
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr;
-    width: 95%;
-    min-height: 12em;
-    margin: 2.5% 2.5%;
+    width: 90%;
+    min-height: 15em;
+    margin: 5% 5%;
     align-items: center;
     text-decoration: none;
     color: #000;
