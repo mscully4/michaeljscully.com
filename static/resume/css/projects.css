@@ -18,12 +18,15 @@
 
 .projects-banner {
     width: 96%;
-    margin: auto;
+    margin: 2.5% auto;
     text-align: center;
+    display: grid;
+    height: 95%;
 }
 
 .projects-languages-logo {
-    width: 23%;
+    max-width: 90%;
+    max-height: 90%;
 }
 
 .projects-text {
