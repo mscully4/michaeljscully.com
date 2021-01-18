@@ -35,7 +35,6 @@ class App extends Component {
     }).then((json) => {
       this.setState({
         cities: this.compileCities(json.destinations),
-        places: this.compilePlaces(json.destinations),
         ready: true
       })
     })
@@ -50,11 +49,14 @@ class App extends Component {
   }
 
   compileCities = (destinations) => {
+    let placeIndex = 0;
     return shuffle(destinations.map((val, i) => {
       var places = val.places.map((el, x) => {
         return {
           ...el,
-          index: x
+          images: el.images.map((obj, i) => { return {...obj, index: i}}),
+          color: place_colors[Math.floor(Math.random() * place_colors.length)],
+          index: placeIndex++
         }
       })
 
@@ -67,34 +69,21 @@ class App extends Component {
     }))
   }
 
-  compilePlaces = (destinations) => {
-    let places = [], index = 0
-    for (var i = 0; i < destinations.length; ++i) {
-      for (var z = 0; z < destinations[i].places.length; ++z) {
-        var place = destinations[i].places[z];
-        place.images = place.images.map((obj, i) => {
-          return {...obj, index: i}
-        })
-        
-        places.push({
-          ...place, 
-          index, 
-          color: place_colors[Math.floor(Math.random() * place_colors.length)],
-        })
-        ++index
-      }
-    }
-    return places
-  }
-
   render() {
     if (this.state.ready) {
+      let places = []
+      this.state.cities.forEach(el => {
+        el.places.forEach(place => {
+          places.push(place)
+        })
+      })
+      
       return (
         <div className="App">
           <Main 
           ready={this.state.ready}
           cities={this.state.cities}
-          places={this.state.places}
+          places={places}
           user={"michael"}
           />
         </div>
