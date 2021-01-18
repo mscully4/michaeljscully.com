@@ -44,12 +44,6 @@ a {
     margin: 0 auto;
 }
 
-.resume-educations {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto;
-}
-
 .resume-education {
     width: 90%;
     height: 300px;
@@ -76,7 +70,7 @@ a {
     text-align: center;
 }
 
-.resume-experiences, .resume-projects {
+.resume-experiences, .resume-projects, .resume-educations {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: auto;
