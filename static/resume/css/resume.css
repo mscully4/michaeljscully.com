@@ -73,9 +73,10 @@ a {
 
 .resume-experience {
     display: grid;
-    grid-template-rows: 6em 6em auto;
-    height: 100%;
-    width: 95%;
+    grid-template-rows: 1fr 1fr;
+    width: 90%;
+    margin: 5% 5%;
+    min-height: 15vw;
 }
 
 .resume-experience-info, .resume-project-info {
