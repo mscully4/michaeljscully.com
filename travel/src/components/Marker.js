@@ -58,8 +58,6 @@ class Marker extends Component {
       //the data for the destination
       ...this.props.data,
 
-      // editorIsOpen: false,
-
       //These will change as the map zoom is changed
       tooltipWidth: null,
       tooltipHeight: null,
