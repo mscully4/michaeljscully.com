@@ -313,10 +313,11 @@ class Main extends React.Component {
             <div className={clsx(classes.infoDiv)}>
               <p className={clsx(classes.title)}>My Travel Map</p>
               <div className={clsx(classes.factDiv)}>
-                <p className={clsx(classes.factLine)} style={{textIndent: 0}}>{`${this.props.owner ? "You've" : this.props.user[0].toUpperCase() + this.props.user.substring(1) + " Has "} Visited: `}</p>
+                <p className={clsx(classes.factLine)} style={{ textIndent: 0 }}>{"I've Visited: "}</p>
                 <p className={clsx(classes.factLine)}>{`${this.calculateFacts('countries')} Countries`}</p>
                 <p className={clsx(classes.factLine)}>{`${this.calculateFacts("cities")} Cities`}</p>
-                <p className={clsx(classes.factLine)}>{`${this.calculateFacts("places")} Places of Interest`}</p>
+                <p className={clsx(classes.factLine)}>{`${this.calculateFacts("national_parks")} National Parks`}</p>
+                <p className={clsx(classes.factLine)}>{`${this.calculateFacts("national_monuments")} National Monuments`}</p>
               </div>
             </div>
 
