@@ -39,7 +39,8 @@
     left: 0; 
     height: 80vh; 
     width: 5vw; 
-    /* background-color: aliceblue;  */
+    box-shadow: 0 0 4px #000 !important;
+    border-radius: 6px;
 }
 
 .card {
