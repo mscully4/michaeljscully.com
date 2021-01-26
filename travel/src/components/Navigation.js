@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'reactstrap';
 import { withStyles } from '@material-ui/styles';
 import clsx from 'clsx'
 
@@ -101,21 +100,12 @@ class Navigation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showLoginModal: false,
-      showSignUpModal: false,
 
-      searchValue: "",
-      searchSuggestionsOpen: false,
-      suggestions: []
     }
   }
 
   render() {
     const classes = this.props.classes
-
-    const signUpButton = this.props.context === "Main" ?
-      <Button className={clsx(classes.button)} style={{ marginRight: 15 }} onClick={this.toggleSignUp}>Sign Up</Button>
-      : <div></div>;
 
     return (
       <div className={clsx(classes.navigationBar)} >
