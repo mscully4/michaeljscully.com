@@ -68,6 +68,16 @@ const styles = theme => ({
   },
   modalBody: {
     backgroundColor: OFF_BLACK_2
+  },
+  NoImages: {
+    color: FONT_GREY,
+    fontSize: "80px",
+    paddingTop: "20%",
+    paddingBottom: "25%",
+    textAlign: "center",
+    backgroundColor: "rgba(40, 40, 40, .6)",
+    marginTop: "5%",
+    visibility: 'visible'
   }
 })
 
@@ -345,17 +355,7 @@ class Main extends React.Component {
 
               {this.state.preparedImages.length > 0 ?
                 <Gallery photos={this.state.preparedImages} onClick={this.galleryOnClick} /> :
-                <div style={{
-                  color: FONT_GREY,
-                  fontSize: "80px",
-                  paddingTop: "20%",
-                  paddingBottom: "25%",
-                  textAlign: "center",
-                  backgroundColor: "rgba(40, 40, 40, .6)",
-                  marginTop: "5%",
-                  visibility: this.props.showError ? 'hidden' : 'visible'
-                }}>No Images...</div>}
-
+                <div className={clsx(classes.noImages)}>No Images...</div>}
             </Modal>
 
             {this.state.imageViewerOpen ?
