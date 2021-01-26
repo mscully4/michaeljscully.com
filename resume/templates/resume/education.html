@@ -10,7 +10,7 @@
 <section class="body">
   <h1 class="body-title-text">Education</h1>
   <div class="education-container">
-  {% for entry in education %}
+    {% for entry in education %}
     <div class="education-school">
       <img class="education-banner" src="{{ entry.banner.url }}">
       <img class="education-logo" src="{{ entry.logo.url }}">
@@ -25,14 +25,13 @@
     <p class="education-coursework-title">Coursework</p>
     <ul class="education-coursework-container">
       {% for class in entry.classes_set.all %}
-        {% if class.school_id == entry.id %}
-          <li>{{class.course_number}} {{class.subject}} {{class.course_name}}</li>
-        {% endif %}
+      {% if class.school_id == entry.id %}
+      <li>{{class.course_number}} {{class.subject}} {{class.course_name}}</li>
+      {% endif %}
       {% endfor %}
     </ul>
-  {% endfor %}
-
+    {% endfor %}
   </div>
-<div class="space"></div>
+  <div class="space"></div>
 </section>
 {% endblock %}
