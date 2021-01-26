@@ -15,10 +15,10 @@ const styles = theme => ({
     alignItems: 'center'
   },
   logo: {
-    fontFamily: "Kaushan Script",
-    fontSize: 36,
+    fontFamily: "Allura",
+    fontSize: '3vw',
     color: ICE_BLUE,
-    marginLeft: '2%',
+    paddingLeft: '2vw ',
     textAlign: 'left',
     marginBottom: 0
   },
