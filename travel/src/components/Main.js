@@ -51,9 +51,6 @@ const styles = theme => ({
   factDiv: {
     fontSize: '1.5vw',
     color: ICE_BLUE,
-    paddingTop: 50,
-    paddingBottom: 50,
-    paddingLeft: '10%'
   },
   factLine: {
     textIndent: 20,
