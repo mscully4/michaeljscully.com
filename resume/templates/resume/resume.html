@@ -1,116 +1,110 @@
 {% extends "resume/header.html" %}
 {% load static %}
 
-{% block extrahead %}
+{% block contentlinks %}
 <link rel="stylesheet" type="text/css" href="{% static 'resume/css/resume.css' %}">
 {% endblock %}
 
 {% block content %}
-  <section class="body">
-    <h1 class="body-title-text">Resume</h1>
-    <div class="resume-opening">
-      <img id="resume-headshot" src="{% static 'resume/images/Headshot.jpg' %}">
-      <a href="experience/{{ current.pk }}" class="body-card resume-current">
-        <img class="resume-current-banner" src="{{ current.banner.url }}">
-        <div class="resume-current-text">
-          <p class="resume-current-indented">{{ current.name }}</p>
-          <p class="resume-current-indented">{{ current.role }}</p>
-        </div>
-      </a>
-    </div>
-    <div class="blank">Education</div>
-    
-    <div class='resume-educations'>
-      {% for entry in education %}
-        <a href="education" class="body-card resume-education">
-          <img class="resume-education-logo" src="{{ entry.logo.url }}">
-          <div class="resume-education-info">
-            <p>{{ entry.university }}</p>
-            <p>{{ entry.degree }} in {{ entry.major }}</p>
-            {% if entry.minor %}
-              <p>Minor in {{ entry.minor }}</p>
-            {% endif %}
-          </div>
-          <div class="resume-education-info">
-            <p>Class of {{ entry.year }} <br> GPA: {{ entry.gpa }}</p>
-          </div>
-        </a>
-      {% endfor %}
-    </div>  
-    
+<section class="body">
+  <h1 class="body-title-text">Resume</h1>
+  <div class="resume-opening">
+    <img id="resume-headshot" src="{% static 'resume/images/Headshot.jpg' %}">
+    <a href="experience/{{ current.pk }}" class="body-card resume-current">
+      <img class="resume-current-banner" src="{{ current.banner.url }}">
+      <div class="resume-current-text">
+        <p class="resume-current-indented">{{ current.name }}</p>
+        <p class="resume-current-indented">{{ current.role }}</p>
+      </div>
+    </a>
+  </div>
+  <div class="blank">Education</div>
 
-    <div class="blank">Business Experience</div>
+  <div class='resume-educations'>
+    {% for entry in education %}
+    <a href="education" class="body-card resume-education">
+      <img class="resume-education-logo" src="{{ entry.logo.url }}">
+      <div class="resume-education-info">
+        <p>{{ entry.university }}</p>
+        <p>{{ entry.degree }} in {{ entry.major }}</p>
+        {% if entry.minor %}
+        <p>Minor in {{ entry.minor }}</p>
+        {% endif %}
+      </div>
+      <div class="resume-education-info">
+        <p>Class of {{ entry.year }} <br> GPA: {{ entry.gpa }}</p>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
 
-    <div class="resume-experiences">
-      {% for entry in experiences %}
-        <a href="experience/{{ entry.pk }}" class="body-card resume-experience">
-          <img class="resume-image-vertical" src="{{ entry.banner.url }}">
-          <div class="resume-experience-info">
-            <p class="resume-text-vertical">{{ entry.name }}</p>
-            <p class="resume-text-vertical">{{ entry.role }}</p>
-            <p class="resume-text-vertical">{{ entry.start_date|date:"F Y" }} - 
-	    {% if entry.end_date %}
-              {{ entry.end_date|date:"F Y" }}
-            {% else %}
-              {{ "Present" }}
-            {% endif %}
-            </p>
-          </div>
-        </a>
-      {% endfor %}
-    </div>
 
-    <div class="blank">Projects</div>
-    
-    <div class="resume-projects">
-      {% for entry in projects %}
-        <a href="projects/{{ entry.pk }}" class="resume-project body-card">
-          <div class="resume-project-banner" style="grid-template-columns: repeat({{entry.skills.all|length}}, 1fr);">
-            {% for skill in entry.skills.all %}
-                <img class="resume-project-logos" src="{{ skill.logo.url }}">  
-            {% endfor %}
-          </div>
-          <div class="resume-project-info">
-            <p class="resume-text-vertical">{{ entry.industry }}</p>
-            <p class="resume-text-vertical" style="margin:auto">{{ entry.overview }}</p>
-            <p class="resume-text-vertical">{{ entry.start_date|date:"F Y" }} - 
-              {% if entry.end_date %}
-                {{ entry.end_date|date:"F Y" }}
-              {% else %}
-                {{ "Present" }}
-              {% endif %}
-            </p>
-          </div>
-        </a>
-      {% endfor %}
-    </div>
-       
-    <div class="blank">Skills</div>
-    <div class="resume-skills">
-      {% for skill in skills %}
-        <a href="skills/{{ skill.pk }}" class="resume-skill body-card hvr-icon-{{ skill.hover_animation }}">
-          <img class="resume-skill-logo hvr-icon" src="{{ skill.logo.url }}">
-          <p class="resume-skill-text">{{ skill.skill }}</p>
-        </a>
-      {% endfor %}
-      <div class="space"></div>
-    </div>
+  <div class="blank">Business Experience</div>
 
-      <div class="blank">Certifications</div>
-      <div class="resume-certifications">
-        {% for cert in certifications %}
-          <a class="resume-certification body-card">
-            <img class="resume-certification-logo" src="{{ cert.icon.url }}">
-            <p class="resume-certification-text">{{ cert.vendor }} {{cert.name}}</p>
-          </a>
+  <div class="resume-experiences">
+    {% for entry in experiences %}
+    <a href="experience/{{ entry.pk }}" class="body-card resume-experience">
+      <img class="resume-image-vertical" src="{{ entry.banner.url }}">
+      <div class="resume-experience-info">
+        <p class="resume-text-vertical">{{ entry.name }}</p>
+        <p class="resume-text-vertical">{{ entry.role }}</p>
+        <p class="resume-text-vertical">{{ entry.start_date|date:"F Y" }} -
+          {% if entry.end_date %}
+          {{ entry.end_date|date:"F Y" }}
+          {% else %}
+          {{ "Present" }}
+          {% endif %}
+        </p>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+
+  <div class="blank">Projects</div>
+
+  <div class="resume-projects">
+    {% for entry in projects %}
+    <a href="projects/{{ entry.pk }}" class="resume-project body-card">
+      <div class="resume-project-banner" style="grid-template-columns: repeat({{entry.skills.all|length}}, 1fr);">
+        {% for skill in entry.skills.all %}
+        <img class="resume-project-logos" src="{{ skill.logo.url }}">
         {% endfor %}
       </div>
-      <div class="space"></div>
-    </section>
-{% endblock %}
+      <div class="resume-project-info">
+        <p class="resume-text-vertical">{{ entry.industry }}</p>
+        <p class="resume-text-vertical" style="margin:auto">{{ entry.overview }}</p>
+        <p class="resume-text-vertical">{{ entry.start_date|date:"F Y" }} -
+          {% if entry.end_date %}
+          {{ entry.end_date|date:"F Y" }}
+          {% else %}
+          {{ "Present" }}
+          {% endif %}
+        </p>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
 
-{% block extrafoot %}
-<script rel="text/JavaScript" src="{% static 'resume/js/centering.js' %}"></script>
-<script rel="text/JavaScript" src="{% static 'resume/js/isMobile.js' %}"></script>
-<script rel="text/JavaScript" src="{% static 'resume/js/removeCommas.js' %}"></script>
+  <div class="blank">Skills</div>
+  <div class="resume-skills">
+    {% for skill in skills %}
+    <a href="skills/{{ skill.pk }}" class="resume-skill body-card hvr-icon-{{ skill.hover_animation }}">
+      <img class="resume-skill-logo hvr-icon" src="{{ skill.logo.url }}">
+      <p class="resume-skill-text">{{ skill.skill }}</p>
+    </a>
+    {% endfor %}
+    <div class="space"></div>
+  </div>
+
+  <div class="blank">Certifications</div>
+  <div class="resume-certifications">
+    {% for cert in certifications %}
+    <a class="resume-certification body-card">
+      <img class="resume-certification-logo" src="{{ cert.icon.url }}">
+      <p class="resume-certification-text">{{ cert.vendor }} {{cert.name}}</p>
+    </a>
+    {% endfor %}
+  </div>
+  <div class="space"></div>
+</section>
 {% endblock %}

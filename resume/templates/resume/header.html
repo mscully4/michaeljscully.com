@@ -1,21 +1,16 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Michael Scully's Resume Page</title>
-    <meta name="author" content="Michael Scully">
-    <meta charset="utf-8">
-      <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'resume/css/header.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'resume/css/Hover/Hover-master/css/hover.css' %}">
-    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Aguafina+Script|Allura|Cormorant+Garamond|Courgette&display=swap" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-    
-    {% block extrahead %}
-    {% endblock %}
-  </head>
-  <body>
+{% extends "menu.html" %}
+{% load static %}
+
+{% block headerlinks %}
+<link rel="stylesheet" type="text/css" href="{% static 'resume/css/header.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'resume/css/Hover/Hover-master/css/hover.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Aguafina+Script|Allura|Cormorant+Garamond|Courgette&display=swap" rel="stylesheet">
+{% block contentlinks %}
+{% endblock %}
+{% endblock %}
+
+{% block body %}
+<body>
     <header>
       <div class="header-banner-image" style="background: url({% static 'resume/images/Header.jpg' %}); background-size: 100% 100%;">
         <h1 class="header-location">Atlanta, Georgia</h1>
@@ -45,4 +40,4 @@
     {% block extrafoot %}
     {% endblock %}
     </body>
-</html>
+{% endblock %}
