@@ -48,15 +48,14 @@ class Map extends Component {
     };
   }
 
-  withinBounds = (obj) => {
-    // var latitude = this.props.granularity ? obj.latitude : obj.latitude, longitude = this.props.granularity ? obj.longitude : obj.longitude
-    if (this.state.bounds.nw) {
-      return obj.latitude <= this.state.bounds.nw.lat
-        && obj.latitude >= this.state.bounds.sw.lat 
-        && obj.longitude >= this.state.bounds.nw.lng
-        && obj.longitude <= this.state.bounds.ne.lng
-    }
-  }
+  // withinBounds = (obj) => {
+  //   if (this.state.bounds.nw) {
+  //     return obj.latitude <= this.state.bounds.nw.lat
+  //       && obj.latitude >= this.state.bounds.sw.lat 
+  //       && obj.longitude >= this.state.bounds.nw.lng
+  //       && obj.longitude <= this.state.bounds.ne.lng
+  //   }
+  // }
 
   createMarkers = (granularity) => {
     if (granularity && this.props.cities) {
