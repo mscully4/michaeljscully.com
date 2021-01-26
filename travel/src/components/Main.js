@@ -49,8 +49,8 @@ const styles = theme => ({
     fill: ICE_BLUE,
   },
   factDiv: {
-    fontSize: 24,
-    color: FONT_GREY,
+    fontSize: '1.5vw',
+    color: ICE_BLUE,
     paddingTop: 50,
     paddingBottom: 50,
     paddingLeft: '10%'
@@ -58,7 +58,6 @@ const styles = theme => ({
   factLine: {
     textIndent: 20,
     margin: 0,
-    color: FONT_GREY,
     textAlign: 'left'
   },
   addSVGText: {
