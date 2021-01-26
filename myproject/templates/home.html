@@ -1,31 +1,20 @@
+{% extends "menu.html" %}
 {% load static %}
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>MichaelJScully.com</title>
-    <meta name="author" content="Michael Scully">
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="{% static 'home/css/home.css' %}">
-  </head>
+{% block headerlinks %}
+<link rel="stylesheet" type="text/css" href="{% static 'home/css/home.css' %}">
+{% endblock %}
+
+{% block body %}
   <section>
-    <div class="main">
-      <span class="under-construction">This Page is Under Construction</span>
-      <span class="other">Check out these other sections of my site:</span>
-      <ul class="list">
-        <li><a class="links" href="resume">Resume</a></li>
-        <li><a class="links" href="travel">Travel</a></li>
-      </ul>
-    </div>
-    <img class="construction-image" src='{% static "home/images/BobTheBuilder.jpg" %}'>
-  </section>
-  <section class="menu">
-    <div class="card">
-      <img class="icon" src='{% static "home/images/travel.png" %}'>
-    </div>
-    <div class="card">
-      <img class="icon" src='{% static "home/images/resume.png" %}'>
-    </div>
-    <div></div>
-  </section>
-</html>
+  <div class="main">
+    <span class="under-construction">This Page is Under Construction</span>
+    <span class="other">Check out these other sections of my site:</span>
+    <ul class="list">
+      <li><a class="links" href="resume">Resume</a></li>
+      <li><a class="links" href="travel">Travel</a></li>
+    </ul>
+  </div>
+  <img class="construction-image" src='{% static "home/images/BobTheBuilder.jpg" %}'>
+</section>
+{% endblock %}
