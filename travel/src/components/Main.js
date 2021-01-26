@@ -28,7 +28,7 @@ const styles = theme => ({
     gridTemplateColumns: "3fr 2fr",
     width: '90%',
     margin: 'auto',
-    paddingBottom: "200px"
+    paddingBottom: "10vh"
   },
   modalContent: {
     border: 'none',
