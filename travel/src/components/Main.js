@@ -1,6 +1,6 @@
 import React from 'react';
 import Gallery from "react-photo-gallery";
-import { Modal, ModalBody } from 'reactstrap';
+import { Modal } from 'reactstrap';
 import { withStyles } from '@material-ui/styles';
 import clsx from 'clsx'
 import RingLoader from "react-spinners/RingLoader";
@@ -35,19 +35,6 @@ const styles = theme => ({
     height: '100%',
     backgroundColor: "transparent"
   },
-  topBar: {
-    display: "grid",
-    gridTemplateColumns: "1fr 2fr 5fr auto 1fr",
-    gridTemplateRows: '1fr',
-    alignItems: 'center',
-    paddingTop: 30,
-    paddingBottom: 30
-  },
-  addSVG: {
-    height: 100,
-    width: 100,
-    fill: ICE_BLUE,
-  },
   infoDiv: {
     display: 'grid',
     gridTemplateRows: '1fr',
@@ -68,18 +55,6 @@ const styles = theme => ({
     textIndent: 20,
     margin: 0,
     textAlign: 'left'
-  },
-  addSVGText: {
-    fontSize: 24,
-    marginRight: 20,
-    color: FONT_GREY,
-    textAlign: 'right',
-  },
-  modal: {
-    backgroundColor: OFF_BLACK_1
-  },
-  modalBody: {
-    backgroundColor: OFF_BLACK_2
   },
   NoImages: {
     color: FONT_GREY,
@@ -337,14 +312,11 @@ class Main extends React.Component {
               />
 
               <Table
-                owner={this.props.owner}
                 cities={cities}
                 places={places}
-                backendURL={this.props.backendURL}
                 hoverIndex={this.state.granularity ? this.state.hoverIndexCity : this.state.hoverIndexPlace}
                 changeHoverIndex={this.state.granularity ? this.changeHoverIndexCity : this.changeHoverIndexPlace}
                 tableRowClick={this.tableRowClick}
-                toggleUploader={this.toggleUploader}
                 granularity={this.state.granularity}
                 selectedCity={this.state.selectedCity}
                 closestCity={this.state.closestCity}
