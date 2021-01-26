@@ -109,8 +109,8 @@ class Navigation extends React.Component {
 
     return (
       <div className={clsx(classes.navigationBar)} >
-        <p className={clsx(classes.logo)}>My Travel Map</p>
-        {/* If the user is signed in and his/her data is loaded, then show the username with the logout button */}
+        <p className={clsx(classes.logo)}>Michael Scully</p>
+         {/* If the user is signed in and his/her data is loaded, then show the username with the logout button */}
         {/* Otherwise show the login/signup buttons.  The signup button is shown on Main but not Home */}
       </div>
     )
