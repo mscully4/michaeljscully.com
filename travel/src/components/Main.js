@@ -48,6 +48,18 @@ const styles = theme => ({
     width: 100,
     fill: ICE_BLUE,
   },
+  infoDiv: {
+    display: 'grid',
+    gridTemplateRows: '1fr',
+    gridTemplateColumns: '6fr 4fr',
+    height: '30vh',
+    alignItems: 'center'
+  },
+  title: {
+    color: ICE_BLUE,
+    fontFamily: 'aguafina-script',
+    fontSize: '6vw',
+  },
   factDiv: {
     fontSize: '1.5vw',
     color: ICE_BLUE,
@@ -298,12 +310,15 @@ class Main extends React.Component {
         <div>
           <Navigation />
           <div className={clsx(classes.page)}>
+            <div className={clsx(classes.infoDiv)}>
+              <p className={clsx(classes.title)}>My Travel Map</p>
               <div className={clsx(classes.factDiv)}>
                 <p className={clsx(classes.factLine)} style={{textIndent: 0}}>{`${this.props.owner ? "You've" : this.props.user[0].toUpperCase() + this.props.user.substring(1) + " Has "} Visited: `}</p>
                 <p className={clsx(classes.factLine)}>{`${this.calculateFacts('countries')} Countries`}</p>
                 <p className={clsx(classes.factLine)}>{`${this.calculateFacts("cities")} Cities`}</p>
                 <p className={clsx(classes.factLine)}>{`${this.calculateFacts("places")} Places of Interest`}</p>
               </div>
+            </div>
 
             <div className={clsx(classes.main)}>
               <Map
