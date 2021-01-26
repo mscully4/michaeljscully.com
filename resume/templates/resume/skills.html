@@ -3,7 +3,7 @@
 
 {% block contentlinks %}
 <link type="text/css" rel="stylesheet" href="{% static 'resume/css/skills.css' %}">
-<script rel="text/JavaScript" src="{% static 'resume/js/resizingCards.js' %}"></script>
+<!-- <script rel="text/JavaScript" src="{% static 'resume/js/resizingCards.js' %}"></script> -->
 {% endblock %}
 
 {% block content %}
@@ -11,10 +11,10 @@
   <h1 class="body-title-text">Skills</h1>
   <div class="skills-container">
     {% for skill in skills %}
-      <a href="skills/{{ skill.pk }}" class="skills-skill body-card hvr-icon-{{ skill.hover_animation }}">
-        <img class="skills-logo hvr-icon" src="{{ skill.logo.url }}">
-        <p class="skills-text">{{ skill.skill }}</p>
-      </a>
+    <a href="skills/{{ skill.pk }}" class="skills-skill body-card hvr-icon-{{ skill.hover_animation }}">
+      <img class="skills-logo hvr-icon" src="{{ skill.logo.url }}">
+      <p class="skills-text">{{ skill.skill }}</p>
+    </a>
     {% endfor %}
   </div>
   <div class="space"></div>
