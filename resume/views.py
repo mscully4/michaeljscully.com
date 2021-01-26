@@ -39,14 +39,15 @@ def index(request):
 def education(request): 
     education = Education.objects.all().order_by('-pk')
     classes = [Classes.objects.filter(school_id=1) for i in list(Classes.objects.order_by('school_id').values_list('school_id').distinct())]
-    dic = {"experiences": Experience.objects.all().order_by("-pk"),
-            "projects": Projects.objects.all().order_by("-pk"),
+    
+    dic = {
             'education': education,
             'classes': Classes.objects.all(),
            }
     # if request.user_agent.is_mobile:
     #     return render(request, 'm_resume/m_education.html', dic)
     # else:
+    
     return render(request, 'resume/education.html', dic)
 
 def individual_education(request, pk):
@@ -59,7 +60,6 @@ def individual_education(request, pk):
 def experience(request):
     dic = {
         "experiences": sorted(Experience.objects.all(), reverse=True, key=lambda x: x.end_date or date(2121, 4, 20)),
-        "projects": Projects.objects.all().order_by("-pk"),
     }
 
     # if request.user_agent.is_mobile:
