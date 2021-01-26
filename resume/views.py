@@ -78,7 +78,7 @@ def individual_experience(request, pk):
     # if request.user_agent.is_mobile:
     #     template = 'm_resume/m_experience/m_individual.html'
     # else:
-    template = 'resume/experience/individual.html'
+    template = 'resume/individual_experience.html'
         
     return render(request, template, dic)
 
@@ -102,7 +102,7 @@ def individual_projects(request, pk):
     # if request.user_agent.is_mobile:
     #     template = 'm_resume/m_projects/m_individual.html'
     # else:
-    template = 'resume/projects/individual.html'
+    template = 'resume/individual_project.html'
         
     return render(request, template, dic)
 
@@ -126,7 +126,7 @@ def individual_skills(request, pk):
     # if request.user_agent.is_mobile:
     #     template = 'm_resume/m_skills/m_individual.html'
     # else:
-    template = 'resume/skills/individual.html'
+    template = 'resume/individual_skill.html'
 
     return render(request, template, dic)
 
