@@ -10,7 +10,7 @@ import Navigation from './Navigation'
 import Map from './Map.js';
 import Table from './Table.js'
 import ImageViewer from './ImageViewer';
-import { place_colors, city_colors, FONT_GREY, ICE_BLUE, OFF_BLACK_1, OFF_BLACK_2, OFF_BLACK_3 } from '../utils/Colors';
+import { place_colors, city_colors, FONT_GREY, ICE_BLUE, OFF_BLACK_1, OFF_BLACK_2, OFF_BLACK_3, OFF_BLACK_5 } from '../utils/Colors';
 import { getDistanceBetweenTwoPoints } from '../utils/Formulas';
 
 
@@ -19,16 +19,17 @@ const GRANULARITY_CUTOFF = 8
 
 const styles = theme => ({
   page: {
-    backgroundColor: OFF_BLACK_1,
+    backgroundColor: OFF_BLACK_5,
     color: FONT_GREY,
+    paddingBottom: '10vh'
   },
   main: {
     display: "grid",
     gridTemplateRows: "1fr",
     gridTemplateColumns: "3fr 2fr",
-    width: '90%',
-    margin: 'auto',
-    paddingBottom: "10vh"
+    width: '90vw',
+    marginLeft: '7.5vw',
+    boxShadow: `0 0 20px ${OFF_BLACK_1}`
   },
   modalContent: {
     border: 'none',
@@ -282,9 +283,9 @@ class Main extends React.Component {
     var places = this.props.places;
     if (this.props.ready) {
       return (
-        <div>
+        <div className={clsx(classes.page)}>
           <Navigation />
-          <div className={clsx(classes.page)}>
+          <div>
             <div className={clsx(classes.infoDiv)}>
               <p className={clsx(classes.title)}>My Travel Map</p>
               <div className={clsx(classes.factDiv)}>

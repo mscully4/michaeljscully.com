@@ -7,11 +7,12 @@ import { ICE_BLUE, FONT_GREY, OFF_BLACK_1, OFF_BLACK_2, OFF_BLACK_3, OFF_BLACK_4
 
 const styles = theme => ({
   navigationBar: {
-    backgroundColor: OFF_BLACK_2,
+    backgroundColor: OFF_BLACK_1,
     display: 'grid',
     gridTemplateRows: '1fr',
     gridTemplateColumns: 'auto 1fr',
-    alignItems: 'center'
+    alignItems: 'center',
+    boxShadow: '0 0 4px #000 !important',
   },
   logo: {
     fontFamily: "Allura",
