@@ -1,11 +1,11 @@
 export const FONT_GREY = "#f8f8ff"
 export const ICE_BLUE = "#0095d2"
 
-export const OFF_BLACK_1 = "#1a1a1a"
+export const OFF_BLACK_1 = "#121212"
 export const OFF_BLACK_2 = "#232323"
-export const OFF_BLACK_3 = "#292929"
-export const OFF_BLACK_4 = "#2e2e2e"
-export const ERROR_RED = '#f44336'
+export const OFF_BLACK_3 = "#333"
+export const OFF_BLACK_4 = "#383838"
+export const OFF_BLACK_5 = '#3a3a3a'
 
 
 const DOLLAR_BILL = "#006400"
