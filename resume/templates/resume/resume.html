@@ -86,7 +86,7 @@
     {% for skill in skills %}
     <a href="skills/{{ skill.pk }}" class="resume-skill body-card hvr-icon-{{ skill.hover_animation }}">
       <img class="resume-skill-logo hvr-icon" src="{{ skill.logo.url }}">
-      <p class="resume-skill-text">{{ skill.skill }}</p>
+      <p class="resume-text">{{ skill.skill }}</p>
     </a>
     {% endfor %}
     <div class="space"></div>
@@ -97,7 +97,7 @@
     {% for cert in certifications %}
     <a class="resume-certification body-card">
       <img class="resume-certification-logo" src="{{ cert.icon.url }}">
-      <p class="resume-certification-text">{{ cert.vendor }} {{cert.name}}</p>
+      <p class="resume-text">{{ cert.vendor }} {{cert.name}}</p>
     </a>
     {% endfor %}
   </div>
