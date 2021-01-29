@@ -24,7 +24,7 @@
     {% for entry in education %}
     <a href="education" class="body-card resume-education">
       <img class="resume-education-logo" src="{{ entry.logo.url }}">
-      <div class="resume-education-info">
+      <div class="resume-text">
         <p>{{ entry.university }}</p>
         <p>{{ entry.degree }} in {{ entry.major }}</p>
         <p>Class of {{ entry.year }}</p>
@@ -41,10 +41,10 @@
     {% for entry in experiences %}
     <a href="experience/{{ entry.pk }}" class="body-card resume-experience">
       <img class="resume-image-vertical" src="{{ entry.banner.url }}">
-      <div class="resume-experience-info">
-        <p class="resume-text-vertical">{{ entry.name }}</p>
-        <p class="resume-text-vertical">{{ entry.role }}</p>
-        <p class="resume-text-vertical">{{ entry.start_date|date:"F Y" }} -
+      <div class="resume-text">
+        <p>{{ entry.name }}</p>
+        <p>{{ entry.role }}</p>
+        <p>{{ entry.start_date|date:"F Y" }} -
           {% if entry.end_date %}
           {{ entry.end_date|date:"F Y" }}
           {% else %}
@@ -66,10 +66,10 @@
         <img class="resume-project-logos" src="{{ skill.logo.url }}">
         {% endfor %}
       </div>
-      <div class="resume-project-info">
-        <p class="resume-text-vertical">{{ entry.industry }}</p>
-        <p class="resume-text-vertical" style="margin:auto">{{ entry.overview }}</p>
-        <p class="resume-text-vertical">{{ entry.start_date|date:"F Y" }} -
+      <div class="resume-text">
+        <p>{{ entry.industry }}</p>
+        <p>{{ entry.overview }}</p>
+        <p>{{ entry.start_date|date:"F Y" }} -
           {% if entry.end_date %}
           {{ entry.end_date|date:"F Y" }}
           {% else %}
