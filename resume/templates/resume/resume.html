@@ -97,7 +97,9 @@
     {% for cert in certifications %}
     <a class="resume-certification body-card">
       <img class="resume-certification-logo" src="{{ cert.icon.url }}">
-      <p class="resume-text">{{ cert.vendor }} {{cert.name}}</p>
+      <div>
+        <p class="resume-text">{{ cert.vendor }} {{cert.name}}</p>
+      </div>
     </a>
     {% endfor %}
   </div>
