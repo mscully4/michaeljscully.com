@@ -8,61 +8,25 @@ a {
     display: grid;
     grid-template-columns: 4fr 6fr;
     grid-template-rows: 1fr;
+    height: 30vh;
 }
 
 #resume-headshot {
     width: 70%;
     margin: auto;
-    /* border: solid 5px black; */
-    /* box-shadow: 0px 8px 16px 2px rgba(0,0,0,1); */
     box-sizing: border-box;
     box-shadow: 10px 10px 8px #888888;
 }
 
+/* Current Job */
 .resume-current {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
     align-items: center;
     width: 85%;
-    height: 120px;
-    margin-top: 90px;
-}
-
-.resume-current-text {
-    width: 100%;
-    text-align: center;
-    font-family: 'Garamond';
-}
-
-.resume-current-indented {
-    font-size: 24px;
-}
-
-.resume-current-banner {
-    width: 80%;
-    margin: 0 auto;
-}
-
-.resume-education {
-    width: 90%;
-    display: grid;
-    grid-template-rows: 3fr 1fr 1fr;
-    grid-template-columns: 1fr;
-    font-family: "Garamond";
-}
-
-.resume-education-logo {
-    margin: auto;
-    max-height: 90%;
-    max-width: 90%;
-}
-
-.resume-education-info {
-    height: 100%;
-    font-size: 22px;
-    font-family: 'Garamond';
-    text-align: center;
+    height: 15vh;
+    font-size: 150%;
 }
 
 .resume-experiences, .resume-projects, .resume-educations {
@@ -71,26 +35,24 @@ a {
     grid-template-rows: auto;
 }
 
-.resume-experience {
+.resume-experience, .resume-project, .resume-education {
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 15vh 15vh;
     width: 90%;
     margin: 5% 5%;
-    min-height: 15vw;
+    height: 30vh;
+    font-size: 150%
 }
 
-.resume-experience-info, .resume-project-info {
-    margin: auto 0;
-    margin-left: 2%;
+.resume-text {
+    font-family: 'Garamond';
+    text-align: center;
 }
 
-.resume-project {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    grid-template-columns: 1fr;
-    width: 90%;
-    margin: 5% 5%;
-    min-height: 15vw;
+.resume-logo {
+    margin: auto;
+    max-height: 90%;
+    max-width: 90%;
 }
 
 .resume-project-banner {
@@ -114,33 +76,19 @@ a {
 
 .resume-skill, .resume-certification {
     width: 90%;
-    height: 8em;
+    height: 25vh;
     display: grid;
-    grid-template-rows: 3fr 2fr;
+    grid-template-rows: 15vh 10vh;
     grid-template-columns: 1fr;
     font-family: "Garamond";
-    font-size: 20px;
-    align-items: center;
+    font-size: 150%;
     margin: 2.5% auto;
-    color: black;
-    text-decoration: none;
-}
-
-.resume-skill-logo, .resume-certification-logo {
-    margin: auto;
-    max-width: 90%;
-    max-height: 90%;
-}
-
-.resume-skill-text, .resume-certification-text {
-    text-align: center;
-    font-size: 100%;
 }
 
 .blank {
     width: 100%;
     font-family: "Garamond";
-    font-size: 180%;
+    font-size: 200%;
     text-align: center;
     font-weight: bold;
     font-style: italic;
@@ -149,36 +97,3 @@ a {
     padding-bottom: 2.5%;
     margin: auto;
 }
-
-.resume-text-square {
-    font-family: 'Garamond';
-    font-size: 22px;
-    text-align: center;
-}
-
-.resume-text-vertical {
-    font-family: 'Garamond';
-    font-size: 20px;
-}
-
-.resume-image-square {
-    max-height: 100px;
-    margin: auto;
-}
-
-.resume-image-vertical {
-    max-width: 90%;
-    padding: 10px 0;
-    max-height: 90%;
-    margin: auto;
-}
-
-.resume-description-vertical {
-    font-family: 'Garamond';
-    font-size: 20px;
-    padding: 0 2%;
-    margin-bottom: 2%;
-    text-indent: 2%;
-}
-
-
