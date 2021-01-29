@@ -27,12 +27,8 @@
       <div class="resume-education-info">
         <p>{{ entry.university }}</p>
         <p>{{ entry.degree }} in {{ entry.major }}</p>
-        {% if entry.minor %}
-        <p>Minor in {{ entry.minor }}</p>
-        {% endif %}
-      </div>
-      <div class="resume-education-info">
-        <p>Class of {{ entry.year }} <br> GPA: {{ entry.gpa }}</p>
+        <p>Class of {{ entry.year }}</p>
+        <p>GPA: {{ entry.gpa }}</p>
       </div>
     </a>
     {% endfor %}
