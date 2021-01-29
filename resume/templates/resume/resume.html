@@ -23,7 +23,7 @@
   <div class='resume-educations'>
     {% for entry in education %}
     <a href="education" class="body-card resume-education">
-      <img class="resume-education-logo" src="{{ entry.logo.url }}">
+      <img class="resume-logo" src="{{ entry.logo.url }}">
       <div class="resume-text">
         <p>{{ entry.university }}</p>
         <p>{{ entry.degree }} in {{ entry.major }}</p>
@@ -40,7 +40,7 @@
   <div class="resume-experiences">
     {% for entry in experiences %}
     <a href="experience/{{ entry.pk }}" class="body-card resume-experience">
-      <img class="resume-image-vertical" src="{{ entry.banner.url }}">
+      <img class="resume-logo" src="{{ entry.banner.url }}">
       <div class="resume-text">
         <p>{{ entry.name }}</p>
         <p>{{ entry.role }}</p>
@@ -63,7 +63,7 @@
     <a href="projects/{{ entry.pk }}" class="resume-project body-card">
       <div class="resume-project-banner" style="grid-template-columns: repeat({{entry.skills.all|length}}, 1fr);">
         {% for skill in entry.skills.all %}
-        <img class="resume-project-logos" src="{{ skill.logo.url }}">
+        <img class="resume-logos" src="{{ skill.logo.url }}">
         {% endfor %}
       </div>
       <div class="resume-text">
@@ -85,7 +85,7 @@
   <div class="resume-skills">
     {% for skill in skills %}
     <a href="skills/{{ skill.pk }}" class="resume-skill body-card hvr-icon-{{ skill.hover_animation }}">
-      <img class="resume-skill-logo hvr-icon" src="{{ skill.logo.url }}">
+      <img class="resume-logo hvr-icon" src="{{ skill.logo.url }}">
       <p class="resume-text">{{ skill.skill }}</p>
     </a>
     {% endfor %}
@@ -96,7 +96,7 @@
   <div class="resume-certifications">
     {% for cert in certifications %}
     <a class="resume-certification body-card">
-      <img class="resume-certification-logo" src="{{ cert.icon.url }}">
+      <img class="resume-logo" src="{{ cert.icon.url }}">
       <div>
         <p class="resume-text">{{ cert.vendor }} {{cert.name}}</p>
       </div>
