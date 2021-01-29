@@ -11,10 +11,10 @@
   <div class="resume-opening">
     <img id="resume-headshot" src="{% static 'resume/images/Headshot.jpg' %}">
     <a href="experience/{{ current.pk }}" class="body-card resume-current">
-      <img class="resume-current-banner" src="{{ current.banner.url }}">
-      <div class="resume-current-text">
-        <p class="resume-current-indented">{{ current.name }}</p>
-        <p class="resume-current-indented">{{ current.role }}</p>
+      <img class="resume-logo" src="{{ current.banner.url }}">
+      <div>
+        <p class="resume-text">{{ current.name }}</p>
+        <p class="resume-text">{{ current.role }}</p>
       </div>
     </a>
   </div>
