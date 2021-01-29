@@ -63,7 +63,7 @@
     <a href="projects/{{ entry.pk }}" class="resume-project body-card">
       <div class="resume-project-banner" style="grid-template-columns: repeat({{entry.skills.all|length}}, 1fr);">
         {% for skill in entry.skills.all %}
-        <img class="resume-logos" src="{{ skill.logo.url }}">
+        <img class="resume-logo" src="{{ skill.logo.url }}">
         {% endfor %}
       </div>
       <div class="resume-text">
