@@ -84,7 +84,6 @@ class App extends Component {
           ready={this.state.ready}
           cities={this.state.cities}
           places={places}
-          user={"michael"}
           />
         </div>
       );
