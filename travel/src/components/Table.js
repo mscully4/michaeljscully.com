@@ -131,7 +131,7 @@ class VirtualTable extends Component {
 
   cellRendererPlace = (cellData) => {
     const classes = this.props.classes;
-    const src = cellData.cellData.coverPhoto ? cellData.cellData.coverPhoto.src : null
+    const src = cellData.cellData.cover_photo ? cellData.cellData.cover_photo.src : null
     return (
       <div className={(clsx(classes.cellPlace))}>
         <img className={clsx(classes.coverImage)} src={src} img/>
