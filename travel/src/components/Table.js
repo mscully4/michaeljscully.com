@@ -11,7 +11,7 @@ import 'react-virtualized/styles.css';
 
 import { getDistanceBetweenTwoPoints } from '../utils/Formulas.js';
 import { place_colors, FONT_GREY, OFF_BLACK_2, OFF_BLACK_3, OFF_BLACK_4, ICE_BLUE } from "../utils/Colors"
-import { add, gallery, Svg, placeTypeSVGs } from "../utils/SVGs"
+import { gallery, Svg } from "../utils/SVGs"
 
 //Places within these distances of the center of the map will be included in the table
 const DISTANCE_FROM_CITY = 200 /*miles*/
@@ -120,21 +120,12 @@ class VirtualTable extends Component {
     )
   }
 
-  generateSVG = (type) => {
-    const icons = placeTypeSVGs;
-    return (
-      <Svg className={clsx(this.props.classes.typeSVG)} viewbox={icons[type] ? icons[type].viewBox: null}>
-        {icons[type] ? icons[type].path.map((el, i) => <path key={`${i}`} d={el} fill={place_colors[type]} stroke={place_colors[type]} />) : null}
-      </Svg>
-    )
-  }
-
   cellRendererPlace = (cellData) => {
     const classes = this.props.classes;
     const src = cellData.cellData.cover_photo ? cellData.cellData.cover_photo.src : null
     return (
       <div className={(clsx(classes.cellPlace))}>
-        <img className={clsx(classes.coverImage)} src={src} img/>
+        <img className={clsx(classes.coverImage)} src={src}/>
         <div>
           <div className={clsx(classes.cellText)}>{cellData.rowData.name.trim()}</div>
           <div className={clsx(classes.cellText)}>{cellData.rowData.city.trim()}{cellData.rowData.country.trim() ? `, ${cellData.rowData.country.trim()}` : ""}</div>
@@ -269,9 +260,6 @@ class VirtualTable extends Component {
                 color: FONT_GREY,
               }}
               className={classes.column}
-              style={{
-                // 'width': '100% !important'
-              }}
               headerRenderer={() => {
                 return (
                   <div className={classes.columnHeader}>
