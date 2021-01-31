@@ -155,7 +155,7 @@ class VirtualTable extends Component {
     return (
       <div className={clsx(classes.cellCity)}>
         <ReactCountryFlag
-          countryCode={cellData.rowData.countryCode}
+          countryCode={cellData.rowData.country_code}
           svg
           style={{
             height: '30%',
