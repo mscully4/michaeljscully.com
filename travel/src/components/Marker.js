@@ -124,11 +124,11 @@ class Marker extends Component {
 }
 
 Marker.propTypes = {
-  hoverIndex: PropTypes.number, 
-  changeHoverIndex: PropTypes.func,
-  data: PropTypes.object,
   lat: PropTypes.number,
   lng: PropTypes.number,
+  data: PropTypes.object,
+  changeHoverIndex: PropTypes.func,
+  hoverIndex: PropTypes.number, 
   markerClick: PropTypes.func,
   zoom: PropTypes.number,
   granularity: PropTypes.number,

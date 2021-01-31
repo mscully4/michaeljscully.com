@@ -279,20 +279,19 @@ class VirtualTable extends Component {
 }
 
 VirtualTable.propTypes = {
-  "owner": PropTypes.bool,
-  "cities": PropTypes.array,
-  "places": PropTypes.array,
-  "hoverIndex": PropTypes.number,
-  "changeHoverIndex": PropTypes.func,
-  "tableRowClick": PropTypes.func,
-  "granularity": PropTypes.number,
-  "selectedCity": PropTypes.object,
-  "closestCity": PropTypes.object,
-  "mapCenter": PropTypes.object,
-  "changeMapCenter": PropTypes.func,
-  "onCityGalleryClick": PropTypes.func,
-  "place_colors": PropTypes.object,
-  "city_colors": PropTypes.array
+  cities: PropTypes.array,
+  places: PropTypes.array,
+  hoverIndex: PropTypes.number,
+  changeHoverIndex: PropTypes.func,
+  tableRowClick: PropTypes.func,
+  granularity: PropTypes.number,
+  selectedCity: PropTypes.object,
+  closestCity: PropTypes.object,
+  mapCenter: PropTypes.object,
+  changeMapCenter: PropTypes.func,
+  onCityGalleryClick: PropTypes.func,
+  place_colors: PropTypes.object,
+  city_colors: PropTypes.array
 }
 
 export default withStyles(styles)(VirtualTable);

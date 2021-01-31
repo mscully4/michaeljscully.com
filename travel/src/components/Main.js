@@ -367,15 +367,9 @@ class Main extends React.Component {
 }
 
 Main.propTypes = {
-  loggedInInfo: PropTypes.object,
-  handlers: PropTypes.object,
-  setters: PropTypes.object,
-  pendingRequests: PropTypes.object,
-  viewUser: PropTypes.string,
-  error: PropTypes.object,
-  setError: PropTypes.func,
-  compilePlaces: PropTypes.func,
-  owner: PropTypes.bool
+  cities: PropTypes.array,
+  places: PropTypes.array,
+  ready: PropTypes.bool
 }
 
 export default withStyles(styles)(Main);

@@ -119,9 +119,10 @@ Map.propTypes = {
   hoverIndex: PropTypes.number,
   changeHoverIndex: PropTypes.func,
   setClosestCity: PropTypes.func,
-  granularity: PropTypes.number,
-  hoverIndex: PropTypes.number,
   markerClick: PropTypes.func,
+  granularity: PropTypes.number,
+  changeMapCenter: PropTypes.func,
+  changeGranularity: PropTypes.func
 }
 
 export default Map;

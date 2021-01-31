@@ -107,21 +107,4 @@ class Navigation extends React.Component {
   }
 }
 
-Navigation.propTypes = {
-  handleLogin: PropTypes.func,
-  handleSignUp: PropTypes.func,
-  handleLogout: PropTypes.func,
-  loadingUserData: PropTypes.bool,
-  error: PropTypes.object,
-  setError: PropTypes.func,
-  context: PropTypes.string,
-  loggedIn: PropTypes.bool,
-  loggedInUser: PropTypes.string,
-  loggedInUserData: PropTypes.object,
-  history: PropTypes.object,
-  viewUser: PropTypes.object,
-  pendingLoginRequest: PropTypes.bool,
-  pendingSignUpRequest: PropTypes.bool,
-}
-
 export default withStyles(styles)(Navigation);
