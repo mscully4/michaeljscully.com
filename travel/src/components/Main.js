@@ -244,28 +244,6 @@ class Main extends React.Component {
     })
   }
 
-  calculateFacts = (context) => {
-    var viewCities = this.props.cities;
-    var viewPlaces = this.props.places;
-    if (context === "cities") {
-      const cities = []
-      viewCities.forEach(obj => {
-        cities.push(obj.city)
-      })
-      return cities.length
-    } else if (context === "countries") {
-      const countries = []
-      viewCities.forEach(obj => {
-        if (!countries.includes(obj.countryCode.toLowerCase())) {
-          countries.push(obj.countryCode.toLowerCase())
-        }
-      })
-      return countries.length
-    } else if (context === "places") {
-      return viewPlaces.length
-    }
-  }
-
   recenter = () => {
     var viewCities = this.props.owner ? this.props.loggedInInfo.userCities : this.state.viewCities
     const coords = {
@@ -290,10 +268,10 @@ class Main extends React.Component {
               <p className={clsx(classes.title)}>My Travel Map</p>
               <div className={clsx(classes.factDiv)}>
                 <p className={clsx(classes.factLine)} style={{ textIndent: 0 }}>{"I've Visited: "}</p>
-                <p className={clsx(classes.factLine)}>{`${this.calculateFacts('countries')} Countries`}</p>
-                <p className={clsx(classes.factLine)}>{`${this.calculateFacts("cities")} Cities`}</p>
-                <p className={clsx(classes.factLine)}>{`${this.calculateFacts("national_parks")} National Parks`}</p>
-                <p className={clsx(classes.factLine)}>{`${this.calculateFacts("national_monuments")} National Monuments`}</p>
+                <p className={clsx(classes.factLine)}>{`${[...new Set(this.props.cities.map(el => el.country_code))].length} Countries`}</p>
+                <p className={clsx(classes.factLine)}>{`${this.props.cities.filter(el => el.classifier === 1).length} Cities`}</p>
+                <p className={clsx(classes.factLine)}>{`${this.props.cities.filter(el => el.classifier === 2).length} National Parks`}</p>
+                <p className={clsx(classes.factLine)}>{`${this.props.cities.filter(el => el.classifier === 3).length} National Monuments`}</p>
               </div>
             </div>
 
