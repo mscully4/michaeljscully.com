@@ -82,11 +82,11 @@ class Experience(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
-        if not kwargs.pop('chain', False):
+        if self.current and not kwargs.pop('chain', False):
             for obj in self.__class__.objects.exclude(pk=self.pk):
                 if obj.current:
                     obj.current = False
-                    obj.save(chain=True)
+                    obj.save()
         super(Experience, self).save(*args, **kwargs)
         overwrite_db(settings.DATABASES['default']['NAME'], settings.AWS_STORAGE_BUCKET_NAME, 'db.sqlite3')
 
