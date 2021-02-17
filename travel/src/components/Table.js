@@ -42,21 +42,8 @@ const styles = theme => ({
     backgroundColor: ICE_BLUE,
   },
   cell: {
-    display: "grid",
-    gridTemplateRows: "1fr",
-    gridTemplateColumns: "1fr 1fr 1fr",
-    alignItems: 'center'
-  },
-  cellPlace: {
     display: "grid", 
-    gridTemplateRows: '1fr', 
-    gridTemplateColumns: '1fr 2fr',
-    height: '100%',
-    alignItems: 'center' 
-  },
-  cellCity: {
-    display: "grid", 
-    gridTemplateRows: '1fr', 
+    gridTemplateRows: '100%', 
     gridTemplateColumns: '1fr 2fr',
     height: '100%',
     alignItems: 'center' 
@@ -124,7 +111,7 @@ class VirtualTable extends Component {
     const classes = this.props.classes;
     const src = cellData.cellData.cover_photo ? cellData.cellData.cover_photo.src : null
     return (
-      <div className={(clsx(classes.cellPlace))}>
+      <div className={(clsx(classes.cell))}>
         <img className={clsx(classes.coverImage)} src={src}/>
         <div>
           <div className={clsx(classes.cellText)}>{cellData.rowData.name.trim()}</div>
@@ -144,7 +131,7 @@ class VirtualTable extends Component {
     });
 
     return (
-      <div className={clsx(classes.cellCity)}>
+      <div className={clsx(classes.cell)}>
         <ReactCountryFlag
           countryCode={cellData.rowData.country_code}
           svg
