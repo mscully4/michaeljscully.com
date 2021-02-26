@@ -11,30 +11,30 @@
 
 {% block body %}
 <body>
-    <header>
-      <div class="header-banner-image" style="background: url({% static 'resume/images/Header.jpg' %}); background-size: 100% 100%;">
-        <h1 class="header-location">Atlanta, Georgia</h1>
-        <div class="header-menubar">
-          <div class="header-title" >Michael Scully</div>
-          <div class="header-menu-items">
-            <a class="header-buttons" href="/resume">Resume</a>
-            <a class="header-buttons" href="/resume/education">Education</a>
-            <a class="header-buttons" href="/resume/experience">Experience</a>
-            <a class="header-buttons" href="/resume/projects">Projects</a>
-            <a class="header-buttons" href="/resume/skills">Skills</a>
-          </div>
+  <header>
+    <div class="header-banner-image" style="background: url({% static 'resume/images/Header.jpg' %}); background-size: 100% 100%;">
+      <h1 class="header-location">Atlanta, Georgia</h1>
+      <div class="header-menubar">
+        <div class="header-title">Michael Scully</div>
+        <div class="header-menu-items">
+          <a class="header-buttons" href="/resume">Resume</a>
+          <a class="header-buttons" href="/resume/education">Education</a>
+          <a class="header-buttons" href="/resume/experience">Experience</a>
+          <a class="header-buttons" href="/resume/projects">Projects</a>
+          <a class="header-buttons" href="/resume/skills">Skills</a>
         </div>
       </div>
-    </header>
-    {% block content %}
-    {% endblock %}
-    <footer class="footer">
-      <p class="footer-credits">Design by Michael Scully</p>
-      <p class="footer-credits"><a class="footer-links" href="mailto:michael.scully1997@gmail.com">Contact Me</p>
-      <p class="footer-credits">Animations done using <a href="http://ianlunn.github.io/Hover/" class="footer-links">Hover.css</a></p>
-      <p class="footer-credits">Running on Django 3</p>
-    </footer>
-    {% block extrafoot %}
-    {% endblock %}
-    </body>
+    </div>
+  </header>
+  {% block content %}
+  {% endblock %}
+  <footer class="footer">
+    <p class="footer-credits">Design by Michael Scully</p>
+    <p class="footer-credits"><a class="footer-links" href="mailto:michael.scully1997@gmail.com">Contact Me</p>
+    <p class="footer-credits">Animations done using <a href="http://ianlunn.github.io/Hover/" class="footer-links">Hover.css</a></p>
+    <p class="footer-credits">Running on Django 3</p>
+  </footer>
+  {% block extrafoot %}
+  {% endblock %}
+</body>
 {% endblock %}
