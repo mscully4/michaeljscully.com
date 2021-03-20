@@ -1,5 +1,9 @@
 #! /bin/bash
 
+REGION="us-east-2"
+ELASTIC_IP="3.21.221.96"
+INSTANCE_ID=$(wget -q -O - http://169.254.169.254/latest/meta-data/instance-id)
+
 #Jenkins Dependencies
 wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
 sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > \
