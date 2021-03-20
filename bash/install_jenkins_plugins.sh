@@ -1,29 +1,44 @@
 #!/bin/bash
 
-#Retrieve password
 PASSWORD=$(sudo cat /var/lib/jenkins/secrets/initialAdminPassword)
-
-#Retrieve Crumb and Token
 JENKINS_CRUMB=$(curl -sS --cookie-jar ./cookie "http://admin:${PASSWORD}@localhost:8080/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,\":\",//crumb)")
-JENKINS_TOKEN=$(curl -sS --cookie ./cookie -H $JENKINS_CRUMB 'http://localhost:8080/me/descriptorByName/jenkins.security.ApiTokenProperty/generateNewToken' -X POST --data 'newTokenName=jenkins' --user admin:$PASSWORD | jq .data.tokenValue)
 
-#Strip extra quotes from JENKINS_TOKEN
-JENKINS_TOKEN=$(echo "${JENKINS_TOKEN//\"/}")
-sudo echo "$(date): Retrieved Jenkins Tokens" >> /home/ubuntu/log.txt
+JENKINS_TOKEN=$(curl -sS --cookie ./cookie -H $JENKINS_CRUMB 'http://localhost:8080/me/descriptorByName/jenkins.security.ApiTokenProperty/generateNewToken' -X POST --data 'newTokenName=jenkins' --user admin:$PASSWORD | jq .data.tokenValue | tr -d '\"' )
+JENKINS_URL='http://localhost:8080'
+LOGGING_URL=/home/ubuntu/log.txt
 
-#Install plugin
-curl -X POST -d "<jenkins><install plugin=\"git@latest\" /></jenkins>" --header 'Content-Type: text/xml' --user "admin:${JENKINS_TOKEN}" http://localhost:8080/pluginManager/installNecessaryPlugins
-curl -X POST -d "<jenkins><install plugin=\"workflow-job@latest\" /></jenkins>" --header 'Content-Type: text/xml' --user "admin:${JENKINS_TOKEN}" http://localhost:8080/pluginManager/installNecessaryPlugins
-curl -X POST -d "<jenkins><install plugin=\"pipeline-model-definition@latest\" /></jenkins>" --header 'Content-Type: text/xml' --user "admin:${JENKINS_TOKEN}" http://localhost:8080/pluginManager/installNecessaryPlugins
-sudo echo "$(date): Installed Jenkins Plugins" >> /home/ubuntu/log.txt
+function install_jenkins_plugins() {
+        #Install plugin
+        curl -X POST -d "<jenkins><install plugin=\"git@latest\" /></jenkins>" --header 'Content-Type: text/xml' --user "admin:${2}" ${1}/pluginManager/installNecessaryPlugins
+        curl -X POST -d "<jenkins><install plugin=\"workflow-job@latest\" /></jenkins>" --header 'Content-Type: text/xml' --user "admin:${2}" ${1}/pluginManager/installNecessaryPlugins
+        curl -X POST -d "<jenkins><install plugin=\"pipeline-model-definition@latest\" /></jenkins>" --header 'Content-Type: text/xml' --user "admin:${2}" ${1}/pluginManager/installNecessaryPlugins
+        sudo echo "$(date): Installed Jenkins Plugins" >> $3
 
-sleep 30s
+        #Restart Jenkins
+        curl -X POST --user "admin:${2}" "${1}/safeRestart"
+        sudo echo "$(date): Restarted Jenkins" >> $3
 
-#Restart Jenkins
-curl -X POST --user "admin:${JENKINS_TOKEN}" 'http://localhost:8080/safeRestart'
-sudo echo "$(date): Restarted Jenkins" >> /home/ubuntu/log.txt
+        resp=0
+        iters=0
+        while :
+        do
+                sleep 5s
+        
+                resp=$(curl -s -o /dev/null -w "%{http_code}" $1/login)
+                echo $resp
+                echo $iters
+                if [ $resp = "200" ];
+                then
+                        sudo echo "$(date): Restarted Jenkins" >> $3
+                        return 0
+                elif [ $iters -ge 20 ];
+                then
+                        sudo echo "$(date): Error, maximum number of iterations reached" >> $3
+                        return 1
+                else
+                        iters=$((iters+1))
+                fi
+        done
+}
 
-sleep 180s
-
-sudo echo "$(date): Slept for a long time" >> /home/ubuntu/log.txt
-
+install_jenkins_plugins $JENKINS_URL $JENKINS_TOKEN $LOGGING_URL
