@@ -1,12 +1,3 @@
-#!/bin/bash
-
-PASSWORD=$(sudo cat /var/lib/jenkins/secrets/initialAdminPassword)
-JENKINS_CRUMB=$(curl -sS --cookie-jar ./cookie "http://admin:${PASSWORD}@localhost:8080/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,\":\",//crumb)")
-
-JENKINS_TOKEN=$(curl -sS --cookie ./cookie -H $JENKINS_CRUMB 'http://localhost:8080/me/descriptorByName/jenkins.security.ApiTokenProperty/generateNewToken' -X POST --data 'newTokenName=jenkins' --user admin:$PASSWORD | jq .data.tokenValue | tr -d '\"' )
-JENKINS_URL='http://localhost:8080'
-LOGGING_URL=/home/ubuntu/log.txt
-
 function install_jenkins_plugins() {
         #Install plugin
         curl -X POST -d "<jenkins><install plugin=\"git@latest\" /></jenkins>" --header 'Content-Type: text/xml' --user "admin:${2}" ${1}/pluginManager/installNecessaryPlugins
@@ -23,10 +14,8 @@ function install_jenkins_plugins() {
         while :
         do
                 sleep 5s
-        
+
                 resp=$(curl -s -o /dev/null -w "%{http_code}" $1/login)
-                echo $resp
-                echo $iters
                 if [ $resp = "200" ];
                 then
                         sudo echo "$(date): Restarted Jenkins" >> $3
@@ -40,5 +29,3 @@ function install_jenkins_plugins() {
                 fi
         done
 }
-
-install_jenkins_plugins $JENKINS_URL $JENKINS_TOKEN $LOGGING_URL
