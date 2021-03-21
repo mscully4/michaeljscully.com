@@ -1,24 +1,38 @@
 #!/bin/bash
 
-#Retrieve password
-PASSWORD=$(sudo cat /var/lib/jenkins/secrets/initialAdminPassword)
-JENKINS_CRUMB=$(curl -sS --cookie-jar ./cookie "http://admin:${3}@localhost:8080/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,\":\",//crumb)")
-
-JENKINS_TOKEN=$(curl -sS --cookie ./cookie -H $JENKINS_CRUMB "${1}/me/descriptorByName/jenkins.security.ApiTokenProperty/generateNewToken" -X POST --data 'newTokenName=jenkins' --user admin:$PASSWORD | jq .data.tokenValue | tr -d '\"' )
-JENKINS_URL='http://localhost:8080'
-JOB_NAME='michaeljscully.com'
-LOGGING_PATH=/home/ubuntu/log.txt
-
 function build_jenkins_job() {
-        sudo echo "$(date): Retrieved Jenkins Tokens" >> $4
-        
-        curl -vs -XPOST "$1/createItem?name=$2" -u "admin:${3}" --data-binary @/home/ubuntu/config.xml -H "Content-Type:text/xml" >> $4 2>&1
-        sudo echo "$(date): Submitted Job to Jenkins" >> $4
-        
+        #Create the job in Jenkins if it does not exist yet
+        if [ $(curl -o /dev/null -L -s -w "%{http_code}" "$1/job/$2/api/json" -u "admin:$3") == "200" ]; then
+                sudo echo "$(date): Job already exists in Jenkins" >> $4
+        else
+                curl -vs -XPOST "$1/createItem?name=$2" -u "admin:$3" --data-binary @/home/ubuntu/config.xml -H "Content-Type:text/xml"
+                sudo echo "$(date): Submitted Job to Jenkins" >> $4
+        fi
+
         sleep 5s
 
-        curl -XPOST "$1/job/$2/build" -u "admin:${JENKINS_TOKEN}"
-        sudo echo "$(date): Built the job" >> $4
+        LAST_BUILD_NUMBER=$(curl -sS "$1/job/$2/lastBuild/api/json" -u "admin:$3" | jq .number);
+
+        curl -XPOST "$1/job/$2/build" -u "admin:$3"
+        sudo echo "$(date): Building the job" >> $4
+
+        ITERS=0
+        while : 
+        do      
+                sleep 5s
+                BUILD_NUMBER=$(curl -sS "$1/job/$2/lastBuild/api/json" -u "admin:$3" | jq .number);
+                RESULT=$(curl -sS "$1/job/$2/lastBuild/api/json" -u "admin:$3" | jq .result | tr -d '\"');
+                if [[ $RESULT == 'SUCCESS' ]] && [[ $LAST_BUILD_NUMBER != $BUILD_NUMBER  ]]; then
+                        sudo echo "$(date): Build finished successfully" >> $4
+                        return 0;
+                elif [ $ITERS -ge 100 ];
+                then
+                        sudo echo "$(date): Build failed" >> $4
+                        return 1;
+                else 
+                        ITERS=$((ITERS+1));
+                        sudo echo "$(date): Build not finished yet" >> $4
+                fi
+        done
 }
 
-build_jenkins_job $JENKINS_URL $JOB_NAME $JENKINS_TOKEN $LOGGING_PATH
