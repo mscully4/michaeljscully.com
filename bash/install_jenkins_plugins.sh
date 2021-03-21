@@ -22,7 +22,7 @@ function install_jenkins_plugins() {
                 resp=$(curl -s -o /dev/null -w "%{http_code}" $1/login)
                 if [ $resp = "200" ];
                 then
-                        sudo echo "$(date): Restarted Jenkins" >> $3
+                        sudo echo "$(date): Jenkins has been restarted successfully" >> $3
                         return 0
                 elif [ $iters -ge 20 ];
                 then
@@ -30,6 +30,7 @@ function install_jenkins_plugins() {
                         return 1
                 else
                         iters=$((iters+1))
+                        sudo echo "$(date): Still waiting" >> $3
                 fi
         done
 }
