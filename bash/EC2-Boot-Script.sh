@@ -58,7 +58,7 @@ sudo chmod +x /home/ubuntu/install_jenkins_plugins.sh
 install_jenkins_plugins $JENKINS_URL $JENKINS_TOKEN $LOGGING_PATH
 sudo echo "$(date): Executed install_jenkins_plugins.sh" >> $LOGGING_PATH
 
-sleep 2s
+sleep 20s
 
 #Since Jenkins has restarted, a new token needs to be generated
 JENKINS_TOKEN=$(get_token $PASSWORD)
