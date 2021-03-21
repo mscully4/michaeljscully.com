@@ -21,6 +21,14 @@ sudo apt-get -y install nginx jenkins
 sudo apt -y install python3-pip nodejs openjdk-8-jdk gunicorn awscli jq
 sudo echo "$(date): Installed Packages" >> $LOGGING_PATH
 
+#Attach Elastic IP to Instance
+REGION="us-east-2"
+INSTANCE_ID=$(wget -q -O - http://169.254.169.254/latest/meta-data/instance-id)
+IP_ADDRESS=3.21.221.96
+
+aws ec2 associate-address --instance-id $INSTANCE_ID --region $REGION --public-ip $IP_ADDRESS
+sudo echo "$(date): Attached Elastic IP to instance" >> $LOGGING_PATH
+
 #Grant Jenkins Sudo Access
 echo "jenkins ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/jenkins
 sudo echo "$(date): Granted Jenkins Sudo Access" >> $LOGGING_PATH
@@ -63,18 +71,11 @@ sleep 20s
 #Since Jenkins has restarted, a new token needs to be generated
 JENKINS_TOKEN=$(get_token $PASSWORD)
 
+#Trigger a build in Jenkins
 sudo chmod +x /home/ubuntu/build_jenkins_job.sh
 . /home/ubuntu/build_jenkins_job.sh
 build_jenkins_job $JENKINS_URL $JOB_NAME $JENKINS_TOKEN $LOGGING_PATH
 sudo echo "$(date): Executed build_jenkins_job.sh" >> $LOGGING_PATH
-
-#Attach Elastic IP to Instance
-REGION="us-east-2"
-INSTANCE_ID=$(wget -q -O - http://169.254.169.254/latest/meta-data/instance-id)
-IP_ADDRESS=3.21.221.96
-
-aws ec2 associate-address --instance-id $INSTANCE_ID --region $REGION --public-ip $IP_ADDRESS
-sudo echo "$(date): Attached Elastic IP to instance" >> $LOGGING_PATH
 
 #Upload a copy of Jenkins Password to S3
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword >> /home/ubuntu/jenkins.txt
