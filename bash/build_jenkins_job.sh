@@ -12,9 +12,10 @@ function build_jenkins_job() {
         sleep 5s
 
         LAST_BUILD_NUMBER=$(curl -sS "$1/job/$2/lastBuild/api/json" -u "admin:$3" | jq .number);
+        
 
         curl -XPOST "$1/job/$2/build" -u "admin:$3"
-        sudo echo "$(date): Building the job" >> $4
+        sudo echo "$(date): Building the job, Last Build Number: $LAST_BUILD_NUMBER" >> $4
 
         ITERS=0
         while : 
@@ -31,7 +32,7 @@ function build_jenkins_job() {
                         return 1;
                 else 
                         ITERS=$((ITERS+1));
-                        sudo echo "$(date): Build not finished yet" >> $4
+                        sudo echo "$(date): Build not finished yet.  Build Number: $BUILD_NUMBER, Result: $RESULT" >> $4
                 fi
         done
 }
