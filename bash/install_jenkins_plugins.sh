@@ -7,7 +7,7 @@ function install_jenkins_plugins() {
         curl -X POST -d "<jenkins><install plugin=\"pipeline-model-definition@latest\" /></jenkins>" --header 'Content-Type: text/xml' --user "admin:${2}" ${1}/pluginManager/installNecessaryPlugins
         sudo echo "$(date): Installed Jenkins Plugins" >> $3
 
-        sleep 5s
+        sleep 30s
 
         #Restart Jenkins
         curl -X POST --user "admin:${2}" "${1}/safeRestart"
