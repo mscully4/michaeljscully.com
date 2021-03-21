@@ -13,7 +13,7 @@ function build_jenkins_job() {
 
         LAST_BUILD_NUMBER=$(curl -sS "$1/job/$2/lastBuild/api/json" -u "admin:$3" | jq .number);
         
-
+        
         curl -XPOST "$1/job/$2/build" -u "admin:$3"
         sudo echo "$(date): Building the job, Last Build Number: $LAST_BUILD_NUMBER" >> $4
 
@@ -26,7 +26,7 @@ function build_jenkins_job() {
                 if [[ $RESULT == 'SUCCESS' ]] && [[ $LAST_BUILD_NUMBER != $BUILD_NUMBER  ]]; then
                         sudo echo "$(date): Build finished successfully" >> $4
                         return 0;
-                elif [ $ITERS -ge 100 ];
+                elif [[ $RESULT == "FAILURE" ]] || [[ $ITERS -ge 100 ]];
                 then
                         sudo echo "$(date): Build failed" >> $4
                         return 1;
