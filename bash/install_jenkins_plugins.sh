@@ -1,3 +1,5 @@
+#! /bin/bash
+
 function install_jenkins_plugins() {
         #Install plugin
         curl -X POST -d "<jenkins><install plugin=\"git@latest\" /></jenkins>" --header 'Content-Type: text/xml' --user "admin:${2}" ${1}/pluginManager/installNecessaryPlugins
