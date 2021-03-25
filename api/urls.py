@@ -20,5 +20,5 @@ from . import views
 # from django.views.generic import ListView, DetailView
 
 urlpatterns = [
-    path('investing', views.Investing.as_view())
+    path('investing/<str:data>', views.Investing.as_view())
 ]

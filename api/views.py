@@ -7,16 +7,24 @@ from rest_framework.parsers import FileUploadParser
 import requests
 import pandas as pd
 
+import json 
+import requests
+
+BASE_URL = 'https://alpaca-algo-trading.s3.us-east-2.amazonaws.com'
+
 class Investing(APIView):
     #GET requests only
-    def get(self, request, format=None):
+    def get(self, request, data, format=None):
         '''
-        Return the user's token information combined with destination data
+        Return portfolio information
         '''
-        df = pd.read_json('https://alpaca-algo-trading.s3.us-east-2.amazonaws.com/positions.json')
-        df = df[df['Date'] == df['Date'].max()]
-
-        data = {
-            "holdings": df.to_json(orient='records')
-        }
-        return Response(data)
+        if data == "positions":
+            df = pd.read_json(f'{BASE_URL}/positions.json')
+            df = df[df['Date'] == df['Date'].max()]
+            return Response(data={"holdings": df.to_json(orient='records')})
+        elif data == 'transfers':
+            return Response(data={'transfers': requests.get(f'{BASE_URL}/transfers.json').text})
+        elif data == 'returns':
+            return Response(data={'returns': requests.get(f'{BASE_URL}/portfolio_value.json').text})
+        else:
+            return Response(status=404)
