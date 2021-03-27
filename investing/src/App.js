@@ -45,7 +45,9 @@ class App extends React.Component {
           returns: JSON.parse(data.returns).map(el => {
             return {
               ...el,
-              net: el['Total Value'] - el['Total Cost'],
+              total_value: el['Total Value'].toFixed(2),
+              total_cost: el['Total Cost'].toFixed(2),
+              net: (el['Total Value'] - el['Total Cost']).toFixed(2),
               Date: new Date(el.Date),
             }
           })
