@@ -1,6 +1,16 @@
 import React from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
-import moment from 'moment'
+import { LineChart, Legend, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
+import { dateFormatter } from './utils.js';
+import { interpolateRdYlGn } from 'd3-scale-chromatic'
+
+const styles = {
+  toolTip: {
+    padding: "5px 10px",
+    backgroundColor: "#fff",
+    border: 'solid 2px #ccc',
+    boxShadow: '0 0 3px #ccc'
+  }
+};
 
 class Returns extends React.Component {
   constructor(props) {
@@ -10,21 +20,37 @@ class Returns extends React.Component {
     }
   }
 
-  render = () => {
+  CustomTooltip = ({ active, payload, label }) => {
+    if (active && payload && payload.length) {
+      const data = payload[0].payload;
+      return (
+        <div style={styles.toolTip}>
+          <p className="label">{`Date: ${dateFormatter(label)}`}</p>
+          <p className="desc">{`Total Value: $${data.total_value}`}</p>
+          <p className="desc">{`Total Cost: $${data.total_cost}`}</p>
+          <p className="desc">{`Net: $${data.net}`}</p>
+        </div>
+      );
+    }
+  
+    return null;
+  };
 
+  render = () => {
     return (
       <LineChart width={500} height={300} data={this.props.data}>
         <XAxis
           dataKey='Date'
           domain={['auto', 'auto']}
           name='Date'
-          tickFormatter={(unixTime) => moment(unixTime).format('M-D-Y')}
+          tickFormatter={dateFormatter}
         />
-        <YAxis domain={['auto', 'auto']} />
+        <YAxis domain={[0, 'auto']} />
         <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
-        <Line type="monotone" dataKey="Total Cost" stroke="#8884d8" />
-        <Line type="monotone" dataKey="Total Value" stroke="#82ca9d" />
-        <Line type="monotone" dataKey="net" stroke="#82ca9d" />
+        <Tooltip content={this.CustomTooltip}/>
+        <Legend />
+        <Line type="monotone" dataKey="Total Cost" stroke={interpolateRdYlGn(0)} />
+        <Line type="monotone" dataKey="Total Value" stroke={interpolateRdYlGn(1)} />
       </LineChart>
     )
   }
