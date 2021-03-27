@@ -1,7 +1,9 @@
 .projects-container {
+    margin-top: 5%;
     display: grid;
     grid-template-rows: auto;
     grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 5vh;
 }
 
 .projects-project {
@@ -9,7 +11,7 @@
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr;
     width: 90%;
-    min-height: 15em;
+    height: 30vh;
     margin: 5% 5%;
     align-items: center;
     text-decoration: none;
@@ -33,21 +35,13 @@
     font-family: "Garamond";
     font-size: 1.5vw;
     margin: auto 2.5%;
+    text-align: center
 }
 
 /*Individual Pages*/
 .project {
     width: 90%;
-    min-height: 15em;
-}
-
-.individual-project-info {
-    width: 450px;
-    height: auto;
-    font-family: "Garamond";
-    margin-left: 20px;
-    margin-bottom: 20px;
-    float: left;
+    margin-top: 5vh;
 }
 
 .project-info-wrapper {
@@ -67,12 +61,12 @@
 .project-text {
     margin: 5% 2.5%;
     font-family: "Garamond";
-    font-size: 20px;
+    font-size: 2vw;
 }
 
 .project-description {
     display: block;
     font-family: "Garamond";
-    font-size: 20px;
+    font-size: 140%;
     text-indent: 20px;
 }
