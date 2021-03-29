@@ -20,7 +20,7 @@ class Investing(APIView):
         '''
         if data == "positions":
             df = pd.read_json(f'{BASE_URL}/positions.json')
-            df = df[df['Date'] == df['Date'].max()]
+            df = df[df['date'] == df['date'].max()]
             return Response(data={"holdings": df.to_json(orient='records')})
         elif data == 'transfers':
             return Response(data={'transfers': requests.get(f'{BASE_URL}/transfers.json').text})

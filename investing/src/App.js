@@ -5,7 +5,7 @@ import React from 'react';
 import TreeMap from './TreeMap.js'
 import Returns from './Returns.js'
 
-const BASE_URL = 'http://localhost:8000/api/investing'
+import { MEASURE_DOLLARS, MEASURE_PERCENT, BASE_URL } from './constants.js'
 
 class App extends React.Component {
   constructor(props) {
@@ -13,7 +13,10 @@ class App extends React.Component {
     this.state = {
       positions: null,
       returns: null,
-      transfers: null
+      transfers: null,
+
+      // measure: MEASURE_PERCENT,
+      measure: MEASURE_DOLLARS
     }
   }
 
@@ -23,12 +26,11 @@ class App extends React.Component {
       res.json().then(data => {
         if (!this.state.data) {
           var holdings = JSON.parse(data.holdings).map(element => {
-            const net_gain = element['Total Value'] - element['Total Cost'];
+            const net = element.total_value - element.total_cost;
             return {
               ...element,
-              name: element['Symbol'],
-              net_gain: net_gain,
-              percentage_gain: net_gain / element['Total Cost']
+              net: net,
+              percentage_gain: net / element.total_cost
             }
           });
           this.setState({
@@ -43,12 +45,14 @@ class App extends React.Component {
       res.json().then(data => {
         this.setState({
           returns: JSON.parse(data.returns).map(el => {
+            const net = el.total_value - el.total_cost
             return {
               ...el,
-              total_value: el['Total Value'].toFixed(2),
-              total_cost: el['Total Cost'].toFixed(2),
-              net: (el['Total Value'] - el['Total Cost']).toFixed(2),
-              Date: new Date(el.Date),
+              // total_value: el.total_value,
+              // total_cost: el.total_cost,
+              net: net,
+              percentage_gain: (net / el.total_cost) * 100,
+              date: new Date(el.date),
             }
           })
         })
@@ -68,9 +72,10 @@ class App extends React.Component {
 
   render = () => {
     if (this.state.holdings) {
-        const treeMap = (<TreeMap holdings={this.state.holdings}/>)
-        const returns = (<Returns data={this.state.returns}/>)
-        return returns
+        return <div>
+          <TreeMap holdings={this.state.holdings} measure={this.state.measure}/>
+          <Returns data={this.state.returns} measure={this.state.measure} />
+        </div>
     } else {
       return <div></div>
     }
