@@ -1,10 +1,16 @@
 import React from 'react';
-import { LineChart, Legend, Line, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
-import { MEASURE_DOLLARS, MEASURE_PERCENT} from './constants.js'
+import { LineChart, Legend, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { MEASURE_DOLLARS, MEASURE_PERCENT } from './constants.js'
 import { dateFormatter, percentageFormatter, dollarFormatter } from './utils.js';
 import { interpolateRdYlGn } from 'd3-scale-chromatic'
+import clsx from 'clsx';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
+  graphContainer: {
+    position: 'absolute',
+    left: "60%",
+  },
   toolTip: {
     padding: "5px 10px",
     backgroundColor: "#fff",
@@ -52,40 +58,46 @@ class Returns extends React.Component {
   }
 
   render = () => {
-    console.log(this.props.data)
+    const classes = this.props.classes;
+    console.log(classes)
     if (this.props.measure === MEASURE_PERCENT) {
       return (
-        <LineChart width={500} height={300} data={this.props.data}>
-          <XAxis
-            dataKey='date'
-            domain={['auto', 'auto']}
-            name='Date'
-            tickFormatter={dateFormatter}
-          />
-          <YAxis domain={['auto', 'auto']} tickFormatter={percentageFormatter} />
-          <CartesianGrid stroke="#bbb" strokeDasharray="5 5" />
-          <Tooltip content={this.CustomTooltip} />
-          <Legend formatter={this.legendFormatter} />
-          <Line type="monotone" dataKey="percentage_gain" stroke="#000" />
-        </LineChart>
+        <ResponsiveContainer height={"30%"} width={"%30"} className={clsx(classes.graphContainer)}>
+          <LineChart data={this.props.data}>
+            <XAxis
+              dataKey='date'
+              domain={['auto', 'auto']}
+              name='Date'
+              tickFormatter={dateFormatter}
+            />
+            <YAxis domain={['auto', 'auto']} tickFormatter={percentageFormatter} />
+            <CartesianGrid stroke="#bbb" strokeDasharray="5 5" />
+            <Tooltip content={this.CustomTooltip} />
+            <Legend formatter={this.legendFormatter} />
+            <Line type="monotone" dataKey="percentage_gain" stroke="#000" />
+          </LineChart>
+        </ResponsiveContainer>
       )
     }
     else if (this.props.measure === MEASURE_DOLLARS) {
       return (
-        <LineChart width={500} height={300} data={this.props.data}>
-          <XAxis
-            dataKey='date'
-            domain={["auto", "auto"]}
-            name='Date'
-            tickFormatter={dateFormatter}
-          />
-          <YAxis domain={[0, 'auto']} tickFormatter={(t) => dollarFormatter(t, 0)} />
-          <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
-          <Tooltip content={this.CustomTooltip} />
-          <Legend formatter={this.legendFormatter} />
-          <Line type="monotone" dataKey="total_value" stroke={interpolateRdYlGn(1)} />
-          <Line type="monotone" dataKey="total_cost" stroke={interpolateRdYlGn(0)} />
-        </LineChart>
+        <ResponsiveContainer height={"30%"} width={"30%"} className={clsx(classes.graphContainer)}>
+          <LineChart data={this.props.data}>
+            <XAxis
+              dataKey='date'
+              domain={["auto", "auto"]}
+              name='Date'
+              tickFormatter={dateFormatter}
+            />
+            <YAxis domain={[0, 'auto']} tickFormatter={(t) => dollarFormatter(t, 0)} />
+            <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
+            <Tooltip content={this.CustomTooltip} />
+            <Legend formatter={this.legendFormatter} />
+            <Line type="monotone" dataKey="total_value" stroke={"#000"} />
+            <Line type="monotone" dataKey="total_cost" stroke={interpolateRdYlGn(0)} />
+          </LineChart>
+        </ResponsiveContainer>
+
       )
     }
     else {
@@ -93,5 +105,4 @@ class Returns extends React.Component {
     }
   }
 }
-
-export default Returns;
+export default withStyles(styles)(Returns);

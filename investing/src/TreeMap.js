@@ -3,11 +3,17 @@ import { ResponsiveContainer, Treemap, Tooltip } from 'recharts';
 import { interpolateRdYlGn } from 'd3-scale-chromatic'
 import { dateFormatter, percentageFormatter, dollarFormatter } from './utils.js';
 import { MEASURE_DOLLARS, MEASURE_PERCENT } from './constants.js'
+import { withStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
 
 const measure_percent = 'percent'
 const measure_dollars = 'dollars'
 
 const styles = {
+  container: {
+    position: 'absolute',
+    marginLeft: '7.5%'
+  },
   toolTip: {
     padding: "5px 10px",
     backgroundColor: "#fff",
@@ -18,13 +24,14 @@ const styles = {
 
 class CustomizedContent extends React.PureComponent {
   render() {
-    const { depth, x, y, width, height, max, min, measure, symbol } = this.props;
+    const { depth, x, y, width, height, max, min, valueField, symbol } = this.props;
 
     var v;
-    if (this.props[measure] > 0) {
-      v = ((this.props[measure] / max) * .5) + .5
+    // console.log(this.props)
+    if (this.props[valueField] > 0) {
+      v = ((this.props[valueField] / max) * .5) + .5
     } else {
-      v = .5 - ((this.props[measure] / min) * .5)
+      v = .5 - ((this.props[valueField] / min) * .5)
     }
 
     const color = interpolateRdYlGn(v)
@@ -70,10 +77,12 @@ class TreeMap extends React.Component {
 
   CustomTooltip = (props) => {
     if (props.active && props.payload && props.payload.length) {
+      console.log(props.payload[0].payload)
       if (this.props.measure === MEASURE_PERCENT) {
         return (
           <div style={styles.toolTip}>
-            <p>{props.payload[0].Symbol}</p>
+            <p>{props.payload[0].payload.symbol}</p>
+            <p>{props.payload[0].payload.name}</p>
             <p>Shares Owned: {props.payload[0].payload.quantity.toFixed(3)}</p>
             <p>Percent Gain: {percentageFormatter(props.payload[0].payload.percentage_gain * 100, 2)}</p>
           </div>
@@ -81,7 +90,8 @@ class TreeMap extends React.Component {
       } else if (this.props.measure === MEASURE_DOLLARS) {
         return (
           <div style={styles.toolTip}>
-            <p>{props.payload[0].Symbol}</p>
+            <p>{props.payload[0].payload.symbol}</p>
+            <p>{props.payload[0].payload.name}</p>
             <p>Shares Owned: {props.payload[0].payload.quantity.toFixed(3)}</p>
             {/* <p >Latest Price: {dollarFormatter(props.payload[0].payload.latest_price, 2)}</p> */}
             {/* <p >Cost Basis: {dollarFormatter(props.payload[0].payload.average_cost, 2)}</p> */}
@@ -97,13 +107,14 @@ class TreeMap extends React.Component {
   };
 
   render = () => {
-    const measure = this.props.measure ? "percentage_gain" : 'net'
-    const max = Math.max.apply(Math, this.props.holdings.map(el => { return el[measure] }))
-    const min = Math.min.apply(Math, this.props.holdings.map(el => { return el[measure] }))
+    const classes = this.props.classes;
+    const valueField = this.props.measure === MEASURE_DOLLARS ? 'net' : 'percentage_gain';
+    const max = Math.max.apply(Math, this.props.holdings.map(el => { return el[valueField] }))
+    const min = Math.min.apply(Math, this.props.holdings.map(el => { return el[valueField] }))
 
-    if (this.props.measure === measure_dollars) {
+    // if (this.props.measure === measure_dollars) {
       return (
-        <ResponsiveContainer height={800} width={800}>
+        <ResponsiveContainer height={"80%"} width={"50%"} className={clsx(classes.container)}>
           <Treemap
             data={this.props.holdings}
             dataKey="total_value"
@@ -111,32 +122,32 @@ class TreeMap extends React.Component {
             ratio={4 / 3}
             label={true}
             isAnimationActive={false}
-            content={<CustomizedContent max={max} min={min} measure={measure} />}
+            content={<CustomizedContent max={max} min={min} valueField={valueField} />}
           >
             <Tooltip content={this.CustomTooltip} />
           </Treemap>
         </ResponsiveContainer>
       )
-    } else if (this.props.measure === measure_percent) {
-      return (
-        <ResponsiveContainer height={800} width={800}>
-          <Treemap
-            data={this.props.holdings}
-            dataKey="total_value"
-            nameKey="symbol"
-            ratio={4 / 3}
-            label={true}
-            isAnimationActive={false}
-            content={<CustomizedContent max={max} min={min} measure={measure} />}
-          >
-            <Tooltip content={this.CustomTooltip} />
-          </Treemap>
-        </ResponsiveContainer>
-      )
-    } else {
-      return <div></div>
-    }
+    // } else if (this.props.measure === measure_percent) {
+    //   return (
+    //     <ResponsiveContainer height={800} width={800}>
+    //       <Treemap
+    //         data={this.props.holdings}
+    //         dataKey="total_value"
+    //         nameKey="symbol"
+    //         ratio={4 / 3}
+    //         label={true}
+    //         isAnimationActive={false}
+    //         content={<CustomizedContent max={max} min={min} valueField={valueField} />}
+    //       >
+    //         <Tooltip content={this.CustomTooltip} />
+    //       </Treemap>
+    //     </ResponsiveContainer>
+    //   )
+    // } else {
+    //   return <div></div>
+    // }
   }
 }
 
-export default TreeMap;
+export default withStyles(styles)(TreeMap);
