@@ -12,7 +12,8 @@ const measure_dollars = 'dollars'
 const styles = {
   container: {
     position: 'absolute',
-    marginLeft: '7.5%'
+    marginLeft: '7.5%',
+    boxShadow: '0 0 5px #000'
   },
   toolTip: {
     padding: "5px 10px",
@@ -77,7 +78,6 @@ class TreeMap extends React.Component {
 
   CustomTooltip = (props) => {
     if (props.active && props.payload && props.payload.length) {
-      console.log(props.payload[0].payload)
       if (this.props.measure === MEASURE_PERCENT) {
         return (
           <div style={styles.toolTip}>
@@ -112,41 +112,21 @@ class TreeMap extends React.Component {
     const max = Math.max.apply(Math, this.props.holdings.map(el => { return el[valueField] }))
     const min = Math.min.apply(Math, this.props.holdings.map(el => { return el[valueField] }))
 
-    // if (this.props.measure === measure_dollars) {
-      return (
-        <ResponsiveContainer height={"80%"} width={"50%"} className={clsx(classes.container)}>
-          <Treemap
-            data={this.props.holdings}
-            dataKey="total_value"
-            nameKey="symbol"
-            ratio={4 / 3}
-            label={true}
-            isAnimationActive={false}
-            content={<CustomizedContent max={max} min={min} valueField={valueField} />}
-          >
-            <Tooltip content={this.CustomTooltip} />
-          </Treemap>
-        </ResponsiveContainer>
-      )
-    // } else if (this.props.measure === measure_percent) {
-    //   return (
-    //     <ResponsiveContainer height={800} width={800}>
-    //       <Treemap
-    //         data={this.props.holdings}
-    //         dataKey="total_value"
-    //         nameKey="symbol"
-    //         ratio={4 / 3}
-    //         label={true}
-    //         isAnimationActive={false}
-    //         content={<CustomizedContent max={max} min={min} valueField={valueField} />}
-    //       >
-    //         <Tooltip content={this.CustomTooltip} />
-    //       </Treemap>
-    //     </ResponsiveContainer>
-    //   )
-    // } else {
-    //   return <div></div>
-    // }
+    return (
+      <ResponsiveContainer height={"80%"} width={"50%"} className={clsx(classes.container)}>
+        <Treemap
+          data={this.props.holdings}
+          dataKey="total_value"
+          nameKey="symbol"
+          ratio={4 / 3}
+          label={true}
+          isAnimationActive={false}
+          content={<CustomizedContent max={max} min={min} valueField={valueField} />}
+        >
+          <Tooltip content={this.CustomTooltip} />
+        </Treemap>
+      </ResponsiveContainer>
+    )
   }
 }
 

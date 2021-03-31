@@ -59,22 +59,21 @@ class Returns extends React.Component {
 
   render = () => {
     const classes = this.props.classes;
-    console.log(classes)
     if (this.props.measure === MEASURE_PERCENT) {
       return (
-        <ResponsiveContainer height={"30%"} width={"%30"} className={clsx(classes.graphContainer)}>
+        <ResponsiveContainer height={"30%"} width={"30%"} className={clsx(classes.graphContainer)}>
           <LineChart data={this.props.data}>
             <XAxis
               dataKey='date'
-              domain={['auto', 'auto']}
+              domain={["auto", "auto"]}
               name='Date'
               tickFormatter={dateFormatter}
             />
-            <YAxis domain={['auto', 'auto']} tickFormatter={percentageFormatter} />
-            <CartesianGrid stroke="#bbb" strokeDasharray="5 5" />
+            <YAxis domain={[0, 'auto']} tickFormatter={percentageFormatter} />
+            <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
             <Tooltip content={this.CustomTooltip} />
             <Legend formatter={this.legendFormatter} />
-            <Line type="monotone" dataKey="percentage_gain" stroke="#000" />
+            <Line type="monotone" dataKey="percentage_gain" stroke={"#000"} />
           </LineChart>
         </ResponsiveContainer>
       )
@@ -101,7 +100,7 @@ class Returns extends React.Component {
       )
     }
     else {
-      return <div></div>
+      return <div>asdfs</div>
     }
   }
 }

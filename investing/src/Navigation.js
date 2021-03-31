@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
 import clsx from 'clsx';
+import { OFF_BLACK } from './constants.js'
 
 const styles = theme => ({
   navigationBar: {
-    backgroundColor: "blue", //OFF_BLACK_1,
+    backgroundColor: OFF_BLACK,
     display: 'grid',
     gridTemplateRows: '1fr',
     gridTemplateColumns: 'auto 1fr',
@@ -14,12 +15,13 @@ const styles = theme => ({
     height: '7.5vh',
   },
   logo: {
-    // fontFamily: "Allura",
-    fontSize: '1vw',
-    color: 'red', //ICE_BLUE,
+    fontFamily: "Allura",
+    fontSize: '2.5vw',
+    color: '#fff', //ICE_BLUE,
     paddingLeft: '2vw ',
     textAlign: 'left',
-    marginBottom: 0
+    marginBottom: 0,
+    marginTop: 0
   },
   menu: {
     position: 'fixed',
@@ -29,14 +31,14 @@ const styles = theme => ({
     width: '5vw',
     boxShadow: `0 0 4px #000 !important`,
     borderRadius: 6,
-    backgroundColor: "orange", //OFF_BLACK_1
+    backgroundColor: "#fff", //OFF_BLACK_1
     zIndex: 9999
 
   },
   card: {
     boxShadow: '0 0 4px #000 !important',
     borderRadius: 6,
-    backgroundColor: "yellow", //ICE_BLUE,
+    backgroundColor: "#fff", //ICE_BLUE,
     cursor: 'pointer',
     width: '80%',
     paddingTop: '80%',
@@ -56,7 +58,7 @@ const styles = theme => ({
     margin: 'auto',
     left: 0,
     right: 0,
-    fill: "green", //OFF_BLACK_1,
+    fill: "#000", //OFF_BLACK_1,
   }
 })
 

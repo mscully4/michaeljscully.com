@@ -25,9 +25,9 @@ const styles = {
     marginLeft: '7.5%'
   },
   switchBase: {
-    color: 'blue',
+    color: '#000',
     '&$checked': {
-      color: 'blue',
+      color: '#000',
       '& + $track': {
         backgroundColor: '#999',
         opacity: 1,
