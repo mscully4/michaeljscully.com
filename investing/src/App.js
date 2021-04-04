@@ -63,7 +63,11 @@ class App extends React.Component {
     fetch(BASE_URL + '/transfers').then(res => {
       res.json().then(data => {
         this.setState({
-          transfers: JSON.parse(data.transfers)
+          transfers: JSON.parse(data.transfers).map((el) => {
+            el.net_amount = parseInt(el.net_amount)
+            el.date = new Date(el.date)
+            return el
+          })
         })
       })
     })
