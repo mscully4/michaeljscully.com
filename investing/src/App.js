@@ -1,10 +1,6 @@
 import React from 'react';
 // import './App.css';
 
-import TreeMap from './TreeMap.js'
-import Returns from './Returns.js'
-import Navigation from './Navigation.js';
-import { Switch, Grid } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import Home from './Home.js'
 
