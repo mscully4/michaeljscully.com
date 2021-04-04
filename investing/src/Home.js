@@ -5,6 +5,8 @@ import React from 'react';
 import TreeMap from './TreeMap.js'
 import Returns from './Returns.js'
 import Navigation from './Navigation.js';
+import DataTable from './Table.js';
+
 import { Switch, Grid } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
@@ -87,6 +89,10 @@ class Home extends React.Component {
     return this.props.returns ? (<Returns data={this.props.returns} measure={measure} />) : null;
   }
 
+  renderDataTable = () => {
+    return this.props.transfers && this.props.account ? (<DataTable account={this.props.account} transfers={this.props.transfers}/>) : null;
+  }
+
   render = () => {
     const classes = this.props.classes;
     const measure = this.state.measure;
@@ -97,7 +103,7 @@ class Home extends React.Component {
         {this.renderSwitch(measure)}
         {this.renderTreeMap(measure)}
         {this.renderReturnGraph(measure)}
-
+        {this.renderDataTable()}
       </div>
     )
   }

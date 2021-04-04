@@ -71,6 +71,23 @@ class App extends React.Component {
         })
       })
     })
+
+    //Get account info
+    fetch(BASE_URL + "/account").then(res => {
+      res.json().then(data => {
+        const account = JSON.parse(data.account);
+        console.log(account)
+        this.setState({
+          account: {
+            ...account,
+            long_market_value: parseFloat(account.long_market_value),
+            cash: parseFloat(account.cash),
+            equity: parseFloat(account.equity)
+          }
+        })
+      })
+    })
+
   }
 
   render = () => {
@@ -79,6 +96,7 @@ class App extends React.Component {
       positions={this.state.positions}
       returns={this.state.returns}
       transfers={this.state.transfers}
+      account={this.state.account}
       />
     )
   }

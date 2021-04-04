@@ -26,5 +26,7 @@ class Investing(APIView):
             return Response(data={'transfers': requests.get(f'{BASE_URL}/transfers.json').text})
         elif data == 'returns':
             return Response(data={'returns': requests.get(f'{BASE_URL}/portfolio_value.json').text})
+        elif data == "account":
+            return Response(data={'account': requests.get(f'{BASE_URL}/account.json').text})
         else:
             return Response(status=404)
