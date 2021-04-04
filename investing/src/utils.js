@@ -1,5 +1,5 @@
 export const dateFormatter = (date) => {
-  return `${1 + date.getMonth()}/${1 + date.getDate()}/${date.getFullYear().toString().substr(-2)}`
+  return date.toISOString().split("T")[0];
 }
 
 export const percentageFormatter = (num) => {
@@ -10,6 +10,6 @@ export const dollarFormatter = (num, decimalPlaces) => {
   if (num >= 0) {
     return `$${num.toFixed(decimalPlaces)}`
   } else {
-    return `-$${Math.abs(num).toFixed(decimalPlaces)}`
+    return `($${Math.abs(num).toFixed(decimalPlaces)})`
   }
 }
