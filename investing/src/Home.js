@@ -15,10 +15,7 @@ import clsx from 'clsx';
 
 import { MEASURE_DOLLARS, MEASURE_PERCENT, BASE_URL } from './constants.js'
 
-const measureEnum = {
-  MEASURE_DOLLARS: true,
-  MEASURE_PERCENT: false
-}
+const measureEnum = [MEASURE_DOLLARS, MEASURE_PERCENT]
 
 const styles = {
   //Switch
@@ -48,14 +45,16 @@ class Home extends React.Component {
     super(props)
     this.state = {
 
-      // measure: MEASURE_PERCENT,
-      measure: MEASURE_DOLLARS
+      //0 is dollars, 1 is percent
+      measure: 0
     }
   }
 
   switchOnChange = (e, value) => {
-    this.setState({
-      measure: value ? MEASURE_PERCENT : MEASURE_DOLLARS
+    this.setState(prevState => {
+      return {
+        measure: Math.abs(prevState.measure - 1)
+      }
     })
   }
 
@@ -95,7 +94,7 @@ class Home extends React.Component {
 
   render = () => {
     const classes = this.props.classes;
-    const measure = this.state.measure;
+    const measure = measureEnum[this.state.measure];
 
     return (
       <div>
