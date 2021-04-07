@@ -32,17 +32,17 @@ class App extends React.Component {
   }
 
 
-render = () => {
-  if (this.state.holdings) {
-    return (
-          <Home 
-            holdings={this.state.holdings}
-          />
-    )
+  render = () => {
+    if (this.state.holdings) {
+      return (
+        <Home
+          holdings={this.state.holdings}
+        />
+      )
     } else {
       return <div></div>
     }
-}
+  }
 }
 
 export default App;
