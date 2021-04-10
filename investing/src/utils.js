@@ -2,8 +2,8 @@ export const dateFormatter = (date) => {
   return date.toISOString().split("T")[0];
 }
 
-export const percentageFormatter = (num) => {
-  return `${(num).toFixed(2)}%`
+export const percentageFormatter = (num, decimalPlaces) => {
+  return `${(num).toFixed(decimalPlaces)}%`
 }
 
 export const dollarFormatter = (num, decimalPlaces) => {
