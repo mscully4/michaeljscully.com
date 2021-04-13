@@ -9,11 +9,6 @@ import Chart from "react-apexcharts";
 
 
 const styles = {
-  graphContainer: {
-    position: 'absolute',
-    top: "60%",
-    left: "7.5%",
-  },
   toolTip: {
     padding: "5px 10px",
     backgroundColor: "#fff",
@@ -104,7 +99,7 @@ class Returns extends React.Component {
       chartOptions.yaxis.title = "Percent"
 
       return (
-        <ResponsiveContainer height={"30%"} width={"40%"} className={clsx(classes.graphContainer)}>
+        <ResponsiveContainer height={"100%"} width={"100%"}>
           <Chart options={chartOptions} series={chartSeries} type="area" />
         </ResponsiveContainer>
       )
@@ -122,10 +117,9 @@ class Returns extends React.Component {
       chartOptions.yaxis.title = "Dollars"
 
       return (
-        <ResponsiveContainer height={"30%"} width={"40%"} className={clsx(classes.graphContainer)}>
+        <ResponsiveContainer height={"100%"} width={"100%"}>
           <Chart options={chartOptions} series={chartSeries} type="area" />
         </ResponsiveContainer>
-
       )
     }
     else {

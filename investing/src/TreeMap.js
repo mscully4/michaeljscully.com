@@ -7,13 +7,6 @@ import { withStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 
 const styles = {
-  container: {
-    position: 'absolute',
-    top: '15%',
-    left: '50%',
-    // boxShadow: '0 0 5px #000',
-    cursor: 'pointer',
-  },
   toolTip: {
     padding: "5px 10px",
     backgroundColor: "#fff",
@@ -112,7 +105,7 @@ class TreeMap extends React.Component {
     const min = Math.min.apply(Math, this.props.holdings.map(el => { return el[valueField] }))
 
     return (
-      <ResponsiveContainer height={"70%"} width={"45%"} className={clsx(classes.container)}>
+      <ResponsiveContainer height={"100%"} width={"100%"}>
         <Treemap
           cursor="pointer"
           data={this.props.holdings}

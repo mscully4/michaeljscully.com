@@ -12,12 +12,6 @@ import clsx from 'clsx';
 import { dollarFormatter } from './utils.js'
 
 const styles = {
-  tableContainer: {
-    position: 'absolute',
-    top: '20%',
-    left: '27.5%',
-    width: '20%',
-  },
   row: {
     paddingTop: '5%',
     paddingBottom: '5%'
@@ -40,7 +34,7 @@ class DataTable extends React.Component {
     }, 0)
 
     return (
-      <TableContainer component={Paper} className={classes.tableContainer}>
+      <TableContainer component={Paper}>
         <Table className={classes.table} size='small'>
           <TableBody>
             <TableRow key={"cash"}>
