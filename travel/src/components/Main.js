@@ -73,8 +73,6 @@ class Main extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      ready: false,
-
       //General
       selectedCity: null,
       selectedPlace: null,
@@ -106,9 +104,6 @@ class Main extends React.Component {
   }
 
   componentDidMount = () => {
-    this.setState({
-      user: this.props.user
-    })
   }
 
   changeHoverIndexCity = (index) => {
@@ -123,11 +118,11 @@ class Main extends React.Component {
     })
   }
 
-  setClosestCity = (cities, centerLat, centerLong) => {
+  setClosestCity = (destinations, centerLat, centerLong) => {
     var lowest = 99999999, lowestIndex = null, distance
 
-    if (cities.length > 0)
-      cities.forEach((obj, i) => {
+    if (destinations.length > 0)
+      destinations.forEach((obj, i) => {
         distance = getDistanceBetweenTwoPoints(centerLat, centerLong, obj.latitude, obj.longitude);
         if (distance < lowest) {
           lowest = distance;
@@ -135,7 +130,7 @@ class Main extends React.Component {
         }
       })
 
-    const closestCity = { ...cities[lowestIndex], distanceFromMapCenter: lowest }
+    const closestCity = { ...destinations[lowestIndex], distanceFromMapCenter: lowest }
 
     this.setState({
       closestCity: closestCity
@@ -169,6 +164,7 @@ class Main extends React.Component {
   }
 
   onMarkerClick = (obj) => {
+    const photos = this.props.photos;
     if (this.state.granularity === 1) {
       this.changeMapCenter(obj)
       this.changeGranularity(GRANULARITY_CUTOFF + 1)
@@ -179,7 +175,7 @@ class Main extends React.Component {
     } else if (this.state.granularity === 0) {
       this.setState({
         selectedPlace: obj,
-        preparedImages: obj.images,
+        preparedImages: obj.destination_id in photos && obj.place_id in photos[obj.destination_id] ? photos[obj.destination_id][obj.place_id] : [],
         galleryOpen: true,
       })
     }
@@ -187,6 +183,8 @@ class Main extends React.Component {
 
   //Table Functions
   tableRowClick = (obj, e) => {
+    const data = obj.rowData;
+    const photos = this.props.photos;
     if (this.state.granularity === 1) {
       this.setState({
         selectedCity: obj.rowData,
@@ -196,9 +194,10 @@ class Main extends React.Component {
         hoverIndexCity: null
       })
     } else if (this.state.granularity === 0) {
+
       this.setState({
-        selectedPlace: obj.rowData,
-        preparedImages: obj.rowData.images,
+        selectedPlace: data,
+        preparedImages: data.destination_id in photos && data.place_id in photos[data.destination_id] ? photos[data.destination_id][data.place_id] : [],
         //The kill attribute make sure that an icon within the row isn't being clicked
         galleryOpen: obj.event.target.getAttribute("value") !== "KILL" ? true : false,
       })
@@ -256,9 +255,11 @@ class Main extends React.Component {
 
 
   render() {
+    // this.props.getPlaceList()
     const classes = this.props.classes;
-    var cities = this.props.cities;
+    var destinations = this.props.destinations;
     var places = this.props.places;
+    var albums = this.props.albums;
     if (this.props.ready) {
       return (
         <div className={clsx(classes.page)}>
@@ -268,10 +269,10 @@ class Main extends React.Component {
               <p className={clsx(classes.title)}>My Travel Map</p>
               <div className={clsx(classes.factDiv)}>
                 <p className={clsx(classes.factLine)} style={{ textIndent: 0 }}>{"I've Visited: "}</p>
-                <p className={clsx(classes.factLine)}>{`${[...new Set(this.props.cities.map(el => el.country_code))].length} Countries`}</p>
-                <p className={clsx(classes.factLine)}>{`${this.props.cities.filter(el => el.classifier === 1).length} Cities`}</p>
-                <p className={clsx(classes.factLine)}>{`${this.props.cities.filter(el => el.classifier === 2).length} National Parks`}</p>
-                <p className={clsx(classes.factLine)}>{`${this.props.cities.filter(el => el.classifier === 3).length} National Monuments`}</p>
+                <p className={clsx(classes.factLine)}>{`${[...new Set(this.props.destinations.map(el => el.country_code))].length} Countries`}</p>
+                <p className={clsx(classes.factLine)}>{`${this.props.destinations.filter(el => el.type === 1).length} Cities`}</p>
+                <p className={clsx(classes.factLine)}>{`${this.props.destinations.filter(el => el.type === 2).length} National Parks`}</p>
+                <p className={clsx(classes.factLine)}>{`${this.props.destinations.filter(el => el.type === 3).length} National Monuments`}</p>
               </div>
             </div>
 
@@ -279,10 +280,11 @@ class Main extends React.Component {
               <Map
                 center={this.state.mapCenter}
                 zoom={this.state.mapZoom}
-                cities={cities}
+                destinations={destinations}
                 places={places}
                 hoverIndex={this.state.granularity ? this.state.hoverIndexCity : this.state.hoverIndexPlace}
                 changeHoverIndex={this.state.granularity ? this.changeHoverIndexCity : this.changeHoverIndexPlace}
+                closestCity={this.state.closestCity}
                 setClosestCity={this.setClosestCity}
                 markerClick={this.onMarkerClick}
                 granularity={this.state.granularity}
@@ -291,8 +293,9 @@ class Main extends React.Component {
               />
 
               <Table
-                cities={cities}
+                cities={destinations}
                 places={places}
+                albums={albums}
                 hoverIndex={this.state.granularity ? this.state.hoverIndexCity : this.state.hoverIndexPlace}
                 changeHoverIndex={this.state.granularity ? this.changeHoverIndexCity : this.changeHoverIndexPlace}
                 tableRowClick={this.tableRowClick}
@@ -314,9 +317,10 @@ class Main extends React.Component {
               style={{ backgroundColor: "transparent" }}
               contentClassName={clsx(classes.modalContent)}
               onClick={() => {
-                if (this.state.preparedImages.length === 0) {
-                  this.toggleGallery(false)
-                }
+                console.log(this.state.preparedImages);
+                // if (this.state.preparedImages.length === 0) {
+                //   this.toggleGallery(false)
+                // }
               }}
             >
 
@@ -367,7 +371,7 @@ class Main extends React.Component {
 }
 
 Main.propTypes = {
-  cities: PropTypes.array,
+  destinations: PropTypes.array,
   places: PropTypes.array,
   ready: PropTypes.bool
 }
