@@ -205,11 +205,9 @@ class Main extends React.Component {
   }
 
   cityGallery = (obj) => {
-    const images = []
-    obj.places.forEach((place) => {
-      place.images.forEach((image) => {
-        images.push(image)
-      })
+    var images = []
+    Object.values(this.props.photos[obj.destination_id] ? this.props.photos[obj.destination_id] : []).forEach(x =>{
+      images = images.concat(x);
     })
     this.setState({
       preparedImages: images,
@@ -317,7 +315,6 @@ class Main extends React.Component {
               style={{ backgroundColor: "transparent" }}
               contentClassName={clsx(classes.modalContent)}
               onClick={() => {
-                console.log(this.state.preparedImages);
                 // if (this.state.preparedImages.length === 0) {
                 //   this.toggleGallery(false)
                 // }
