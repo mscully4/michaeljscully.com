@@ -109,13 +109,17 @@ class VirtualTable extends Component {
 
   cellRendererPlace = (cellData) => {
     const classes = this.props.classes;
-    const src = cellData.cellData.cover_photo ? cellData.cellData.cover_photo.src : null
+    const data = cellData.cellData;
+    const albums = this.props.albums;
+    const album = data.destination_id in albums && data.place_id in albums[data.destination_id] ? albums[data.destination_id][data.place_id] : {};
+
+    const src = album && album.cover_photo_src ? album.cover_photo_src : null
     return (
       <div className={(clsx(classes.cell))}>
         <img className={clsx(classes.coverImage)} src={src}/>
         <div>
-          <div className={clsx(classes.cellText)}>{cellData.rowData.name.trim()}</div>
-          <div className={clsx(classes.cellText)}>{cellData.rowData.city.trim()}{cellData.rowData.country.trim() ? `, ${cellData.rowData.country.trim()}` : ""}</div>
+          <div className={clsx(classes.cellText)}>{data.name.trim()}</div>
+          <div className={clsx(classes.cellText)}>{data.city.trim()}{data.country.trim() ? `, ${data.country.trim()}` : ""}</div>
         </div>
 
       </div>
@@ -124,11 +128,11 @@ class VirtualTable extends Component {
 
   cellRendererCity = (cellData) => {
     const classes = this.props.classes;
-    var greyOutGalleryIcon = true;
+    var greyOutGalleryIcon = false;
 
-    cellData.rowData.places.forEach(element => {
-      if (element.images.length > 0) greyOutGalleryIcon = false
-    });
+    // cellData.rowData.places.forEach(element => {
+    //   if (element.images.length > 0) greyOutGalleryIcon = false
+    // });
 
     return (
       <div className={clsx(classes.cell)}>
@@ -144,7 +148,7 @@ class VirtualTable extends Component {
         />
 
         <p className={clsx(classes.cellText)}>
-          {cellData.rowData.city}, <br />   {cellData.rowData.country}
+          {cellData.rowData.name}, <br />   {cellData.rowData.country}
         </p>
 
 
@@ -163,9 +167,10 @@ class VirtualTable extends Component {
 
   getPlaces = () => {
     if (this.props.closestCity.distanceFromMapCenter <= DISTANCE_FROM_CITY) {
-      return this.props.closestCity.places
+      return this.props.places[this.props.closestCity.destination_id] ? this.props.places[this.props.closestCity.destination_id] : [];
     } else {
-      return this.props.places.filter((el) => getDistanceBetweenTwoPoints(this.props.mapCenter.lat, this.props.mapCenter.lng, el.latitude, el.longitude) < DISTANCE_FROM_PLACE)
+      return []
+      // return this.props.places.filter((el) => getDistanceBetweenTwoPoints(this.props.mapCenter.lat, this.props.mapCenter.lng, el.latitude, el.longitude) < DISTANCE_FROM_PLACE)
     }
   }
 

@@ -11,3 +11,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: 'allura';
+  src: local('Allura'), url(./utils/fonts/Allura.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'aguafina-script';
+  src: local('Aguafina-Script'), url(./utils/fonts/Aguafina-Script.ttf) format('truetype');
+}

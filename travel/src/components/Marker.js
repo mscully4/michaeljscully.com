@@ -104,7 +104,7 @@ class Marker extends Component {
         >
           <path d={pin.path} fill={this.props.hoverIndex === this.props.data.index ? ICE_BLUE : color}/>
           {/* To have a multi-colored pin, we need to two have two pins, one with the color of the base and the other will a custom color */}
-          <path style={{ fill: "Black" }} d={pinBase} />
+          <path style={{ fill: "#000" }} d={pinBase} />
         </Svg>
 
         <div
@@ -113,7 +113,7 @@ class Marker extends Component {
           ref={this.ref}
           className={clsx(this.props.classes.Tooltip, { [this.props.classes.TooltipShow]: this.props.hoverIndex === this.props.data.index })}
         >
-          {this.props.granularity ? <span>{this.props.data.city}, {this.props.data.country}</span> : <span>{this.props.data.name}</span>}
+          {this.props.granularity ? <span>{this.props.data.name}, {this.props.data.country}</span> : <span>{this.props.data.name}</span>}
           <br />
           <span>{this.props.granularity ? "Click to View Places" : "Click To View Gallery"}</span>
         </div>
