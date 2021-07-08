@@ -45,6 +45,7 @@ const styles = theme => ({
     color: ICE_BLUE,
     fontFamily: 'aguafina-script',
     fontSize: '6vw',
+    paddingLeft: "20%", 
   },
   factDiv: {
     fontSize: '1.5vw',
@@ -55,7 +56,7 @@ const styles = theme => ({
     margin: 0,
     textAlign: 'left'
   },
-  NoImages: {
+  noImages: {
     color: FONT_GREY,
     fontSize: "80px",
     paddingTop: "20%",
@@ -251,11 +252,11 @@ class Main extends React.Component {
 
 
   render() {
-    // this.props.getPlaceList()
     const classes = this.props.classes;
     var destinations = this.props.destinations;
     var places = this.props.places;
     var albums = this.props.albums;
+
     if (this.props.ready) {
       return (
         <div className={clsx(classes.page)}>
@@ -268,7 +269,6 @@ class Main extends React.Component {
                 <p className={clsx(classes.factLine)}>{`${[...new Set(this.props.destinations.map(el => el.country_code))].length} Countries`}</p>
                 <p className={clsx(classes.factLine)}>{`${this.props.destinations.filter(el => el.type === 1).length} Cities`}</p>
                 <p className={clsx(classes.factLine)}>{`${this.props.destinations.filter(el => el.type === 2).length} National Parks`}</p>
-                <p className={clsx(classes.factLine)}>{`${this.props.destinations.filter(el => el.type === 3).length} National Monuments`}</p>
               </div>
             </div>
 
@@ -312,27 +312,24 @@ class Main extends React.Component {
               size={"xl"}
               style={{ backgroundColor: "transparent" }}
               contentClassName={clsx(classes.modalContent)}
-              onClick={() => {
-                // if (this.state.preparedImages.length === 0) {
-                //   this.toggleGallery(false)
-                // }
-              }}
             >
 
               {this.state.preparedImages.length > 0 ?
                 <Gallery photos={this.state.preparedImages} onClick={this.galleryOnClick} /> :
-                <div className={clsx(classes.noImages)}>No Images...</div>}
+                <div className={clsx(classes.noImages)}>No Images...</div>
+              }
             </Modal>
 
             {this.state.imageViewerOpen ?
               <ImageViewer
-                owner={this.props.owner}
-                isOpen={this.state.imageViewerOpen}
-                toggleViewer={this.toggleViewer}
-                toggleGallery={this.toggleGallery}
-                views={this.state.preparedImages}
-                currentIndex={this.state.currImg}
-              /> : null}
+              owner={this.props.owner}
+              isOpen={this.state.imageViewerOpen}
+              toggleViewer={this.toggleViewer}
+              toggleGallery={this.toggleGallery}
+              views={this.state.preparedImages}
+              currentIndex={this.state.currImg}
+              /> : null
+            }
           </div>
         </div>
       )
