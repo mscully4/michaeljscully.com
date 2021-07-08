@@ -75,8 +75,8 @@ class Map extends Component {
         />
       )
     } else if (!granularity && this.props.places) {
-      var x = this.props.places[this.props.closestCity.destination_id] ? this.props.places[this.props.closestCity.destination_id] : [];
-      return x.map(data =>
+      var closestCityPlaces = this.props.places[this.props.closestCity.destination_id] ? this.props.places[this.props.closestCity.destination_id] : [];
+      return closestCityPlaces.map(data =>
         <Marker
           key={data.place_id}
           lat={data.latitude}
@@ -89,6 +89,8 @@ class Map extends Component {
           granularity={this.props.granularity}
         />
       )
+    } else {
+      return []
     }
   }
 
@@ -102,7 +104,7 @@ class Map extends Component {
           keyboardShortcuts={false}
           options={this.createMapOptions}
           onChange={this.onChange}
-          bootstrapURLKeys={{ key: 'AIzaSyAk_bN5yfkLuUzptVXIHWs59YdFmI_TjAc' }}
+          bootstrapURLKeys={{ key: GOOGLE_MAPS_API_KEY }}
         >
           {markers}
         </GoogleMapReact>
