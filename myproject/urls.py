@@ -21,7 +21,6 @@ from myproject.views import home
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home),
     path('resume/', include('resume.urls')),
 ]
 
