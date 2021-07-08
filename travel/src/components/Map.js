@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import GoogleMapReact from 'google-map-react';
+import { GOOGLE_MAPS_API_KEY } from '../utils/Constants'
 
 import Marker from './Marker.js';
 
