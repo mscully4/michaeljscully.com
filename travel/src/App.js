@@ -2,19 +2,15 @@ import React, {Component} from 'react';
 
 import Main from "./components/Main.js"
 import './App.css';
-import { city_colors, place_colors } from "./utils/Colors.js"
-import { shuffle } from './utils/Formulas'
+import { city_colors, place_colors, ICE_BLUE, OFF_BLACK_1 } from "./utils/Colors.js"
 import { API_BASE, API_DESTINATIONS, API_PLACES, API_PHOTOS, API_ALBUMS } from "./utils/Constants"
 
-const S3_ENDPOINT = 'https://mscully-travel-map.s3.us-east-2.amazonaws.com/data.json'
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      width: window.innerWidth * .8,
-      height: window.innerHeight * .8,
 
       destinations: [],
       places: {},
@@ -147,32 +143,16 @@ class App extends Component {
     })
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.updateWindowDimensions);
-  }
-
-  updateWindowDimensions = () => {
-    this.setState({ width: window.innerWidth * .8, height: window.innerHeight * .8 });
-  }
-
   render() {
-    if (this.state.ready) {
-      return (
-        <div>
-          <Main 
-          ready={this.state.ready}
-          destinations={this.state.destinations}
-          places={this.state.places}
-          photos={this.state.photos}
-          albums={this.state.albums}
-          />
-        </div>
-      );
-    } else {
-      return (
-        <div></div>
-      )
-    }
+    return (
+      <Main
+        ready={this.state.ready}
+        destinations={this.state.destinations}
+        places={this.state.places}
+        photos={this.state.photos}
+        albums={this.state.albums}
+      />
+    )
   }
 }
 
