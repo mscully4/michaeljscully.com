@@ -13,9 +13,7 @@ import ImageViewer from './ImageViewer';
 import { place_colors, city_colors, FONT_GREY, ICE_BLUE, OFF_BLACK_1, OFF_BLACK_2, OFF_BLACK_3, OFF_BLACK_5 } from '../utils/Colors';
 import { getDistanceBetweenTwoPoints } from '../utils/Formulas';
 
-
-const DEFAULT_CENTER = { lat: 33.7490, lng: -84.3880 }
-const GRANULARITY_CUTOFF = 8
+import { DEFAULT_CENTER, GRANULARITY_CUTOFF } from '../utils/Constants'
 
 const styles = theme => ({
   page: {
