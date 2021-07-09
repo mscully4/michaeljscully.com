@@ -50,6 +50,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
 class Education(models.Model):
+    id = models.AutoField(primary_key=True)
     university = models.CharField(max_length=140, verbose_name="Name of University")
     college = models.CharField(max_length=140, verbose_name="College")
     degree = models.CharField(max_length=140, verbose_name="Type of Degree")
@@ -69,6 +70,7 @@ class Education(models.Model):
 
 
 class Experience(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=140, verbose_name="Company Name")
     role = models.CharField(max_length=140)
     start_date = models.DateField(verbose_name="Start Date")
@@ -92,6 +94,7 @@ class Experience(models.Model):
 
 
 class Projects(models.Model):
+    id = models.AutoField(primary_key=True)
     industry = models.CharField(max_length=140)
     overview = models.CharField(max_length=300)
     start_date = models.DateField(verbose_name="Start Date", blank=True, null=True)
@@ -108,6 +111,7 @@ class Projects(models.Model):
 
 
 class Classes(models.Model):
+    id = models.AutoField(primary_key=True)
     school = models.ForeignKey(Education, on_delete=models.CASCADE)
     subject = models.CharField(max_length=5)
     course_number = models.CharField(max_length=5)
@@ -123,6 +127,7 @@ class Classes(models.Model):
 
 
 class Skills(models.Model):
+    id = models.AutoField(primary_key=True)
     skill = models.CharField(max_length=40)
     frameworks = models.TextField()
     logo = models.FileField(verbose_name="Language Logo")
@@ -137,6 +142,7 @@ class Skills(models.Model):
 
 
 class Certifications(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=140)
     vendor = models.CharField(max_length=60)
     acquired = models.DateField(verbose_name="Acquisiton Date of the Certificate", validators=[date_validator_past_only])
