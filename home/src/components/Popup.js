@@ -37,7 +37,6 @@ class PopUp extends Component {
   }
 
   handleClick = () => {
-    console.log("PooP")
     this.setState({
       show: false
     })
