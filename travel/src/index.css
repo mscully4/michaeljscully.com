@@ -14,10 +14,10 @@ code {
 
 @font-face {
   font-family: 'allura';
-  src: local('Allura'), url(./fonts/Allura.ttf) format('truetype');
+  src: local('Allura'), url('./fonts/Allura.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'aguafina-script';
-  src: local('Aguafina-Script'), url(./fonts/Aguafina-Script.ttf) format('truetype');
+  src: local('Aguafina-Script'), url('./fonts/Aguafina-Script.ttf') format('truetype');
 }
