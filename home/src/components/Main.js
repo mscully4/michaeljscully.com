@@ -36,7 +36,6 @@ class Main extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     const classes = this.props.classes;
     return (
       <div>
