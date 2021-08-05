@@ -481,7 +481,7 @@ class Main extends React.Component {
           <RingLoader
             color={ICE_BLUE}
             loading={true}
-            css={`margin: auto; background-color: #000000; top: ${(window.innerHeight - 500) / 2.5}px`}
+            css={`position: absolute; left: 0; right: 0; margin: auto; background-color: #000000; top: ${(window.innerHeight - 500) / 2.5}px`}
             size={300}
           />
           <p style={{
@@ -492,8 +492,7 @@ class Main extends React.Component {
             textAlign: 'center',
             fontSize: 50,
             bottom: window.innerHeight * .1,
-            opacity: .7
-          }}>Loading...</p>
+          }}>Loading</p>
         </div>
       )
     }
