@@ -18,8 +18,7 @@ class Main extends React.Component {
       <Switch>
         <Route path="/home" component={Home}/>
         <Route path="/travel" component={Travel}/>
-        {/* <Route path="/" component={Home}/> */}
-
+        <Route path="/" component={Home}/>
       </Switch>
     )
   }
