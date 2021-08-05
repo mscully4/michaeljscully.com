@@ -19,20 +19,9 @@ function getRandomSubarray(arr, size) {
 
 
 const styles = theme => ({
-  stuff: {
-    width: 500,
-    height: 250,
-    backgroundColor: "#fff",
-    left: "50%",
-    top: '50%',
-    position: "fixed",
-    transform: "translate(-50%, -50%)",
-    boxShadow: `0 0 4px #000 !important`,
-    opacity: '0.75'
-  },
   gallery: {
     // marginTop: '5vh',
-    height: '95vh',
+    height: '92.5vh',
     overflow: "scroll",
     scrollbarWidth: "none",
     "&::-webkit-scrollbar": {
@@ -48,60 +37,6 @@ const theme = {
   cardBackgroundColor: "#ffffff",
   iconFillColor: "#000000"
 }
-
-const navStyles = theme => ({
-  navigationBar: {
-    backgroundColor: "#fff",
-    boxShadow: '0 0 4px #000 !important',
-    position: "fixed",
-    width: "100%",
-    top: 0,
-  },
-  logo: {
-    fontFamily: "Allura",
-    fontSize: '2.5vw',
-    color: "#000",
-    paddingLeft: '2vw ',
-    textAlign: 'left',
-    marginBottom: 0,
-    marginTop: 0
-  },
-  menu: {
-    position: 'fixed',
-    top: '10vh',
-    left: 0,
-    height: '80vh',
-    width: '5vw',
-    boxShadow: `0 0 4px #000 !important`,
-    borderRadius: 6,
-    backgroundColor: "#fff"
-  },
-  card: {
-    boxShadow: '0 0 4px #000 !important',
-    borderRadius: 6,
-    backgroundColor: "#fff",
-    cursor: 'pointer',
-    width: '80%',
-    paddingTop: '80%',
-    position: 'relative',
-    margin: '10% 10%',
-    "&:hover": {
-      transform: 'scale(1.05)',
-      boxShadow: '0 0 20px rgba(0, 0, 0, 0.6)',
-    }
-  },
-  icon: {
-    maxWidth: '90%',
-    maxHeight: '90%',
-    position: 'absolute',
-    top: '50%',
-    bottom: '50%',
-    margin: 'auto',
-    left: 0,
-    right: 0,
-    fill: "#000",
-  }
-})
 
 class Home extends React.Component {
   constructor(props) {
