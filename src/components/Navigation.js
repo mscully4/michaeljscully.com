@@ -13,7 +13,8 @@ const styles = theme => ({
     gridTemplateRows: '1fr',
     gridTemplateColumns: 'auto 1fr',
     alignItems: 'center',
-    boxShadow: '0 0 4px #000 !important',
+    borderBottom: "2px solid #000",
+    boxSizing: "border-box"
   },
   logo: {
     fontFamily: "Allura",
