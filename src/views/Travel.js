@@ -68,6 +68,14 @@ const styles = theme => ({
     backgroundColor: "rgba(40, 40, 40, .6)",
     marginTop: "5%",
     visibility: 'visible'
+  },
+  modal: {
+    width: "90%", 
+    margin: "5%", 
+    overflow: "scroll",
+    '&::-webkit-scrollbar': {
+      display: 'none',
+    }
   }
 })
 
@@ -433,7 +441,7 @@ class Main extends React.Component {
             <Modal
               open={this.state.galleryOpen}
               onClose={this.toggleGallery}
-              style={{width: "90%", margin: "5%", overflow: "scroll"}}
+              className={classes.modal}
             >
                 {this.state.preparedImages.length > 0 ?
                 <Gallery photos={this.state.preparedImages} onClick={this.galleryOnClick} /> :
