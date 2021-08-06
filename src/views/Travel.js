@@ -297,7 +297,7 @@ class Main extends React.Component {
   }
 
   onMarkerClick = (obj) => {
-    const photos = this.props.photos;
+    const photos = this.state.photos;
     if (this.state.granularity === 1) {
       this.changeMapCenter(obj)
       this.changeGranularity(GRANULARITY_CUTOFF + 1)
@@ -317,7 +317,7 @@ class Main extends React.Component {
   //Table Functions
   tableRowClick = (obj, e) => {
     const data = obj.rowData;
-    const photos = this.props.photos;
+    const photos = this.state.photos;
     if (this.state.granularity === 1) {
       this.setState({
         selectedCity: obj.rowData,
@@ -339,7 +339,7 @@ class Main extends React.Component {
 
   cityGallery = (obj) => {
     var images = []
-    Object.values(this.props.photos[obj.destination_id] ? this.props.photos[obj.destination_id] : []).forEach(x =>{
+    Object.values(this.state.photos[obj.destination_id] ? this.state.photos[obj.destination_id] : []).forEach(x =>{
       images = images.concat(x);
     })
     this.setState({
@@ -373,21 +373,6 @@ class Main extends React.Component {
       galleryOpen: boolean ? false : true,
     })
   }
-
-  recenter = () => {
-    var viewCities = this.props.owner ? this.props.loggedInInfo.userCities : this.state.viewCities
-    const coords = {
-      latitude: viewCities.length > 0 ? viewCities[0].latitude : DEFAULT_CENTER.lat,
-      longitude: viewCities.length > 0 ? viewCities[0].longitude : DEFAULT_CENTER.lng
-    }
-    this.changeMapCenter(coords)
-    this.changeGranularity(4)
-  }
-
-  render() {
-    return <div></div>
-  }
-
 
   render() {
     const classes = this.props.classes;
@@ -460,7 +445,6 @@ class Main extends React.Component {
 
             {this.state.imageViewerOpen ?
               <ImageViewer
-              owner={this.props.owner}
               isOpen={this.state.imageViewerOpen}
               toggleViewer={this.toggleViewer}
               toggleGallery={this.toggleGallery}
