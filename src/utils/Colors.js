@@ -7,6 +7,10 @@ export const OFF_BLACK_3 = "#333"
 export const OFF_BLACK_4 = "#383838"
 export const OFF_BLACK_5 = '#3a3a3a'
 
+export const homeTheme = {
+  BASE: "#ffffff",
+  FONT: "#000000"
+}
 
 const DOLLAR_BILL = "#006400"
 const CHILI_PEPPER = "#9B1B30"
