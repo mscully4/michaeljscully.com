@@ -8,3 +8,6 @@ export const API_ALBUMS = `${API_BASE}/albums`
 export const GOOGLE_MAPS_API_KEY = 'AIzaSyAk_bN5yfkLuUzptVXIHWs59YdFmI_TjAc'
 export const DEFAULT_CENTER = { lat: 33.7490, lng: -84.3880 }
 export const GRANULARITY_CUTOFF = 8
+
+export const HOME_API_URL = 'https://w3zz6ii5d1.execute-api.us-east-2.amazonaws.com/dev/photos'
+

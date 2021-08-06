@@ -8,7 +8,7 @@ import Marker from './Marker.js';
 const styles = {
   map: {
     width: '100%',
-    height: '75vh',
+    height: '70vh',
     margin: 'auto'
   }
 }

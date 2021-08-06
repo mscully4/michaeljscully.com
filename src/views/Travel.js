@@ -6,12 +6,14 @@ import clsx from 'clsx'
 import RingLoader from "react-spinners/RingLoader";
 import { PropTypes } from 'prop-types'
 
-import Navigation from './Navigation'
-import Map from './Map.js';
-import Table from './Table.js'
-import ImageViewer from './ImageViewer';
+import Navigation from '../components/Navigation'
+import Map from '../components/Map.js';
+import Table from '../components/Table.js'
+import ImageViewer from '../components/ImageViewer'
 import { place_colors, city_colors, FONT_GREY, ICE_BLUE, OFF_BLACK_1, OFF_BLACK_2, OFF_BLACK_3, OFF_BLACK_5 } from '../utils/Colors';
 import { getDistanceBetweenTwoPoints } from '../utils/Formulas';
+import { API_BASE, API_DESTINATIONS, API_PLACES, API_PHOTOS, API_ALBUMS } from "../utils/Constants"
+
 
 import { DEFAULT_CENTER, GRANULARITY_CUTOFF } from '../utils/Constants'
 
@@ -38,14 +40,15 @@ const styles = theme => ({
     display: 'grid',
     gridTemplateRows: '1fr',
     gridTemplateColumns: '6fr 4fr',
-    height: '30vh',
+    height: '20vh',
     alignItems: 'center'
   },
   title: {
     color: ICE_BLUE,
     fontFamily: 'aguafina-script',
-    fontSize: '6vw',
+    fontSize: '5vw',
     paddingLeft: "20%", 
+    margin: 0
   },
   factDiv: {
     fontSize: '1.5vw',
@@ -68,10 +71,24 @@ const styles = theme => ({
   }
 })
 
+const theme = {
+  navBarBackgroundColor: OFF_BLACK_1,
+  logoColor: ICE_BLUE,
+  menuBackgroundColor: OFF_BLACK_2,
+  cardBackgroundColor: ICE_BLUE,
+  iconFillColor: OFF_BLACK_1
+}
+
 class Main extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      destinations: [],
+      places: {},
+      albums: {},
+      photos: {},
+      ready: false,
+
       //General
       selectedCity: null,
       selectedPlace: null,
@@ -102,7 +119,124 @@ class Main extends React.Component {
     }
   }
 
-  componentDidMount = () => {
+  componentDidMount() {
+    fetch(API_DESTINATIONS, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    }).then((resp) => {
+
+      resp.json().then(json => {
+      
+        var destinations = json.map((el, i) => {
+          return {
+            index: i,
+            color: city_colors[Math.floor(Math.random() * city_colors.length)],
+            ...el,
+            type: parseInt(el.type),
+            latitude: parseFloat(el.latitude),
+            longitude: parseFloat(el.longitude)
+          }
+        })
+        this.setState({
+          destinations: destinations,
+          ready: true
+
+        }, () => {
+
+          var placeCounter = 0;
+          this.state.destinations.forEach((dest) => {
+
+            //Retrieve Place Data
+            fetch(`${API_PLACES}?destination_id=${dest.destination_id}`, {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+            })
+            .then((resp) => {
+
+              resp.json().then(json => {
+
+                var lst = this.state.places[dest.destination_id] || []
+                json.forEach((place) => {
+                  place.color = place_colors[Math.floor(Math.random() * place_colors.length)]
+                  place.latitude = parseFloat(place.latitude)
+                  place.longitude = parseFloat(place.longitude)
+                  place.index = ++placeCounter
+                  lst.push(place)
+                })
+                  
+                this.setState({
+                  places: {
+                    ...this.state.places,
+                    [dest.destination_id]: lst,
+                  }
+                })
+              })
+            })
+
+            // Retrieve Photo Information
+            fetch(`${API_PHOTOS}?destination_id=${dest.destination_id}`, {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+            })
+            .then((resp) => {
+              resp.json().then(json => {
+                json.forEach((obj) => {
+                  var lst = []
+                  obj.photos.map(photo => {
+                    photo.height = parseInt(photo.height)
+                    photo.width = parseInt(photo.width)
+                    lst.push(photo)
+                  })
+                
+                  if (lst.length > 0) {
+                    this.setState({
+                      photos: {
+                        ...this.state.photos,
+                        [dest.destination_id]: {
+                          ...this.state.photos[dest.destination_id],
+                            //Have to get the place_id from the first list element, not ideal
+                            [lst[0].place_id]: lst
+                        }
+                      }
+                    })
+                  }
+                })
+              })
+            })
+
+            // Retrieve Album Information
+            fetch(`${API_ALBUMS}?destination_id=${dest.destination_id}`, {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+            })
+            .then((resp) => {
+              resp.json().then((json) => {
+                json.forEach((album) => {
+                  this.setState({
+                    albums: {
+                      ...this.state.albums,
+                      [dest.destination_id]: {
+                        ...this.state.albums[dest.destination_id],
+                        [album.place_id]: album
+                      }
+                    }
+                  })
+                })
+              })
+            })
+
+          })
+        })
+      })
+    })
   }
 
   changeHoverIndexCity = (index) => {
@@ -250,25 +384,29 @@ class Main extends React.Component {
     this.changeGranularity(4)
   }
 
+  render() {
+    return <div></div>
+  }
+
 
   render() {
     const classes = this.props.classes;
-    var destinations = this.props.destinations;
-    var places = this.props.places;
-    var albums = this.props.albums;
+    var destinations = this.state.destinations;
+    var places = this.state.places;
+    var albums = this.state.albums;
 
-    if (this.props.ready) {
+    if (this.state.ready) {
       return (
         <div className={clsx(classes.page)}>
-          <Navigation />
+          <Navigation theme={theme}/>
           <div>
             <div className={clsx(classes.infoDiv)}>
               <p className={clsx(classes.title)}>My Travel Map</p>
               <div className={clsx(classes.factDiv)}>
                 <p className={clsx(classes.factLine)} style={{ textIndent: 0 }}>{"I've Visited: "}</p>
-                <p className={clsx(classes.factLine)}>{`${[...new Set(this.props.destinations.map(el => el.country_code))].length} Countries`}</p>
-                <p className={clsx(classes.factLine)}>{`${this.props.destinations.filter(el => el.type === 1).length} Cities`}</p>
-                <p className={clsx(classes.factLine)}>{`${this.props.destinations.filter(el => el.type === 2).length} National Parks`}</p>
+                <p className={clsx(classes.factLine)}>{`${[...new Set(this.state.destinations.map(el => el.country_code))].length} Countries`}</p>
+                <p className={clsx(classes.factLine)}>{`${this.state.destinations.filter(el => el.type === 1).length} Cities`}</p>
+                <p className={clsx(classes.factLine)}>{`${this.state.destinations.filter(el => el.type === 2).length} National Parks`}</p>
               </div>
             </div>
 
@@ -343,7 +481,7 @@ class Main extends React.Component {
           <RingLoader
             color={ICE_BLUE}
             loading={true}
-            css={`margin: auto; background-color: #000000; top: ${(window.innerHeight - 500) / 2.5}px`}
+            css={`position: absolute; left: 0; right: 0; margin: auto; background-color: #000000; top: ${(window.innerHeight - 500) / 2.5}px`}
             size={300}
           />
           <p style={{
@@ -354,8 +492,7 @@ class Main extends React.Component {
             textAlign: 'center',
             fontSize: 50,
             bottom: window.innerHeight * .1,
-            opacity: .7
-          }}>Loading...</p>
+          }}>Loading</p>
         </div>
       )
     }
