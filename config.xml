@@ -20,29 +20,19 @@
         stage(&apos;Build&apos;) {
             steps {
                 sh &apos;sudo chown -R jenkins:jenkins ./&apos;
-                
+
                 // Pull the repo from GitHub
                 git branch: &apos;staging&apos;, url: &apos;https://github.com/mscully4/michaeljscullydotcom.git&apos;
-                
+
                 //Resume
                 sh &apos;aws s3 cp s3://michaeljscullydotcom/secrets.ini secrets.ini&apos;
                 sh &apos;aws s3 cp s3://michaeljscullydotcom/db.sqlite3 db.sqlite3&apos;
                 sh &apos;sudo pip3 install --target=/usr/lib/python3/dist-packages -r requirements.txt&apos;
                 sh &apos;./manage.py migrate&apos;
-                
-                sh &apos;sudo mkdir builds &amp;&amp; sudo mkdir builds/static&apos;
-                
-                //Home
-                dir(&apos;home&apos;) {
-                    sh &apos;sudo npm install&apos;
-                    sh &apos;sudo npm run build&apos;
-                }
-                
-                //Travel
-                dir(&apos;travel&apos;) {
-                    sh &apos;sudo npm install&apos;
-                    sh &apos;sudo npm run build&apos;
-                }     
+
+                sh &apos;sudo npm install&apos;
+                sh &apos;sudo npm run build&apos;
+
             }
         }
         stage(&apos;Deploy&apos;) {
