@@ -1,6 +1,6 @@
 import React from 'react';
 import Gallery from "react-photo-gallery";
-import { Modal } from 'reactstrap';
+import Modal from '@material-ui/core/Modal';
 import { withStyles } from '@material-ui/styles';
 import clsx from 'clsx'
 import RingLoader from "react-spinners/RingLoader";
@@ -351,6 +351,7 @@ class Main extends React.Component {
 
   //Gallery Functions
   toggleGallery = (value) => {
+    console.log(this.state.galleryOpen)
     const boolean = typeof (value) === 'boolean' ? value : !this.state.galleryOpen;
     this.setState({
       galleryOpen: boolean
@@ -430,14 +431,11 @@ class Main extends React.Component {
             </div>
 
             <Modal
-              isOpen={this.state.galleryOpen}
-              toggle={this.toggleGallery}
-              size={"xl"}
-              style={{ backgroundColor: "transparent" }}
-              contentClassName={clsx(classes.modalContent)}
+              open={this.state.galleryOpen}
+              onClose={this.toggleGallery}
+              style={{width: "90%", margin: "5%", overflow: "scroll"}}
             >
-
-              {this.state.preparedImages.length > 0 ?
+                {this.state.preparedImages.length > 0 ?
                 <Gallery photos={this.state.preparedImages} onClick={this.galleryOnClick} /> :
                 <div className={clsx(classes.noImages)}>No Images...</div>
               }
