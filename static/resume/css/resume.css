@@ -26,7 +26,7 @@ a {
     align-items: center;
     width: 85%;
     height: 15vh;
-    font-size: 150%;
+    font-size: 100%;
 }
 
 .resume-experiences, .resume-projects, .resume-educations {
@@ -41,7 +41,7 @@ a {
     width: 90%;
     margin: 5% 5%;
     height: 30vh;
-    font-size: 150%
+    font-size: 100%
 }
 
 .resume-text {
@@ -56,6 +56,7 @@ a {
 }
 
 .resume-project-banner {
+    grid-template-rows: 100%;
     width: 96%;
     margin: 2.5% auto;
     display: grid;
@@ -81,7 +82,7 @@ a {
     grid-template-rows: 15vh 10vh;
     grid-template-columns: 1fr;
     font-family: "Garamond";
-    font-size: 150%;
+    font-size: 100%;
     margin: 2.5% auto;
 }
 

@@ -4,27 +4,27 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                sh 'sudo chown -R jenkins:jenkins ./'
+                
                 // Pull the repo from GitHub
-                git 'https://github.com/mscully4/michaeljscullydotcom.git'
+                git branch: 'staging', url: 'https://github.com/mscully4/michaeljscullydotcom.git'
                 
                 //Resume
                 sh 'aws s3 cp s3://michaeljscullydotcom/secrets.ini secrets.ini'
                 sh 'aws s3 cp s3://michaeljscullydotcom/db.sqlite3 db.sqlite3'
                 sh 'sudo pip3 install --target=/usr/lib/python3/dist-packages -r requirements.txt'
+                sh './manage.py migrate'
                 
+                sh 'sudo npm install'
+                sh 'sudo npm run build'
                 
-                //Travel
-                dir('travel') {
-                    sh 'sudo npm install'
-                    sh 'sudo npm run build'
-                }
             }
         }
         stage('Deploy') {
             steps {
                 //Update Gunicorn configuration
                 sh 'sudo cp gunicorn/gunicorn.service /etc/systemd/system/'
-                sh 'sudo systemctl deamon-reload'
+                sh 'sudo systemctl daemon-reload'
                 sh 'sudo service gunicorn restart'
 
                 //Update nginx configuration
