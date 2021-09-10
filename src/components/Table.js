@@ -7,15 +7,10 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import ReactCountryFlag from "react-country-flag"
 
 import 'react-virtualized/styles.css';
-// import "flag-icon-css/css/flag-icon.min.css";
 
-import { getDistanceBetweenTwoPoints } from '../utils/Formulas.js';
+import { DISTANCE_FROM_CITY } from '../utils/Constants.js'
 import { place_colors, FONT_GREY, OFF_BLACK_2, OFF_BLACK_3, OFF_BLACK_4, ICE_BLUE } from "../utils/Colors"
 import { gallery, Svg } from "../utils/SVGs"
-
-//Places within these distances of the center of the map will be included in the table
-const DISTANCE_FROM_CITY = 200 /*miles*/
-const DISTANCE_FROM_PLACE = 200
 
 const styles = theme => ({
   container: {
