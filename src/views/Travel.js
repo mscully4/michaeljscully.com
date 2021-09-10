@@ -380,8 +380,8 @@ class Main extends React.Component {
               <div className={clsx(classes.factDiv)}>
                 <p className={clsx(classes.factLine)} style={{ textIndent: 0 }}>{"I've Visited: "}</p>
                 <p className={clsx(classes.factLine)}>{`${[...new Set(this.state.destinations.map(el => el.country_code))].length} Countries`}</p>
-                <p className={clsx(classes.factLine)}>{`${this.state.destinations.filter(el => el.type === 1).length} Cities`}</p>
-                <p className={clsx(classes.factLine)}>{`${this.state.destinations.filter(el => el.type === 2).length} National Parks`}</p>
+                <p className={clsx(classes.factLine)}>{`${this.state.destinations.filter(el => el.type === "C").length} Cities`}</p>
+                <p className={clsx(classes.factLine)}>{`${this.state.destinations.filter(el => el.type === "NP").length} National Parks`}</p>
               </div>
             </div>
 
