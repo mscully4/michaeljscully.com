@@ -280,13 +280,6 @@ class Main extends React.Component {
     return closestCity
   }
 
-  //This is passed up to App.js
-  setPreparedImages = (images) => {
-    this.setState({
-      preparedImages: images
-    })
-  }
-
   //Map Functions
   changeGranularity = (zoom) => {
     this.setState({
