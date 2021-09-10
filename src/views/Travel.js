@@ -136,18 +136,15 @@ class Main extends React.Component {
       },
     }).then((resp) => {
 
-      resp.json().then(json => {
+      resp.json().then(destinations => {
       
-        var destinations = json.map((el, i) => {
-          return {
-            index: i,
-            color: city_colors[Math.floor(Math.random() * city_colors.length)],
-            ...el,
-            type: parseInt(el.type),
-            latitude: parseFloat(el.latitude),
-            longitude: parseFloat(el.longitude)
-          }
+        destinations.forEach((el, i) => {
+          el.index = i;
+          el.color =  city_colors[Math.floor(Math.random() * city_colors.length)];
+          el.latitude = parseFloat(el.latitude)
+          el.longitude = parseFloat(el.longitude)
         })
+
         this.setState({
           destinations: destinations,
           ready: true
@@ -166,55 +163,47 @@ class Main extends React.Component {
             })
             .then((resp) => {
 
-              resp.json().then(json => {
+              resp.json().then(places => {
 
-                var lst = this.state.places[dest.destination_id] || []
-                json.forEach((place) => {
+                places.forEach((place) => {
                   place.color = place_colors[Math.floor(Math.random() * place_colors.length)]
                   place.latitude = parseFloat(place.latitude)
                   place.longitude = parseFloat(place.longitude)
                   place.index = ++placeCounter
-                  lst.push(place)
                 })
                   
                 this.setState({
                   places: {
                     ...this.state.places,
-                    [dest.destination_id]: lst,
+                    [dest.destination_id]: places,
                   }
-                })
-              })
-            })
+                }, () => {
 
-            // Retrieve Photo Information
-            fetch(`${API_PHOTOS}?destination_id=${dest.destination_id}`, {
-              method: 'GET',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-            })
-            .then((resp) => {
-              resp.json().then(json => {
-                json.forEach((obj) => {
-                  var lst = []
-                  obj.photos.map(photo => {
-                    photo.height = parseInt(photo.height)
-                    photo.width = parseInt(photo.width)
-                    lst.push(photo)
-                  })
-                
-                  if (lst.length > 0) {
-                    this.setState({
-                      photos: {
-                        ...this.state.photos,
-                        [dest.destination_id]: {
-                          ...this.state.photos[dest.destination_id],
-                            //Have to get the place_id from the first list element, not ideal
-                            [lst[0].place_id]: lst
-                        }
-                      }
+                  places.forEach((obj) => {
+                    //Retrieve Photos for each Place
+                    fetch(`${API_PHOTOS}?place_id=${obj.place_id}`, {
+                      method: 'GET',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
                     })
-                  }
+                    .then((resp) => {
+                      resp.json().then(photos => {
+                        photos.forEach((photo) => {
+                          photo.src = photo.url
+                          photo.width = parseFloat(photo.width)
+                          photo.height = parseFloat(photo.height)
+                        })
+
+                        this.setState({
+                          photos: {
+                            ...this.state.photos,
+                            [obj.place_id]: photos
+                          }
+                        })
+                      })
+                    })
+                  })
                 })
               })
             })
