@@ -130,10 +130,6 @@ class VirtualTable extends Component {
     const classes = this.props.classes;
     var greyOutGalleryIcon = false;
 
-    // cellData.rowData.places.forEach(element => {
-    //   if (element.images.length > 0) greyOutGalleryIcon = false
-    // });
-
     return (
       <div className={clsx(classes.cell)}>
         <ReactCountryFlag
@@ -170,7 +166,6 @@ class VirtualTable extends Component {
       return this.props.places[this.props.closestCity.destination_id] ? this.props.places[this.props.closestCity.destination_id] : [];
     } else {
       return []
-      // return this.props.places.filter((el) => getDistanceBetweenTwoPoints(this.props.mapCenter.lat, this.props.mapCenter.lng, el.latitude, el.longitude) < DISTANCE_FROM_PLACE)
     }
   }
 
