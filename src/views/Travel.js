@@ -128,6 +128,7 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
+    //Retrieve Destinations
     fetch(API_DESTINATIONS, {
       method: 'GET',
       headers: {
@@ -156,7 +157,7 @@ class Main extends React.Component {
           var placeCounter = 0;
           this.state.destinations.forEach((dest) => {
 
-            //Retrieve Place Data
+            //Retrieve Places for each destination
             fetch(`${API_PLACES}?destination_id=${dest.destination_id}`, {
               method: 'GET',
               headers: {
@@ -218,7 +219,7 @@ class Main extends React.Component {
               })
             })
 
-            // Retrieve Album Information
+            // Retrieve Albums for each Destination
             fetch(`${API_ALBUMS}?destination_id=${dest.destination_id}`, {
               method: 'GET',
               headers: {
