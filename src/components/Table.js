@@ -77,7 +77,12 @@ const styles = theme => ({
   column: {
     width: '100%',
     height: '100%'
-  }
+  },
+  grid: {
+    "&::-webkit-scrollbar": {
+      display: "none"
+    }
+  },
 })
 
 class VirtualTable extends Component {
@@ -203,13 +208,13 @@ class VirtualTable extends Component {
           className={clsx(classes.scrollBar)}
           onScroll={this.handleScroll}
           renderThumbVertical={obj => this.renderThumb(obj)}
-          renderView={this.renderView}
         >
           <Table
             autoHeight
             scrollTop={this.state.scrollTop}
             width={WIDTH}
             className={classes.table}
+            gridClassName={classes.grid}
             height={HEIGHT}
             headerHeight={HEADER_HEIGHT}
             headerStyle={{ margin: 'auto'}}
