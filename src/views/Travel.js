@@ -299,7 +299,7 @@ class Main extends React.Component {
     } else if (this.state.granularity === 0) {
       this.setState({
         selectedPlace: obj,
-        preparedImages: obj.destination_id in photos && obj.place_id in photos[obj.destination_id] ? photos[obj.destination_id][obj.place_id] : [],
+        preparedImages: obj.place_id in photos ? photos[obj.place_id] : [],
         galleryOpen: true,
       })
     }
@@ -321,7 +321,7 @@ class Main extends React.Component {
 
       this.setState({
         selectedPlace: data,
-        preparedImages: data.destination_id in photos && data.place_id in photos[data.destination_id] ? photos[data.destination_id][data.place_id] : [],
+        preparedImages: data.place_id in photos ? photos[data.place_id] : [],
         //The kill attribute make sure that an icon within the row isn't being clicked
         galleryOpen: obj.event.target.getAttribute("value") !== "KILL" ? true : false,
       })
