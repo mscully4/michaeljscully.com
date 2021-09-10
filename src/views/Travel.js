@@ -339,10 +339,8 @@ class Main extends React.Component {
     })
   }
 
-
   //Gallery Functions
   toggleGallery = (value) => {
-    console.log(this.state.galleryOpen)
     const boolean = typeof (value) === 'boolean' ? value : !this.state.galleryOpen;
     this.setState({
       galleryOpen: boolean
