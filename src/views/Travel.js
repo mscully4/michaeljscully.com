@@ -329,12 +329,16 @@ class Main extends React.Component {
   }
 
   cityGallery = (obj) => {
-    var images = []
-    Object.values(this.state.photos[obj.destination_id] ? this.state.photos[obj.destination_id] : []).forEach(x =>{
-      images = images.concat(x);
-    })
+    const places = this.state.places[obj.destination_id]
+    var photos = []
+    if (places) {
+      places.forEach(place => {
+        photos = photos.concat(this.state.photos[place.place_id])
+      })
+    }
+
     this.setState({
-      preparedImages: images,
+      preparedImages: photos,
       galleryOpen: true
     })
   }
@@ -369,6 +373,7 @@ class Main extends React.Component {
     var destinations = this.state.destinations;
     var places = this.state.places;
     var albums = this.state.albums;
+    const photos = this.state.photos;
 
     if (this.state.ready) {
       return (
@@ -405,6 +410,7 @@ class Main extends React.Component {
                 cities={destinations}
                 places={places}
                 albums={albums}
+                photos={photos}
                 hoverIndex={this.state.granularity ? this.state.hoverIndexCity : this.state.hoverIndexPlace}
                 changeHoverIndex={this.state.granularity ? this.changeHoverIndexCity : this.changeHoverIndexPlace}
                 tableRowClick={this.tableRowClick}

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PureComponent } from 'react';
 import { Column, Table } from 'react-virtualized';
 import { PropTypes } from 'prop-types'
 import clsx from 'clsx';
@@ -85,7 +85,7 @@ const styles = theme => ({
   },
 })
 
-class VirtualTable extends Component {
+class VirtualTable extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {
@@ -129,6 +129,15 @@ class VirtualTable extends Component {
   cellRendererCity = (cellData) => {
     const classes = this.props.classes;
     var greyOutGalleryIcon = false;
+    const places = this.props.places[cellData.rowData.destination_id]
+    var photos = []
+    if (places) {
+      places.forEach(place => {
+        photos = photos.concat(this.props.photos[place.place_id])
+      })
+
+    }
+    var greyOutGalleryIcon = photos.length > 0 ? false : true;
 
     return (
       <div className={clsx(classes.cell)}>
@@ -146,7 +155,6 @@ class VirtualTable extends Component {
         <p className={clsx(classes.cellText)}>
           {cellData.rowData.name}, <br />   {cellData.rowData.country}
         </p>
-
 
         <Svg
           className={clsx(this.props.classes.photoGallerySVG)}
