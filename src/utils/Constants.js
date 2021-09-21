@@ -13,3 +13,9 @@ export const DISTANCE_FROM_PLACE = 200 /*miles*/
 
 export const HOME_API_URL = 'https://w3zz6ii5d1.execute-api.us-east-2.amazonaws.com/dev/photos'
 
+//Destination Type Mapping
+export const DESTINATION_TYPE_MAPPING = {
+    NP: "National Park",
+    NM: "National Monument",
+    C: "City"
+}
