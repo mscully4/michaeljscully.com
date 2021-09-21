@@ -133,7 +133,8 @@ class VirtualTable extends PureComponent {
     var photos = []
     if (places) {
       places.forEach(place => {
-        photos = photos.concat(this.props.photos[place.place_id])
+        var tmp = this.props.photos[place.place_id] ? this.props.photos[place.place_id] : [];
+        photos = photos.concat(tmp)
       })
 
     }
