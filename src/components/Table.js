@@ -8,7 +8,7 @@ import ReactCountryFlag from "react-country-flag"
 
 import 'react-virtualized/styles.css';
 
-import { DISTANCE_FROM_CITY } from '../utils/Constants.js'
+import { DISTANCE_FROM_CITY, DESTINATION_TYPE_MAPPING } from '../utils/Constants.js'
 import { place_colors, FONT_GREY, OFF_BLACK_2, OFF_BLACK_3, OFF_BLACK_4, ICE_BLUE } from "../utils/Colors"
 import { gallery, Svg } from "../utils/SVGs"
 
@@ -49,6 +49,13 @@ const styles = theme => ({
     color: FONT_GREY,
     whiteSpace: 'normal',
     wordWrap: 'break-word'
+  },
+  destinationType: {
+    position: "absolute",
+    width: "100%",
+    textAlign: "Center",
+    bottom: 0,
+    color: FONT_GREY,
   },
   addSVG: {
     position: 'absolute',
@@ -154,7 +161,11 @@ class VirtualTable extends PureComponent {
         />
 
         <p className={clsx(classes.cellText)}>
-          {cellData.rowData.name}, <br />   {cellData.rowData.country}
+          {cellData.rowData.name}, <br />   {cellData.rowData.country} <br/> 
+        </p>
+
+        <p className={clsx(classes.destinationType)}>
+          {DESTINATION_TYPE_MAPPING[cellData.rowData.type]}
         </p>
 
         <Svg
