@@ -333,7 +333,8 @@ class Main extends React.Component {
     var photos = []
     if (places) {
       places.forEach(place => {
-        photos = photos.concat(this.state.photos[place.place_id])
+        var tmp = this.state.photos[place.place_id] ? this.state.photos[place.place_id] : [];
+        photos = photos.concat(tmp)
       })
     }
 
