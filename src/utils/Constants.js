@@ -1,4 +1,4 @@
-export const API_BASE = 'https://9h14ty7403.execute-api.us-east-2.amazonaws.com/dev'
+export const API_BASE = 'https://ho18d230l8.execute-api.us-east-2.amazonaws.com/dev'
 export const API_DESTINATIONS = `${API_BASE}/destinations`
 export const API_PLACES = `${API_BASE}/places`
 export const API_PHOTOS = `${API_BASE}/photos`
