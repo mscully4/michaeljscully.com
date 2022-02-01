@@ -4,7 +4,6 @@ cachetools==3.1.1
 certifi==2019.9.11
 chardet==3.0.4
 django>3
-django-multiselectfield==0.1.10
 django-storages==1.10.1
 docutils==0.15.2
 idna==2.8

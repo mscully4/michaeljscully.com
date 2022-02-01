@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PureComponent } from 'react';
 import { Column, Table } from 'react-virtualized';
 import { PropTypes } from 'prop-types'
 import clsx from 'clsx';
@@ -7,15 +7,10 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import ReactCountryFlag from "react-country-flag"
 
 import 'react-virtualized/styles.css';
-// import "flag-icon-css/css/flag-icon.min.css";
 
-import { getDistanceBetweenTwoPoints } from '../utils/Formulas.js';
+import { DISTANCE_FROM_CITY, DESTINATION_TYPE_MAPPING } from '../utils/Constants.js'
 import { place_colors, FONT_GREY, OFF_BLACK_2, OFF_BLACK_3, OFF_BLACK_4, ICE_BLUE } from "../utils/Colors"
 import { gallery, Svg } from "../utils/SVGs"
-
-//Places within these distances of the center of the map will be included in the table
-const DISTANCE_FROM_CITY = 200 /*miles*/
-const DISTANCE_FROM_PLACE = 200
 
 const styles = theme => ({
   container: {
@@ -55,6 +50,13 @@ const styles = theme => ({
     whiteSpace: 'normal',
     wordWrap: 'break-word'
   },
+  destinationType: {
+    position: "absolute",
+    width: "100%",
+    textAlign: "Center",
+    bottom: 0,
+    color: FONT_GREY,
+  },
   addSVG: {
     position: 'absolute',
     top: 10,
@@ -82,10 +84,15 @@ const styles = theme => ({
   column: {
     width: '100%',
     height: '100%'
-  }
+  },
+  grid: {
+    "&::-webkit-scrollbar": {
+      display: "none"
+    }
+  },
 })
 
-class VirtualTable extends Component {
+class VirtualTable extends PureComponent {
   constructor(props) {
     super(props)
     this.state = {
@@ -129,10 +136,16 @@ class VirtualTable extends Component {
   cellRendererCity = (cellData) => {
     const classes = this.props.classes;
     var greyOutGalleryIcon = false;
+    const places = this.props.places[cellData.rowData.destination_id]
+    var photos = []
+    if (places) {
+      places.forEach(place => {
+        var tmp = this.props.photos[place.place_id] ? this.props.photos[place.place_id] : [];
+        photos = photos.concat(tmp)
+      })
 
-    // cellData.rowData.places.forEach(element => {
-    //   if (element.images.length > 0) greyOutGalleryIcon = false
-    // });
+    }
+    var greyOutGalleryIcon = photos.length > 0 ? false : true;
 
     return (
       <div className={clsx(classes.cell)}>
@@ -148,9 +161,12 @@ class VirtualTable extends Component {
         />
 
         <p className={clsx(classes.cellText)}>
-          {cellData.rowData.name}, <br />   {cellData.rowData.country}
+          {cellData.rowData.name}, <br />   {cellData.rowData.country} <br/> 
         </p>
 
+        <p className={clsx(classes.destinationType)}>
+          {DESTINATION_TYPE_MAPPING[cellData.rowData.type]}
+        </p>
 
         <Svg
           className={clsx(this.props.classes.photoGallerySVG)}
@@ -170,7 +186,6 @@ class VirtualTable extends Component {
       return this.props.places[this.props.closestCity.destination_id] ? this.props.places[this.props.closestCity.destination_id] : [];
     } else {
       return []
-      // return this.props.places.filter((el) => getDistanceBetweenTwoPoints(this.props.mapCenter.lat, this.props.mapCenter.lng, el.latitude, el.longitude) < DISTANCE_FROM_PLACE)
     }
   }
 
@@ -208,13 +223,13 @@ class VirtualTable extends Component {
           className={clsx(classes.scrollBar)}
           onScroll={this.handleScroll}
           renderThumbVertical={obj => this.renderThumb(obj)}
-          renderView={this.renderView}
         >
           <Table
             autoHeight
             scrollTop={this.state.scrollTop}
             width={WIDTH}
             className={classes.table}
+            gridClassName={classes.grid}
             height={HEIGHT}
             headerHeight={HEADER_HEIGHT}
             headerStyle={{ margin: 'auto'}}

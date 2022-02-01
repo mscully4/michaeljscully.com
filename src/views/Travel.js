@@ -1,6 +1,6 @@
 import React from 'react';
 import Gallery from "react-photo-gallery";
-import { Modal } from 'reactstrap';
+import Modal from '@material-ui/core/Modal';
 import { withStyles } from '@material-ui/styles';
 import clsx from 'clsx'
 import RingLoader from "react-spinners/RingLoader";
@@ -68,6 +68,14 @@ const styles = theme => ({
     backgroundColor: "rgba(40, 40, 40, .6)",
     marginTop: "5%",
     visibility: 'visible'
+  },
+  modal: {
+    width: "90%", 
+    margin: "5%", 
+    overflow: "scroll",
+    '&::-webkit-scrollbar': {
+      display: 'none',
+    }
   }
 })
 
@@ -120,6 +128,7 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
+    //Retrieve Destinations
     fetch(API_DESTINATIONS, {
       method: 'GET',
       headers: {
@@ -127,18 +136,15 @@ class Main extends React.Component {
       },
     }).then((resp) => {
 
-      resp.json().then(json => {
+      resp.json().then(destinations => {
       
-        var destinations = json.map((el, i) => {
-          return {
-            index: i,
-            color: city_colors[Math.floor(Math.random() * city_colors.length)],
-            ...el,
-            type: parseInt(el.type),
-            latitude: parseFloat(el.latitude),
-            longitude: parseFloat(el.longitude)
-          }
+        destinations.forEach((el, i) => {
+          el.index = i;
+          el.color =  city_colors[Math.floor(Math.random() * city_colors.length)];
+          el.latitude = parseFloat(el.latitude)
+          el.longitude = parseFloat(el.longitude)
         })
+
         this.setState({
           destinations: destinations,
           ready: true
@@ -148,7 +154,7 @@ class Main extends React.Component {
           var placeCounter = 0;
           this.state.destinations.forEach((dest) => {
 
-            //Retrieve Place Data
+            //Retrieve Places for each destination
             fetch(`${API_PLACES}?destination_id=${dest.destination_id}`, {
               method: 'GET',
               headers: {
@@ -157,60 +163,52 @@ class Main extends React.Component {
             })
             .then((resp) => {
 
-              resp.json().then(json => {
+              resp.json().then(places => {
 
-                var lst = this.state.places[dest.destination_id] || []
-                json.forEach((place) => {
+                places.forEach((place) => {
                   place.color = place_colors[Math.floor(Math.random() * place_colors.length)]
                   place.latitude = parseFloat(place.latitude)
                   place.longitude = parseFloat(place.longitude)
                   place.index = ++placeCounter
-                  lst.push(place)
                 })
                   
                 this.setState({
                   places: {
                     ...this.state.places,
-                    [dest.destination_id]: lst,
+                    [dest.destination_id]: places,
                   }
-                })
-              })
-            })
+                }, () => {
 
-            // Retrieve Photo Information
-            fetch(`${API_PHOTOS}?destination_id=${dest.destination_id}`, {
-              method: 'GET',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-            })
-            .then((resp) => {
-              resp.json().then(json => {
-                json.forEach((obj) => {
-                  var lst = []
-                  obj.photos.map(photo => {
-                    photo.height = parseInt(photo.height)
-                    photo.width = parseInt(photo.width)
-                    lst.push(photo)
-                  })
-                
-                  if (lst.length > 0) {
-                    this.setState({
-                      photos: {
-                        ...this.state.photos,
-                        [dest.destination_id]: {
-                          ...this.state.photos[dest.destination_id],
-                            //Have to get the place_id from the first list element, not ideal
-                            [lst[0].place_id]: lst
-                        }
-                      }
+                  places.forEach((obj) => {
+                    //Retrieve Photos for each Place
+                    fetch(`${API_PHOTOS}?place_id=${obj.place_id}`, {
+                      method: 'GET',
+                      headers: {
+                        'Content-Type': 'application/json'
+                      },
                     })
-                  }
+                    .then((resp) => {
+                      resp.json().then(photos => {
+                        photos.forEach((photo) => {
+                          photo.src = photo.url
+                          photo.width = parseFloat(photo.width)
+                          photo.height = parseFloat(photo.height)
+                        })
+
+                        this.setState({
+                          photos: {
+                            ...this.state.photos,
+                            [obj.place_id]: photos
+                          }
+                        })
+                      })
+                    })
+                  })
                 })
               })
             })
 
-            // Retrieve Album Information
+            // Retrieve Albums for each Destination
             fetch(`${API_ALBUMS}?destination_id=${dest.destination_id}`, {
               method: 'GET',
               headers: {
@@ -272,13 +270,6 @@ class Main extends React.Component {
     return closestCity
   }
 
-  //This is passed up to App.js
-  setPreparedImages = (images) => {
-    this.setState({
-      preparedImages: images
-    })
-  }
-
   //Map Functions
   changeGranularity = (zoom) => {
     this.setState({
@@ -297,7 +288,7 @@ class Main extends React.Component {
   }
 
   onMarkerClick = (obj) => {
-    const photos = this.props.photos;
+    const photos = this.state.photos;
     if (this.state.granularity === 1) {
       this.changeMapCenter(obj)
       this.changeGranularity(GRANULARITY_CUTOFF + 1)
@@ -308,7 +299,7 @@ class Main extends React.Component {
     } else if (this.state.granularity === 0) {
       this.setState({
         selectedPlace: obj,
-        preparedImages: obj.destination_id in photos && obj.place_id in photos[obj.destination_id] ? photos[obj.destination_id][obj.place_id] : [],
+        preparedImages: obj.place_id in photos ? photos[obj.place_id] : [],
         galleryOpen: true,
       })
     }
@@ -317,7 +308,7 @@ class Main extends React.Component {
   //Table Functions
   tableRowClick = (obj, e) => {
     const data = obj.rowData;
-    const photos = this.props.photos;
+    const photos = this.state.photos;
     if (this.state.granularity === 1) {
       this.setState({
         selectedCity: obj.rowData,
@@ -330,7 +321,7 @@ class Main extends React.Component {
 
       this.setState({
         selectedPlace: data,
-        preparedImages: data.destination_id in photos && data.place_id in photos[data.destination_id] ? photos[data.destination_id][data.place_id] : [],
+        preparedImages: data.place_id in photos ? photos[data.place_id] : [],
         //The kill attribute make sure that an icon within the row isn't being clicked
         galleryOpen: obj.event.target.getAttribute("value") !== "KILL" ? true : false,
       })
@@ -338,16 +329,20 @@ class Main extends React.Component {
   }
 
   cityGallery = (obj) => {
-    var images = []
-    Object.values(this.props.photos[obj.destination_id] ? this.props.photos[obj.destination_id] : []).forEach(x =>{
-      images = images.concat(x);
-    })
+    const places = this.state.places[obj.destination_id]
+    var photos = []
+    if (places) {
+      places.forEach(place => {
+        var tmp = this.state.photos[place.place_id] ? this.state.photos[place.place_id] : [];
+        photos = photos.concat(tmp)
+      })
+    }
+
     this.setState({
-      preparedImages: images,
+      preparedImages: photos,
       galleryOpen: true
     })
   }
-
 
   //Gallery Functions
   toggleGallery = (value) => {
@@ -374,26 +369,12 @@ class Main extends React.Component {
     })
   }
 
-  recenter = () => {
-    var viewCities = this.props.owner ? this.props.loggedInInfo.userCities : this.state.viewCities
-    const coords = {
-      latitude: viewCities.length > 0 ? viewCities[0].latitude : DEFAULT_CENTER.lat,
-      longitude: viewCities.length > 0 ? viewCities[0].longitude : DEFAULT_CENTER.lng
-    }
-    this.changeMapCenter(coords)
-    this.changeGranularity(4)
-  }
-
-  render() {
-    return <div></div>
-  }
-
-
   render() {
     const classes = this.props.classes;
     var destinations = this.state.destinations;
     var places = this.state.places;
     var albums = this.state.albums;
+    const photos = this.state.photos;
 
     if (this.state.ready) {
       return (
@@ -405,8 +386,8 @@ class Main extends React.Component {
               <div className={clsx(classes.factDiv)}>
                 <p className={clsx(classes.factLine)} style={{ textIndent: 0 }}>{"I've Visited: "}</p>
                 <p className={clsx(classes.factLine)}>{`${[...new Set(this.state.destinations.map(el => el.country_code))].length} Countries`}</p>
-                <p className={clsx(classes.factLine)}>{`${this.state.destinations.filter(el => el.type === 1).length} Cities`}</p>
-                <p className={clsx(classes.factLine)}>{`${this.state.destinations.filter(el => el.type === 2).length} National Parks`}</p>
+                <p className={clsx(classes.factLine)}>{`${this.state.destinations.filter(el => el.type === "C").length} Cities`}</p>
+                <p className={clsx(classes.factLine)}>{`${this.state.destinations.filter(el => el.type === "NP").length} National Parks`}</p>
               </div>
             </div>
 
@@ -430,6 +411,7 @@ class Main extends React.Component {
                 cities={destinations}
                 places={places}
                 albums={albums}
+                photos={photos}
                 hoverIndex={this.state.granularity ? this.state.hoverIndexCity : this.state.hoverIndexPlace}
                 changeHoverIndex={this.state.granularity ? this.changeHoverIndexCity : this.changeHoverIndexPlace}
                 tableRowClick={this.tableRowClick}
@@ -445,14 +427,11 @@ class Main extends React.Component {
             </div>
 
             <Modal
-              isOpen={this.state.galleryOpen}
-              toggle={this.toggleGallery}
-              size={"xl"}
-              style={{ backgroundColor: "transparent" }}
-              contentClassName={clsx(classes.modalContent)}
+              open={this.state.galleryOpen}
+              onClose={this.toggleGallery}
+              className={classes.modal}
             >
-
-              {this.state.preparedImages.length > 0 ?
+                {this.state.preparedImages.length > 0 ?
                 <Gallery photos={this.state.preparedImages} onClick={this.galleryOnClick} /> :
                 <div className={clsx(classes.noImages)}>No Images...</div>
               }
@@ -460,7 +439,6 @@ class Main extends React.Component {
 
             {this.state.imageViewerOpen ?
               <ImageViewer
-              owner={this.props.owner}
               isOpen={this.state.imageViewerOpen}
               toggleViewer={this.toggleViewer}
               toggleGallery={this.toggleGallery}
