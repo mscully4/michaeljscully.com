@@ -1,4 +1,4 @@
-import React, { Component, PureComponent } from 'react';
+import React, { PureComponent } from 'react';
 import { Column, Table } from 'react-virtualized';
 import { PropTypes } from 'prop-types'
 import clsx from 'clsx';
@@ -9,7 +9,7 @@ import ReactCountryFlag from "react-country-flag"
 import 'react-virtualized/styles.css';
 
 import { DISTANCE_FROM_CITY, DESTINATION_TYPE_MAPPING } from '../utils/Constants.js'
-import { place_colors, FONT_GREY, OFF_BLACK_2, OFF_BLACK_3, OFF_BLACK_4, ICE_BLUE } from "../utils/Colors"
+import { FONT_GREY, OFF_BLACK_2, OFF_BLACK_3, OFF_BLACK_4, ICE_BLUE } from "../utils/Colors"
 import { gallery, Svg } from "../utils/SVGs"
 
 const styles = theme => ({

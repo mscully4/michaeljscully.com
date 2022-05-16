@@ -81,10 +81,11 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+DB_FILE_NAME = 'db.sqlite3'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': str(BASE_DIR) + '/db.sqlite3',
+        'NAME': str(BASE_DIR) + '/' + DB_FILE_NAME,
     }
 }
 
@@ -125,8 +126,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-#STATIC_URL = '/static/'
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 static_locations = ('/home/ubuntu/michaeljscully.com/static', '/home/michael/CodingProjects/michaeljscully.com/static')
 STATICFILES_DIRS = [path for path in static_locations if os.path.exists(path)]
 

@@ -5,7 +5,7 @@ import {
   ModalHeader,
   ModalBody,
 } from 'reactstrap';
-import { ICE_BLUE, FONT_GREY, OFF_BLACK_1, OFF_BLACK_2, OFF_BLACK_3, OFF_BLACK_4 } from '../utils/Colors'
+import { ICE_BLUE, OFF_BLACK_1, OFF_BLACK_2, OFF_BLACK_3 } from '../utils/Colors'
 import { withStyles } from '@material-ui/styles';
 
 const styles = theme => ({

@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: An AWS Serverless Specification template describing your function.
+Resources:
+  TravelmapDestinations:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.6
+      CodeUri: .
+      Description: ''
+      MemorySize: 128
+      Timeout: 3
+      Role: >-
+        arn:aws:iam::735029168602:role/service-role/Travelmap-Destinations-role-wgwwtsj7
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /destinations
+            Method: GET
+      Environment:
+        Variables:
+          PYTHONPATH: '/var/task/src:/opt/lib:/opt'
+      Layers:
+        - 'arn:aws:lambda:us-east-2:735029168602:layer:TravelMapLambdaLayer:14'

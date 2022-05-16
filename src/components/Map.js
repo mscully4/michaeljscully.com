@@ -1,67 +1,57 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import GoogleMapReact from 'google-map-react';
-import { GOOGLE_MAPS_API_KEY } from '../utils/Constants'
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import GoogleMapReact from "google-map-react";
+import { GOOGLE_MAPS_API_KEY } from "../utils/Constants";
 
-import Marker from './Marker.js';
+import Marker from "./Marker.js";
 
 const styles = {
   map: {
-    width: '100%',
-    height: '70vh',
-    margin: 'auto'
-  }
-}
+    width: "100%",
+    height: "70vh",
+    margin: "auto",
+  },
+};
 
 class Map extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      bounds: {}
-    }
+      bounds: {},
+    };
   }
 
   onChange = ({ center, zoom, bounds }) => {
-    this.props.changeGranularity(zoom)
-    this.props.changeMapCenter({ latitude: center.lat, longitude: center.lng })
-    this.props.setClosestCity(this.props.destinations, center.lat, center.lng)
+    this.props.changeGranularity(zoom);
+    this.props.changeMapCenter({ latitude: center.lat, longitude: center.lng });
+    this.props.setClosestCity(this.props.destinations, center.lat, center.lng);
     this.setState({
-      bounds: bounds
-    })
-  }
+      bounds: bounds,
+    });
+  };
 
   createMapOptions = (maps) => {
     return {
       //this controls where and how the zoom control is rendered
       zoomControlOptions: {
         position: maps.ControlPosition.RIGHT_CENTER,
-        style: maps.ZoomControlStyle.SMALL
+        style: maps.ZoomControlStyle.SMALL,
       },
       //this allows the user to change the type of map that is shown
       mapTypeControl: false,
       //this controls where and how different map options are rendered
       mapTypeControlOptions: {
-        position: maps.ControlPosition.TOP_RIGHT
+        position: maps.ControlPosition.TOP_RIGHT,
       },
       gestureHandling: "cooperative",
       keyboardShortcuts: false,
     };
-  }
-
-  // withinBounds = (obj) => {
-  //   if (this.state.bounds.nw) {
-  //     return obj.latitude <= this.state.bounds.nw.lat
-  //       && obj.latitude >= this.state.bounds.sw.lat 
-  //       && obj.longitude >= this.state.bounds.nw.lng
-  //       && obj.longitude <= this.state.bounds.ne.lng
-  //   }
-  // }
+  };
 
   createMarkers = (granularity) => {
     if (granularity && this.props.destinations) {
-      return this.props.destinations
-      .map(data =>
+      return this.props.destinations.map((data) => (
         <Marker
           key={data.destination_id}
           lat={data.latitude}
@@ -73,10 +63,14 @@ class Map extends Component {
           zoom={this.props.zoom}
           granularity={this.props.granularity}
         />
-      )
+      ));
     } else if (!granularity && this.props.places) {
-      var closestCityPlaces = this.props.places[this.props.closestCity.destination_id] ? this.props.places[this.props.closestCity.destination_id] : [];
-      return closestCityPlaces.map(data =>
+      var closestCityPlaces = this.props.places[
+        this.props.closestCity.destination_id
+      ]
+        ? this.props.places[this.props.closestCity.destination_id]
+        : [];
+      return closestCityPlaces.map((data) => (
         <Marker
           key={data.place_id}
           lat={data.latitude}
@@ -88,11 +82,11 @@ class Map extends Component {
           zoom={this.props.zoom}
           granularity={this.props.granularity}
         />
-      )
+      ));
     } else {
-      return []
+      return [];
     }
-  }
+  };
 
   render() {
     const markers = this.createMarkers(this.props.granularity);
@@ -109,7 +103,7 @@ class Map extends Component {
           {markers}
         </GoogleMapReact>
       </div>
-    )
+    );
   }
 }
 
@@ -124,7 +118,7 @@ Map.propTypes = {
   markerClick: PropTypes.func,
   granularity: PropTypes.number,
   changeMapCenter: PropTypes.func,
-  changeGranularity: PropTypes.func
-}
+  changeGranularity: PropTypes.func,
+};
 
 export default Map;

@@ -1,17 +1,16 @@
 import React, { Component } from "react";
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from "@material-ui/styles";
 
 const styles = {
   modal: {
     top: "50%",
-    position: 'fixed',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
+    position: "fixed",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
     backgroundColor: "#fff",
     width: "30vw",
-    // height: "40vh",
     boxShadow: `0 0 4px #000 !important`,
-    opacity: '0.90'
+    opacity: "0.90",
   },
   closeButton: {
     cursor: "pointer",
@@ -21,38 +20,43 @@ const styles = {
     right: 5,
   },
   welcomeMessage: {
-    paddingLeft: '2vw',
-    paddingRight: '2vw',
-    fontSize: 20
-  }
-}
-
+    paddingLeft: "2vw",
+    paddingRight: "2vw",
+    fontSize: 20,
+  },
+};
 
 class PopUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      show: true
-    }
+      show: true,
+    };
   }
 
   handleClick = () => {
     this.setState({
-      show: false
-    })
+      show: false,
+    });
   };
-
 
   render() {
     const classes = this.props.classes;
     if (this.state.show) {
-
       return (
         <div className={classes.modal}>
           <div className="modal_content">
-            <span className={classes.closeButton} onClick={this.handleClick}>&times;    </span>
-            <p className={classes.welcomeMessage}>Hello!  Welcome to my site!</p>
-            <p className={classes.welcomeMessage}> I created this website to showcase some of the things that I am passionate about.  The background photos are all photos that I took (or that were taken of me) during my travels.  You can use the menu on the left to navigate to different portions of my site.  Enjoy!</p>
+            <span className={classes.closeButton} onClick={this.handleClick}>
+              &times;{" "}
+            </span>
+            <p className={classes.welcomeMessage}>Hello! Welcome to my site!</p>
+            <p className={classes.welcomeMessage}>
+              {" "}
+              I created this website to showcase some of the things that I am
+              passionate about. The background photos are all photos that I took
+              (or that were taken of me) during my travels. You can use the menu
+              on the left to navigate to different portions of my site. Enjoy!
+            </p>
           </div>
         </div>
       );

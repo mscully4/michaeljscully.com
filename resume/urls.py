@@ -17,17 +17,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
-from django.views.generic import ListView, DetailView
 
 urlpatterns = [
-    path('', views.index, name="index"),
-    path('admin/', admin.site.urls),
-    path('education', views.education, name="education"),
-    path('experience', views.experience, name="experience"),
-    path('experience/<int:pk>', views.individual_experience, name="individual_experience"),
-    path('projects', views.projects, name="projects"),
-    path('projects/<int:pk>', views.individual_projects, name="individual_projects"),
-    path('skills', views.skills, name="skills"),
-    path('skills/<int:pk>', views.individual_skills, name="individual_skills"),
-    path('502', views.test_502_error, name="502 Error"),
+    path("", views.index, name="index"),
+    path("admin/", admin.site.urls),
+    path("education", views.education, name="education"),
+    path("experience", views.experience, name="experience"),
+    path(
+        "experience/<int:pk>", views.individual_experience, name="individual_experience"
+    ),
+    path("projects", views.projects, name="projects"),
+    path("projects/<int:pk>", views.individual_projects, name="individual_projects"),
+    path("skills", views.skills, name="skills"),
+    path("skills/<int:pk>", views.individual_skills, name="individual_skills"),
+    path("502", views.test_502_error, name="502 Error"),
 ]

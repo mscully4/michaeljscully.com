@@ -8,11 +8,11 @@ from django.utils.safestring import mark_safe
 
 import logging
 
-logger = logging.getLogger('django')
+logger = logging.getLogger("django")
 
-__all__ = ('MonthYearWidget',)
+__all__ = ("MonthYearWidget",)
 
-RE_DATE = re.compile(r'(\d{4})-(\d\d?)-(\d\d?)$')
+RE_DATE = re.compile(r"(\d{4})-(\d\d?)-(\d\d?)$")
 
 
 class MonthYearWidget(Widget):
@@ -26,9 +26,10 @@ class MonthYearWidget(Widget):
 
 
     """
-    none_value = (0, '---')
-    month_field = '%s_month'
-    year_field = '%s_year'
+
+    none_value = (0, "---")
+    month_field = "%s_month"
+    year_field = "%s_year"
 
     def __init__(self, attrs=None, years=None, required=True):
         # years is an optional list/tuple of years to use in the "year" select box.
@@ -38,7 +39,7 @@ class MonthYearWidget(Widget):
             self.years = years
         else:
             this_year = datetime.date.today().year
-            self.years = range(this_year-20, this_year+1)
+            self.years = range(this_year - 20, this_year + 1)
 
     def render(self, name, value, attrs=None, renderer=None):
         try:
@@ -52,10 +53,10 @@ class MonthYearWidget(Widget):
 
         output = []
 
-        if 'id' in self.attrs:
-            id_ = self.attrs['id']
+        if "id" in self.attrs:
+            id_ = self.attrs["id"]
         else:
-            id_ = 'id_%s' % name
+            id_ = "id_%s" % name
 
         month_choices = list(MONTHS.items())
         if not (self.required and value):
@@ -69,15 +70,16 @@ class MonthYearWidget(Widget):
         year_choices = [(i, i) for i in self.years]
         if not (self.required and value):
             year_choices.insert(0, self.none_value)
-        local_attrs['id'] = self.year_field % id_
+        local_attrs["id"] = self.year_field % id_
         s = Select(choices=year_choices)
         select_html = s.render(self.year_field % name, year_val, local_attrs)
         output.append(select_html)
 
-        return mark_safe(u'\n'.join(output))
+        return mark_safe("\n".join(output))
 
     def id_for_label(self, id_):
-        return '%s_month' % id_
+        return "%s_month" % id_
+
     id_for_label = classmethod(id_for_label)
 
     def value_from_datadict(self, data, files, name):
@@ -86,5 +88,5 @@ class MonthYearWidget(Widget):
         if y == m == "0":
             return None
         if y and m:
-            return '%s-%s-%s' % (y, m, 1)
+            return "%s-%s-%s" % (y, m, 1)
         return data.get(name, None)

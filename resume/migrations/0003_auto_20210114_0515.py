@@ -6,17 +6,19 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('resume', '0002_projects_overview'),
+        ("resume", "0002_projects_overview"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='education',
-            name='mascot',
+            model_name="education",
+            name="mascot",
         ),
         migrations.AlterField(
-            model_name='education',
-            name='major',
-            field=models.CharField(blank=True, max_length=140, null=True, verbose_name='Major'),
+            model_name="education",
+            name="major",
+            field=models.CharField(
+                blank=True, max_length=140, null=True, verbose_name="Major"
+            ),
         ),
     ]

@@ -1,0 +1,236 @@
+{
+    "IamFleetRole": "arn:aws:iam::735029168602:role/aws-ec2-spot-fleet-tagging-role",
+    "AllocationStrategy": "capacityOptimized",
+    "TargetCapacity": 1,
+    "ValidFrom": "2021-11-21T04:21:25Z",
+    "ValidUntil": "2025-03-02T04:21:00Z",
+    "SpotPrice": "0.167",
+    "TerminateInstancesWithExpiration": false,
+    "LaunchSpecifications": [
+        {
+            "ImageId": "ami-0629230e074c580f2",
+            "InstanceType": "r3.large",
+            "SubnetId": "subnet-e2958c8a, subnet-ee124494, subnet-10b7095c",
+            "KeyName": "michaeljscully.com",
+            "BlockDeviceMappings": [
+                {
+                    "DeviceName": "/dev/sda1",
+                    "Ebs": {
+                        "DeleteOnTermination": true,
+                        "SnapshotId": "snap-0125d511161175828",
+                        "VolumeSize": 8,
+                        "Encrypted": false,
+                        "VolumeType": "gp2"
+                    }
+                }
+            ],
+            "SpotPrice": "0.166",
+            "SecurityGroups": [
+                {
+                    "GroupId": "sg-05c38254782ac1739"
+                }
+            ],
+            "UserData": "IyEvYmluL2Jhc2ggCgp0b3VjaCAvaG9tZS91YnVudHUvbG9nLnR4dApzdWRvIGNob3duIHVidW50dTp1YnVudHUgL2hvbWUvdWJ1bnR1L2xvZy50eHQKCnN1ZG8gZWNobyAiJChkYXRlKTogQmVnaW4iID4+IC9ob21lL3VidW50dS9sb2cudHh0CndnZXQgaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL21zY3VsbHk0L21pY2hhZWxqc2N1bGx5LmNvbS9tYXN0ZXIvYmFzaC9FQzItQm9vdC1TY3JpcHQuc2ggLU8gL2hvbWUvdWJ1bnR1L0VDMi1Cb290LVNjcmlwdC5zaCAKY2htb2QgK3ggL2hvbWUvdWJ1bnR1L0VDMi1Cb290LVNjcmlwdC5zaCAKCnN1ZG8gZWNobyAiJChkYXRlKTogUnVubmluZyBCb290IFNjcmlwdCIgPj4gL2hvbWUvdWJ1bnR1L2xvZy50eHQKL2hvbWUvdWJ1bnR1L0VDMi1Cb290LVNjcmlwdC5zaA==",
+            "IamInstanceProfile": {
+                "Arn": "arn:aws:iam::735029168602:instance-profile/michaeljscully.com"
+            }
+        },
+        {
+            "ImageId": "ami-0629230e074c580f2",
+            "InstanceType": "r5n.large",
+            "SubnetId": "subnet-e2958c8a, subnet-ee124494, subnet-10b7095c",
+            "KeyName": "michaeljscully.com",
+            "BlockDeviceMappings": [
+                {
+                    "DeviceName": "/dev/sda1",
+                    "Ebs": {
+                        "DeleteOnTermination": true,
+                        "SnapshotId": "snap-0125d511161175828",
+                        "VolumeSize": 8,
+                        "Encrypted": false,
+                        "VolumeType": "gp2"
+                    }
+                }
+            ],
+            "SpotPrice": "0.149",
+            "SecurityGroups": [
+                {
+                    "GroupId": "sg-05c38254782ac1739"
+                }
+            ],
+            "UserData": "IyEvYmluL2Jhc2ggCgp0b3VjaCAvaG9tZS91YnVudHUvbG9nLnR4dApzdWRvIGNob3duIHVidW50dTp1YnVudHUgL2hvbWUvdWJ1bnR1L2xvZy50eHQKCnN1ZG8gZWNobyAiJChkYXRlKTogQmVnaW4iID4+IC9ob21lL3VidW50dS9sb2cudHh0CndnZXQgaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL21zY3VsbHk0L21pY2hhZWxqc2N1bGx5LmNvbS9tYXN0ZXIvYmFzaC9FQzItQm9vdC1TY3JpcHQuc2ggLU8gL2hvbWUvdWJ1bnR1L0VDMi1Cb290LVNjcmlwdC5zaCAKY2htb2QgK3ggL2hvbWUvdWJ1bnR1L0VDMi1Cb290LVNjcmlwdC5zaCAKCnN1ZG8gZWNobyAiJChkYXRlKTogUnVubmluZyBCb290IFNjcmlwdCIgPj4gL2hvbWUvdWJ1bnR1L2xvZy50eHQKL2hvbWUvdWJ1bnR1L0VDMi1Cb290LVNjcmlwdC5zaA==",
+            "IamInstanceProfile": {
+                "Arn": "arn:aws:iam::735029168602:instance-profile/michaeljscully.com"
+            }
+        },
+        {
+            "ImageId": "ami-0629230e074c580f2",
+            "InstanceType": "r5dn.large",
+            "SubnetId": "subnet-e2958c8a, subnet-ee124494, subnet-10b7095c",
+            "KeyName": "michaeljscully.com",
+            "BlockDeviceMappings": [
+                {
+                    "DeviceName": "/dev/sda1",
+                    "Ebs": {
+                        "DeleteOnTermination": true,
+                        "SnapshotId": "snap-0125d511161175828",
+                        "VolumeSize": 8,
+                        "Encrypted": false,
+                        "VolumeType": "gp2"
+                    }
+                }
+            ],
+            "SpotPrice": "0.167",
+            "SecurityGroups": [
+                {
+                    "GroupId": "sg-05c38254782ac1739"
+                }
+            ],
+            "UserData": "IyEvYmluL2Jhc2ggCgp0b3VjaCAvaG9tZS91YnVudHUvbG9nLnR4dApzdWRvIGNob3duIHVidW50dTp1YnVudHUgL2hvbWUvdWJ1bnR1L2xvZy50eHQKCnN1ZG8gZWNobyAiJChkYXRlKTogQmVnaW4iID4+IC9ob21lL3VidW50dS9sb2cudHh0CndnZXQgaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL21zY3VsbHk0L21pY2hhZWxqc2N1bGx5LmNvbS9tYXN0ZXIvYmFzaC9FQzItQm9vdC1TY3JpcHQuc2ggLU8gL2hvbWUvdWJ1bnR1L0VDMi1Cb290LVNjcmlwdC5zaCAKY2htb2QgK3ggL2hvbWUvdWJ1bnR1L0VDMi1Cb290LVNjcmlwdC5zaCAKCnN1ZG8gZWNobyAiJChkYXRlKTogUnVubmluZyBCb290IFNjcmlwdCIgPj4gL2hvbWUvdWJ1bnR1L2xvZy50eHQKL2hvbWUvdWJ1bnR1L0VDMi1Cb290LVNjcmlwdC5zaA==",
+            "IamInstanceProfile": {
+                "Arn": "arn:aws:iam::735029168602:instance-profile/michaeljscully.com"
+            }
+        },
+        {
+            "ImageId": "ami-0629230e074c580f2",
+            "InstanceType": "r5d.large",
+            "SubnetId": "subnet-e2958c8a, subnet-ee124494, subnet-10b7095c",
+            "KeyName": "michaeljscully.com",
+            "BlockDeviceMappings": [
+                {
+                    "DeviceName": "/dev/sda1",
+                    "Ebs": {
+                        "DeleteOnTermination": true,
+                        "SnapshotId": "snap-0125d511161175828",
+                        "VolumeSize": 8,
+                        "Encrypted": false,
+                        "VolumeType": "gp2"
+                    }
+                }
+            ],
+            "SpotPrice": "0.144",
+            "SecurityGroups": [
+                {
+                    "GroupId": "sg-05c38254782ac1739"
+                }
+            ],
+            "UserData": "IyEvYmluL2Jhc2ggCgp0b3VjaCAvaG9tZS91YnVudHUvbG9nLnR4dApzdWRvIGNob3duIHVidW50dTp1YnVudHUgL2hvbWUvdWJ1bnR1L2xvZy50eHQKCnN1ZG8gZWNobyAiJChkYXRlKTogQmVnaW4iID4+IC9ob21lL3VidW50dS9sb2cudHh0CndnZXQgaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL21zY3VsbHk0L21pY2hhZWxqc2N1bGx5LmNvbS9tYXN0ZXIvYmFzaC9FQzItQm9vdC1TY3JpcHQuc2ggLU8gL2hvbWUvdWJ1bnR1L0VDMi1Cb290LVNjcmlwdC5zaCAKY2htb2QgK3ggL2hvbWUvdWJ1bnR1L0VDMi1Cb290LVNjcmlwdC5zaCAKCnN1ZG8gZWNobyAiJChkYXRlKTogUnVubmluZyBCb290IFNjcmlwdCIgPj4gL2hvbWUvdWJ1bnR1L2xvZy50eHQKL2hvbWUvdWJ1bnR1L0VDMi1Cb290LVNjcmlwdC5zaA==",
+            "IamInstanceProfile": {
+                "Arn": "arn:aws:iam::735029168602:instance-profile/michaeljscully.com"
+            }
+        },
+        {
+            "ImageId": "ami-0629230e074c580f2",
+            "InstanceType": "r5b.large",
+            "SubnetId": "subnet-e2958c8a, subnet-ee124494, subnet-10b7095c",
+            "KeyName": "michaeljscully.com",
+            "BlockDeviceMappings": [
+                {
+                    "DeviceName": "/dev/sda1",
+                    "Ebs": {
+                        "DeleteOnTermination": true,
+                        "SnapshotId": "snap-0125d511161175828",
+                        "VolumeSize": 8,
+                        "Encrypted": false,
+                        "VolumeType": "gp2"
+                    }
+                }
+            ],
+            "SpotPrice": "0.149",
+            "SecurityGroups": [
+                {
+                    "GroupId": "sg-05c38254782ac1739"
+                }
+            ],
+            "UserData": "IyEvYmluL2Jhc2ggCgp0b3VjaCAvaG9tZS91YnVudHUvbG9nLnR4dApzdWRvIGNob3duIHVidW50dTp1YnVudHUgL2hvbWUvdWJ1bnR1L2xvZy50eHQKCnN1ZG8gZWNobyAiJChkYXRlKTogQmVnaW4iID4+IC9ob21lL3VidW50dS9sb2cudHh0CndnZXQgaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL21zY3VsbHk0L21pY2hhZWxqc2N1bGx5LmNvbS9tYXN0ZXIvYmFzaC9FQzItQm9vdC1TY3JpcHQuc2ggLU8gL2hvbWUvdWJ1bnR1L0VDMi1Cb290LVNjcmlwdC5zaCAKY2htb2QgK3ggL2hvbWUvdWJ1bnR1L0VDMi1Cb290LVNjcmlwdC5zaCAKCnN1ZG8gZWNobyAiJChkYXRlKTogUnVubmluZyBCb290IFNjcmlwdCIgPj4gL2hvbWUvdWJ1bnR1L2xvZy50eHQKL2hvbWUvdWJ1bnR1L0VDMi1Cb290LVNjcmlwdC5zaA==",
+            "IamInstanceProfile": {
+                "Arn": "arn:aws:iam::735029168602:instance-profile/michaeljscully.com"
+            }
+        },
+        {
+            "ImageId": "ami-0629230e074c580f2",
+            "InstanceType": "r5a.large",
+            "SubnetId": "subnet-e2958c8a, subnet-ee124494, subnet-10b7095c",
+            "KeyName": "michaeljscully.com",
+            "BlockDeviceMappings": [
+                {
+                    "DeviceName": "/dev/sda1",
+                    "Ebs": {
+                        "DeleteOnTermination": true,
+                        "SnapshotId": "snap-0125d511161175828",
+                        "VolumeSize": 8,
+                        "Encrypted": false,
+                        "VolumeType": "gp2"
+                    }
+                }
+            ],
+            "SpotPrice": "0.113",
+            "SecurityGroups": [
+                {
+                    "GroupId": "sg-05c38254782ac1739"
+                }
+            ],
+            "UserData": "IyEvYmluL2Jhc2ggCgp0b3VjaCAvaG9tZS91YnVudHUvbG9nLnR4dApzdWRvIGNob3duIHVidW50dTp1YnVudHUgL2hvbWUvdWJ1bnR1L2xvZy50eHQKCnN1ZG8gZWNobyAiJChkYXRlKTogQmVnaW4iID4+IC9ob21lL3VidW50dS9sb2cudHh0CndnZXQgaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL21zY3VsbHk0L21pY2hhZWxqc2N1bGx5LmNvbS9tYXN0ZXIvYmFzaC9FQzItQm9vdC1TY3JpcHQuc2ggLU8gL2hvbWUvdWJ1bnR1L0VDMi1Cb290LVNjcmlwdC5zaCAKY2htb2QgK3ggL2hvbWUvdWJ1bnR1L0VDMi1Cb290LVNjcmlwdC5zaCAKCnN1ZG8gZWNobyAiJChkYXRlKTogUnVubmluZyBCb290IFNjcmlwdCIgPj4gL2hvbWUvdWJ1bnR1L2xvZy50eHQKL2hvbWUvdWJ1bnR1L0VDMi1Cb290LVNjcmlwdC5zaA==",
+            "IamInstanceProfile": {
+                "Arn": "arn:aws:iam::735029168602:instance-profile/michaeljscully.com"
+            }
+        },
+        {
+            "ImageId": "ami-0629230e074c580f2",
+            "InstanceType": "r5.large",
+            "SubnetId": "subnet-e2958c8a, subnet-ee124494, subnet-10b7095c",
+            "KeyName": "michaeljscully.com",
+            "BlockDeviceMappings": [
+                {
+                    "DeviceName": "/dev/sda1",
+                    "Ebs": {
+                        "DeleteOnTermination": true,
+                        "SnapshotId": "snap-0125d511161175828",
+                        "VolumeSize": 8,
+                        "Encrypted": false,
+                        "VolumeType": "gp2"
+                    }
+                }
+            ],
+            "SpotPrice": "0.126",
+            "SecurityGroups": [
+                {
+                    "GroupId": "sg-05c38254782ac1739"
+                }
+            ],
+            "UserData": "IyEvYmluL2Jhc2ggCgp0b3VjaCAvaG9tZS91YnVudHUvbG9nLnR4dApzdWRvIGNob3duIHVidW50dTp1YnVudHUgL2hvbWUvdWJ1bnR1L2xvZy50eHQKCnN1ZG8gZWNobyAiJChkYXRlKTogQmVnaW4iID4+IC9ob21lL3VidW50dS9sb2cudHh0CndnZXQgaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL21zY3VsbHk0L21pY2hhZWxqc2N1bGx5LmNvbS9tYXN0ZXIvYmFzaC9FQzItQm9vdC1TY3JpcHQuc2ggLU8gL2hvbWUvdWJ1bnR1L0VDMi1Cb290LVNjcmlwdC5zaCAKY2htb2QgK3ggL2hvbWUvdWJ1bnR1L0VDMi1Cb290LVNjcmlwdC5zaCAKCnN1ZG8gZWNobyAiJChkYXRlKTogUnVubmluZyBCb290IFNjcmlwdCIgPj4gL2hvbWUvdWJ1bnR1L2xvZy50eHQKL2hvbWUvdWJ1bnR1L0VDMi1Cb290LVNjcmlwdC5zaA==",
+            "IamInstanceProfile": {
+                "Arn": "arn:aws:iam::735029168602:instance-profile/michaeljscully.com"
+            }
+        },
+        {
+            "ImageId": "ami-0629230e074c580f2",
+            "InstanceType": "r4.large",
+            "SubnetId": "subnet-e2958c8a, subnet-ee124494, subnet-10b7095c",
+            "KeyName": "michaeljscully.com",
+            "BlockDeviceMappings": [
+                {
+                    "DeviceName": "/dev/sda1",
+                    "Ebs": {
+                        "DeleteOnTermination": true,
+                        "SnapshotId": "snap-0125d511161175828",
+                        "VolumeSize": 8,
+                        "Encrypted": false,
+                        "VolumeType": "gp2"
+                    }
+                }
+            ],
+            "SpotPrice": "0.133",
+            "SecurityGroups": [
+                {
+                    "GroupId": "sg-05c38254782ac1739"
+                }
+            ],
+            "UserData": "IyEvYmluL2Jhc2ggCgp0b3VjaCAvaG9tZS91YnVudHUvbG9nLnR4dApzdWRvIGNob3duIHVidW50dTp1YnVudHUgL2hvbWUvdWJ1bnR1L2xvZy50eHQKCnN1ZG8gZWNobyAiJChkYXRlKTogQmVnaW4iID4+IC9ob21lL3VidW50dS9sb2cudHh0CndnZXQgaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL21zY3VsbHk0L21pY2hhZWxqc2N1bGx5LmNvbS9tYXN0ZXIvYmFzaC9FQzItQm9vdC1TY3JpcHQuc2ggLU8gL2hvbWUvdWJ1bnR1L0VDMi1Cb290LVNjcmlwdC5zaCAKY2htb2QgK3ggL2hvbWUvdWJ1bnR1L0VDMi1Cb290LVNjcmlwdC5zaCAKCnN1ZG8gZWNobyAiJChkYXRlKTogUnVubmluZyBCb290IFNjcmlwdCIgPj4gL2hvbWUvdWJ1bnR1L2xvZy50eHQKL2hvbWUvdWJ1bnR1L0VDMi1Cb290LVNjcmlwdC5zaA==",
+            "IamInstanceProfile": {
+                "Arn": "arn:aws:iam::735029168602:instance-profile/michaeljscully.com"
+            }
+        }
+    ],
+    "Type": "maintain"
+}

@@ -6,38 +6,38 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('resume', '0006_remove_certifications_certificate'),
+        ("resume", "0006_remove_certifications_certificate"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='certifications',
-            name='id',
+            model_name="certifications",
+            name="id",
             field=models.AutoField(primary_key=True, serialize=False),
         ),
         migrations.AlterField(
-            model_name='classes',
-            name='id',
+            model_name="classes",
+            name="id",
             field=models.AutoField(primary_key=True, serialize=False),
         ),
         migrations.AlterField(
-            model_name='education',
-            name='id',
+            model_name="education",
+            name="id",
             field=models.AutoField(primary_key=True, serialize=False),
         ),
         migrations.AlterField(
-            model_name='experience',
-            name='id',
+            model_name="experience",
+            name="id",
             field=models.AutoField(primary_key=True, serialize=False),
         ),
         migrations.AlterField(
-            model_name='projects',
-            name='id',
+            model_name="projects",
+            name="id",
             field=models.AutoField(primary_key=True, serialize=False),
         ),
         migrations.AlterField(
-            model_name='skills',
-            name='id',
+            model_name="skills",
+            name="id",
             field=models.AutoField(primary_key=True, serialize=False),
         ),
     ]

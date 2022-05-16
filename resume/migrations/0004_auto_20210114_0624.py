@@ -7,23 +7,38 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('resume', '0003_auto_20210114_0515'),
+        ("resume", "0003_auto_20210114_0515"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='education',
-            name='year',
+            model_name="education",
+            name="year",
         ),
         migrations.AddField(
-            model_name='education',
-            name='end_year',
-            field=models.IntegerField(blank=True, null=True, validators=[django.core.validators.MinValueValidator(2000), django.core.validators.MaxValueValidator(2100)], verbose_name='End Year'),
+            model_name="education",
+            name="end_year",
+            field=models.IntegerField(
+                blank=True,
+                null=True,
+                validators=[
+                    django.core.validators.MinValueValidator(2000),
+                    django.core.validators.MaxValueValidator(2100),
+                ],
+                verbose_name="End Year",
+            ),
         ),
         migrations.AddField(
-            model_name='education',
-            name='start_year',
-            field=models.IntegerField(default=2015, validators=[django.core.validators.MinValueValidator(2000), django.core.validators.MaxValueValidator(2100)], verbose_name='Start Year'),
+            model_name="education",
+            name="start_year",
+            field=models.IntegerField(
+                default=2015,
+                validators=[
+                    django.core.validators.MinValueValidator(2000),
+                    django.core.validators.MaxValueValidator(2100),
+                ],
+                verbose_name="Start Year",
+            ),
             preserve_default=False,
         ),
     ]
